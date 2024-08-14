@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_auth"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.vocabhelper.presentation.auth.fragments.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_onboardingViewpagerFragment"
+            app:destination="@id/onboardingViewpagerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/onboardingViewpagerFragment"
+        android:name="com.example.vocabhelper.presentation.auth.fragments.tabs.OnboardingViewpagerFragment"
+        android:label="fragment_onboarding_viewpager"
+        tools:layout="@layout/fragment_onboarding_viewpager" >
+        <action
+            android:id="@+id/action_onboardingViewpagerFragment_to_fourthFragment"
+            app:destination="@id/fourthFragment"
+            app:popUpTo="@id/onboardingViewpagerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fourthFragment"
+        android:name="com.example.vocabhelper.presentation.auth.fragments.tabs.FourthFragment"
+        android:label="FourthFragment" >
+        <action
+            android:id="@+id/action_fourthFragment_to_onboardingViewpagerFragment"
+            app:destination="@id/onboardingViewpagerFragment" />
+        <action
+            android:id="@+id/action_fourthFragment_to_signupFragment"
+            app:destination="@id/signupFragment"
+            app:popUpTo="@id/fourthFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_fourthFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/fourthFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/signupFragment"
+        android:name="com.example.vocabhelper.presentation.auth.fragments.SignupFragment"
+        android:label="SignupFragment" >
+        <action
+            android:id="@+id/action_signupFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.vocabhelper.presentation.auth.fragments.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_signupFragment"
+            app:destination="@id/signupFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_loginFragment_to_fourthFragment"
+            app:destination="@id/fourthFragment" />
+    </fragment>
+</navigation>

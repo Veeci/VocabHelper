@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_primary"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".presentation.auth.fragments.tabs.FirstFragment">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/buttonBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/button_back" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/lato"
+        android:text="Welcome to VocabHelper"
+        android:textAlignment="center"
+        android:textColor="@color/text_main"
+        android:textSize="32sp"
+        android:textStyle="bold" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="50dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/lato"
+        android:text="Please login to your account or create new account to continue"
+        android:textAlignment="center"
+        android:textColor="@color/text_secondary"
+        android:textSize="16sp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/loginButton"
+            android:layout_width="327dp"
+            android:layout_height="48dp"
+            android:background="@drawable/button_mainbutton"
+            android:fontFamily="@font/lato"
+            android:text="LOGIN"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:textColor="@color/text_main"
+            tools:ignore="RtlCompat" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/signupButton"
+            android:layout_width="327dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/button_secondarybutton"
+            android:fontFamily="@font/lato"
+            android:text="CREATE ACCOUNT"
+            android:textAlignment="center"
+            android:textColor="@color/text_main"
+            tools:ignore="RtlCompat" />
+    </LinearLayout>
+
+</LinearLayout>

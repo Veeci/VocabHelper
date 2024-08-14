@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!--Theme-->
+    <color name="theme_primary">#121212</color>
+    <color name="theme_secondary">#8685E7</color>
+    <color name="theme_tertiary">#4C4C4C</color>
+    <color name="theme_selection">#1D1D1D</color>
+    <color name="theme_danger">#FF4949</color>
+    <color name="theme_inputtext">#1D1D1D</color>
+
+    <!--Category-->
+    <color name="category1">#C9CC41</color>
+    <color name="category2">#FF9680</color>
+    <color name="category3">#809CFF</color>
+    <color name="category4">#FF80EB</color>
+    <color name="category5">#80FFA3</color>
+    <color name="category6">#FFCC80</color>
+    <color name="category7">#CC4173</color>
+
+    <!--Text-->
+    <color name="text_main">#FFFFFFFF</color>
+    <color name="text_secondary">#AFAFAF</color>
 </resources>
