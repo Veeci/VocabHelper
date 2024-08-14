@@ -7,6 +7,7 @@
     <color name="theme_selection">#1D1D1D</color>
     <color name="theme_danger">#FF4949</color>
     <color name="theme_inputtext">#1D1D1D</color>
+    <color name="theme_menubar">#363636</color>
 
     <!--Category-->
     <color name="category1">#C9CC41</color>

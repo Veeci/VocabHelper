@@ -73,5 +73,4 @@ dependencies {
 
     //Indicator
     implementation("com.tbuonomo:dotsindicator:5.0")
-
 }
