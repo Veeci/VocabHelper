@@ -1,60 +1,76 @@
 package com.example.vocabhelper.presentation.main.fragments
 
+import android.icu.text.DecimalFormat
 import android.os.Bundle
+import android.os.CountDownTimer
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.vocabhelper.R
+import androidx.appcompat.widget.AppCompatTextView
+import com.example.vocabhelper.databinding.FragmentFocusBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [FocusFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class FocusFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var _binding: FragmentFocusBinding? = null
+    private val binding get() = _binding!!
+
+    private lateinit var countDownTimer: CountDownTimer
+    private val countdownTime = 2700 // in seconds
+    private val clockTime = (countdownTime * 1000).toLong()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_focus, container, false)
+        _binding = FragmentFocusBinding.inflate(layoutInflater, container, false)
+
+        setupFunction()
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FocusFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FocusFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+
+    private fun setupFunction() {
+        countDownTimer = object : CountDownTimer(clockTime, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                val secondsRemaining = (millisUntilFinished / 1000).toInt()
+                binding.circularTimer.progress = secondsRemaining
+                timeFormat(secondsRemaining, binding.countdownTV)
             }
+
+            override fun onFinish() {
+                binding.circularTimer.progress = 0
+                timeFormat(0, binding.countdownTV)
+            }
+        }
+        binding.circularTimer.max = countdownTime
+        binding.circularTimer.progress = countdownTime
+        countDownTimer.start()
+
+        binding.endCountdownButton.setOnClickListener {
+            countDownTimer.cancel()
+            countDownTimer.start()
+            binding.circularTimer.progress = countdownTime
+        }
     }
+
+    private fun timeFormat(secondLeft: Int, countdownTV: AppCompatTextView) {
+        binding.circularTimer.progress = secondLeft
+        val decimalFormat = DecimalFormat("00")
+        val hour = secondLeft / 3600
+        val minute = (secondLeft % 3600) / 60
+        val second = secondLeft % 60
+
+        val timeFormat = decimalFormat.format(hour) + ":" + decimalFormat.format(minute) + ":" + decimalFormat.format(second)
+
+        countdownTV.text = timeFormat
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+        countDownTimer.cancel()
+    }
+
 }

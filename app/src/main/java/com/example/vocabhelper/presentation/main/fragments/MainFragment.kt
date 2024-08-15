@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -66,18 +67,22 @@ class MainFragment : Fragment() {
             when (item.itemId) {
                 R.id.menu_home -> {
                     viewPager.currentItem = 0
+                    view.findViewById<AppCompatTextView>(R.id.headerTitle).text = "Index"
                     true
                 }
                 R.id.menu_search -> {
                     viewPager.currentItem = 1
+                    view.findViewById<AppCompatTextView>(R.id.headerTitle).text = "Search"
                     true
                 }
                 R.id.menu_focus -> {
                     viewPager.currentItem = 2
+                    view.findViewById<AppCompatTextView>(R.id.headerTitle).text = "Pomodoro"
                     true
                 }
                 R.id.menu_profile -> {
                     viewPager.currentItem = 3
+                    view.findViewById<AppCompatTextView>(R.id.headerTitle).text = "Profile"
                     true
                 }
 
