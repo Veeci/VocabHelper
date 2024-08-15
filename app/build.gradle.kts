@@ -73,4 +73,7 @@ dependencies {
 
     //Indicator
     implementation("com.tbuonomo:dotsindicator:5.0")
+
+    //Searchbar
+    implementation("com.github.mancj:MaterialSearchBar:0.8.5")
 }

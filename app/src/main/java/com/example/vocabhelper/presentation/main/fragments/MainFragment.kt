@@ -6,8 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.example.vocabhelper.R
 import com.example.vocabhelper.databinding.FragmentMainBinding
+import com.example.vocabhelper.presentation.ViewPagerAdapter
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainFragment : Fragment() {
 
@@ -17,7 +22,7 @@ class MainFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentMainBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
@@ -25,30 +30,57 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Apply insets to the bottom bar
+        ViewCompat.setOnApplyWindowInsetsListener(binding.bottomBar.root) { v, insets ->
+            val systemBarsInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(
+                systemBarsInsets.left,
+                systemBarsInsets.top,
+                systemBarsInsets.right,
+                systemBarsInsets.bottom
+            )
+            insets
+        }
 
-        binding.bottomNavigation.background = null
-        binding.bottomNavigation.menu.getItem(2).isEnabled = false
-        binding.bottomNavigation.itemIconTintList = ColorStateList.valueOf(resources.getColor(R.color.text_main))
-        binding.bottomNavigation.itemTextColor = ColorStateList.valueOf(resources.getColor(R.color.text_main))
+        val fragmentList = arrayListOf<Fragment>(
+            HomeFragment(),
+            SearchFragment(),
+            FocusFragment(),
+            ProfileFragment()
+        )
 
-        binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
-            when(item.itemId) {
+        val adapter =ViewPagerAdapter(
+            fragmentList,
+            requireActivity().supportFragmentManager,
+            lifecycle
+        )
+
+        val viewPager =binding.mainViewPager
+        viewPager.adapter = adapter
+        viewPager.isUserInputEnabled = false
+
+        val bottomNavigation = view.findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        bottomNavigation.itemIconTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.text_main))
+        bottomNavigation.itemTextColor = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.text_main))
+        bottomNavigation.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
                 R.id.menu_home -> {
-
+                    viewPager.currentItem = 0
                     true
                 }
                 R.id.menu_search -> {
-
+                    viewPager.currentItem = 1
                     true
                 }
                 R.id.menu_focus -> {
-
+                    viewPager.currentItem = 2
                     true
                 }
                 R.id.menu_profile -> {
-
+                    viewPager.currentItem = 3
                     true
                 }
+
                 else -> false
             }
         }
