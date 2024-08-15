@@ -76,4 +76,8 @@ dependencies {
 
     //Searchbar
     implementation("com.github.mancj:MaterialSearchBar:0.8.5")
+
+    //Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
 }
