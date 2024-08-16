@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.main.fragments.home.tabs.bottomsheet.AddStep1Fragment"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/bottomsheet">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Word"
+        android:textSize="20sp"
+        android:textColor="@color/text_main"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Collocation:"
+        android:textSize="18sp"
+        android:textColor="@color/text_main"
+        android:layout_marginTop="20dp"/>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textColor="@color/text_main"
+        android:background="@color/theme_tertiary"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:hint="Enter collocation"
+        android:padding="10dp"
+        android:id="@+id/collocationET"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Example sentence:"
+        android:textSize="18sp"
+        android:textColor="@color/text_main"
+        android:layout_marginTop="20dp"/>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textColor="@color/text_main"
+        android:background="@color/theme_tertiary"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:hint="Enter example sentence"
+        android:padding="10dp"
+        android:id="@+id/exampleET"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/theme_tertiary"
+            android:text="Back"
+            android:textColor="@color/text_main"
+            android:fontFamily="@font/lato"
+            android:textSize="16sp"
+            android:id="@+id/backStep3Button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/icon_confirmnew_home"
+            android:textColor="@color/text_main"
+            android:fontFamily="@font/lato"
+            android:textSize="16sp"
+            android:id="@+id/finishButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

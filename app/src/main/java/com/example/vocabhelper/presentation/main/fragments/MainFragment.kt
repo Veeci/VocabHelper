@@ -14,6 +14,7 @@ import com.example.vocabhelper.R
 import com.example.vocabhelper.databinding.FragmentMainBinding
 import com.example.vocabhelper.presentation.ViewPagerAdapter
 import com.example.vocabhelper.presentation.main.fragments.home.HomeFragment
+import com.example.vocabhelper.presentation.main.fragments.home.tabs.bottomsheet.BottomSheetFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -99,7 +100,8 @@ class MainFragment : Fragment() {
 
         val addButton = view.findViewById<FloatingActionButton>(R.id.addWordFAB)
         addButton.setOnClickListener {
-
+            val bottomSheetFragment = BottomSheetFragment()
+            bottomSheetFragment.show(requireActivity().supportFragmentManager, bottomSheetFragment.tag)
         }
     }
 }

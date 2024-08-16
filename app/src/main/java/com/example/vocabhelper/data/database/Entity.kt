@@ -12,6 +12,7 @@ data class WordEntity (
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     val word: String,
+    val meaning: String,
     val phonetic: String?,
     val category: String,
     val collocation: List<String>?,
