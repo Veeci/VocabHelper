@@ -13,7 +13,9 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.vocabhelper.R
 import com.example.vocabhelper.databinding.FragmentMainBinding
 import com.example.vocabhelper.presentation.ViewPagerAdapter
+import com.example.vocabhelper.presentation.main.fragments.home.HomeFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainFragment : Fragment() {
 
@@ -43,6 +45,11 @@ class MainFragment : Fragment() {
             insets
         }
 
+        setupFunction(view)
+    }
+
+    private fun setupFunction(view: View)
+    {
         val fragmentList = arrayListOf<Fragment>(
             HomeFragment(),
             SearchFragment(),
@@ -88,6 +95,11 @@ class MainFragment : Fragment() {
 
                 else -> false
             }
+        }
+
+        val addButton = view.findViewById<FloatingActionButton>(R.id.addWordFAB)
+        addButton.setOnClickListener {
+
         }
     }
 }

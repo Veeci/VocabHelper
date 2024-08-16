@@ -6,15 +6,20 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-private val retrofit = Retrofit.Builder()
-    .baseUrl("https://api.dictionaryapi.dev/")
-    .addConverterFactory(GsonConverterFactory.create())
-    .build()
-
 interface APIService {
-    @GET("api/v2/entries/en/{word}")
+    @GET("entries/en/{word}")
     suspend fun getWord(@Path("word") word: String): List<Response>
 
-}
+    companion object {
+        private const val BASE_URL = "https://api.dictionaryapi.dev/api/v2/"
 
-val apiService: APIService = retrofit.create(APIService::class.java)
+        fun create(): APIService {
+            val retrofit = Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+            return retrofit.create(APIService::class.java)
+        }
+    }
+}

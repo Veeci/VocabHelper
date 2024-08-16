@@ -50,9 +50,11 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.core)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.material.v190)
 
     //Retrofit & Gson
     implementation(libs.retrofit)
@@ -80,4 +82,9 @@ dependencies {
     //Retrofit
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+
+    //Room
+    implementation( libs.androidx.room.runtime)
+    kapt(libs.androidx.room.compiler)
+    implementation( libs.androidx.room.ktx)
 }
