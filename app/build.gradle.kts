@@ -5,6 +5,7 @@ plugins {
     id ("kotlin-kapt")
     id("kotlin-parcelize")
     id("androidx.navigation.safeargs.kotlin")
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -24,7 +25,14 @@ android {
     buildFeatures{
         viewBinding = true
     }
-
+    signingConfigs {
+        create("release") {
+            storeFile = file("../keystore/vocal-key.jks")
+            storePassword = "123456"
+            keyAlias = "vocal-alias"
+            keyPassword = "123456"
+        }
+    }
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -32,6 +40,11 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("release")
+        }
+        debug {
+            isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("release")
         }
     }
     compileOptions {
@@ -51,6 +64,7 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.core)
+    implementation(libs.firebase.firestore)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -87,4 +101,8 @@ dependencies {
     implementation( libs.androidx.room.runtime)
     kapt(libs.androidx.room.compiler)
     implementation( libs.androidx.room.ktx)
+
+    //Firebase
+    implementation(libs.firebase.auth)
+    implementation(libs.play.services.auth)
 }

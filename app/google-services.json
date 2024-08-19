@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "373369689147",
+    "project_id": "vocabhelper-65136",
+    "storage_bucket": "vocabhelper-65136.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:373369689147:android:214269166f84c4e99db81e",
+        "android_client_info": {
+          "package_name": "com.example.vocabhelper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "373369689147-4ghp7j5a314cifs5dmba81j7ep596158.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.vocabhelper",
+            "certificate_hash": "1955bf2cc9c05640968d3d6cd61ef1e4d236a698"
+          }
+        },
+        {
+          "client_id": "373369689147-p789046cd029v00bm7q9m4fsnoltc51j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCknwgqAC_JL2X-os0uP2WEUQc8ZSCgKpA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "373369689147-p789046cd029v00bm7q9m4fsnoltc51j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
