@@ -1,4 +1,4 @@
-package com.example.vocabhelper.presentation.main.fragments
+package com.example.vocabhelper.presentation.main.fragments.profile
 
 import android.app.Dialog
 import android.os.Bundle
@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import coil.load
 import com.example.vocabhelper.R

@@ -1,23 +1,32 @@
-package com.example.vocabhelper.ui.viewmodel
+package com.example.vocabhelper.domain
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.example.vocabhelper.data.database.WordEntity
+import com.example.vocabhelper.data.models.Response
 import com.example.vocabhelper.data.repository.WordRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class WordViewModel(private val repository: WordRepository) : ViewModel() {
 
+    private val _word = MutableLiveData<Response>()
+    val word: MutableLiveData<Response> get() = _word
+
     // Fetch word definition from API
-    fun getWordDefinition(word: String) = liveData(Dispatchers.IO) {
-        try {
-            val response = repository.getWordFromAPI(word)
-            emit(Result.success(response))
-        } catch (e: Exception) {
-            emit(Result.failure(e))
+    fun getWordDefinition(word: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try{
+                val response = repository.getWordFromAPI(word)
+                if (response.isNotEmpty()) {
+                    _word.postValue(response[0])
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
     }
 

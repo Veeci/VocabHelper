@@ -5,17 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.activityViewModels
-import com.example.vocabhelper.R
 import com.example.vocabhelper.data.api.APIService
 import com.example.vocabhelper.data.database.WordDatabase
 import com.example.vocabhelper.data.database.WordEntity
 import com.example.vocabhelper.data.repository.WordRepository
 import com.example.vocabhelper.databinding.FragmentBottomSheetBinding
 import com.example.vocabhelper.presentation.ViewPagerAdapter
-import com.example.vocabhelper.ui.viewmodel.WordViewModel
+import com.example.vocabhelper.domain.WordViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class BottomSheetFragment : BottomSheetDialogFragment() {

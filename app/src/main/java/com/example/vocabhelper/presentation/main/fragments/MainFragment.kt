@@ -16,8 +16,11 @@ import com.example.vocabhelper.R
 import com.example.vocabhelper.databinding.FragmentMainBinding
 import com.example.vocabhelper.domain.AuthViewModel
 import com.example.vocabhelper.presentation.ViewPagerAdapter
+import com.example.vocabhelper.presentation.main.fragments.focus.FocusFragment
 import com.example.vocabhelper.presentation.main.fragments.home.HomeFragment
 import com.example.vocabhelper.presentation.main.fragments.home.tabs.bottomsheet.BottomSheetFragment
+import com.example.vocabhelper.presentation.main.fragments.profile.ProfileFragment
+import com.example.vocabhelper.presentation.main.fragments.search.SearchFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.ktx.auth

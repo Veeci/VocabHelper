@@ -1,4 +1,4 @@
-package com.example.vocabhelper.presentation.main.fragments
+package com.example.vocabhelper.presentation.main.fragments.focus
 
 import android.icu.text.DecimalFormat
 import android.os.Bundle

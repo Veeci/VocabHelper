@@ -6,12 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.example.vocabhelper.R
 import com.example.vocabhelper.data.api.APIService
 import com.example.vocabhelper.data.database.WordDatabase
 import com.example.vocabhelper.data.repository.WordRepository
 import com.example.vocabhelper.databinding.FragmentHomeBinding
-import com.example.vocabhelper.ui.viewmodel.WordViewModel
+import com.example.vocabhelper.domain.WordViewModel
 
 
 class HomeFragment : Fragment() {

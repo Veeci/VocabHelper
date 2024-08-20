@@ -9,10 +9,6 @@ import kotlinx.coroutines.withContext
 
 class WordRepository(private val apiService: APIService, private val wordDAO: WordDAO) {
 
-    suspend fun getWord(word: String): List<Response> {
-        return apiService.getWord(word)
-    }
-
     suspend fun getWordFromAPI(word: String): List<Response> {
         return apiService.getWord(word)
     }
