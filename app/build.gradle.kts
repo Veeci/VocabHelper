@@ -105,4 +105,7 @@ dependencies {
     //Firebase
     implementation(libs.firebase.auth)
     implementation(libs.play.services.auth)
+
+    //Coil
+    implementation(libs.coil)
 }

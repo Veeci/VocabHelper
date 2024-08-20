@@ -10,8 +10,11 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.activityViewModels
+import coil.load
 import com.example.vocabhelper.R
 import com.example.vocabhelper.databinding.FragmentMainBinding
+import com.example.vocabhelper.domain.AuthViewModel
 import com.example.vocabhelper.presentation.ViewPagerAdapter
 import com.example.vocabhelper.presentation.main.fragments.home.HomeFragment
 import com.example.vocabhelper.presentation.main.fragments.home.tabs.bottomsheet.BottomSheetFragment
@@ -23,11 +26,14 @@ class MainFragment : Fragment() {
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
 
+    private val authViewModel: AuthViewModel by activityViewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMainBinding.inflate(layoutInflater, container, false)
+
         return binding.root
     }
 
@@ -44,6 +50,10 @@ class MainFragment : Fragment() {
                 systemBarsInsets.bottom
             )
             insets
+        }
+
+        authViewModel.profilePicUrl.observe(viewLifecycleOwner){ url ->
+            binding.topBar.profilePicture.load(url)
         }
 
         setupFunction(view)
@@ -103,5 +113,6 @@ class MainFragment : Fragment() {
             val bottomSheetFragment = BottomSheetFragment()
             bottomSheetFragment.show(requireActivity().supportFragmentManager, bottomSheetFragment.tag)
         }
+
     }
 }

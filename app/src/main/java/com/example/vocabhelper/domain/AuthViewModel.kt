@@ -4,6 +4,8 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.vocabhelper.presentation.auth.fragments.LoginFragment
@@ -22,7 +24,14 @@ import kotlinx.coroutines.withContext
 class AuthViewModel : ViewModel() {
     private val auth = FirebaseAuth.getInstance()
     private val db = FirebaseFirestore.getInstance()
-    private val RC_SIGN_IN = 9001
+
+    private val _profilePicUrl = MutableLiveData<String>()
+    val profilePicUrl: LiveData<String> get() = _profilePicUrl
+
+    fun setProfilePicUrl(url: String) {
+        _profilePicUrl.value = url
+    }
+
 
     fun signUp(email: String, password: String, fullname: String, context: Context) {
         viewModelScope.launch (Dispatchers.IO) {
@@ -136,11 +145,6 @@ class AuthViewModel : ViewModel() {
                 e.printStackTrace()
             }
         }
-    }
-
-    fun GoogleSignin(context: Context, googleSignInClient: GoogleSignInClient) {
-        val signinIntent = googleSignInClient.signInIntent
-        (context as Activity).startActivityForResult(signinIntent, RC_SIGN_IN)
     }
 
     fun logOut(context: Context)

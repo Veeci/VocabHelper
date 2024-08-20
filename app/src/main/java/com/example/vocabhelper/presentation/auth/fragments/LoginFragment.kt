@@ -8,12 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.vocabhelper.R
 import com.example.vocabhelper.databinding.FragmentLoginBinding
 import com.example.vocabhelper.domain.AuthViewModel
-import com.example.vocabhelper.presentation.main.MainActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -26,7 +25,7 @@ class LoginFragment : Fragment() {
 
     private lateinit var googleSignInClient: GoogleSignInClient
 
-    private val authViewModel: AuthViewModel by viewModels()
+    private val authViewModel: AuthViewModel by activityViewModels()
 
     private val googleSignInLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
@@ -34,6 +33,9 @@ class LoginFragment : Fragment() {
             val account = task.getResult(ApiException::class.java)
             account?.let {
                 authViewModel.FirebaseAuthWithGoogle(it, requireContext())
+                val googleProfilePicUrl = it.photoUrl.toString()
+
+                authViewModel.setProfilePicUrl(googleProfilePicUrl)
             }
         } catch (e: ApiException) {
             e.printStackTrace()
@@ -44,7 +46,7 @@ class LoginFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentLoginBinding.inflate(layoutInflater, container, false)
 
         setUpFunction()
