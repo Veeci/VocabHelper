@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/theme_tertiary">
+
+    <TextView
+        android:id="@+id/textview"
+        android:layout_width="match_parent"
+        android:layout_height="112dp"
+        android:padding="10dp"
+        android:text="Are you sure you want to log out?"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        android:fontFamily="@font/lato"
+        android:textColor="@color/text_main"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textview"
+        android:layout_centerHorizontal="true"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/okay_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:fontFamily="@font/lato"
+            android:text="Yes"
+            android:textColor="@color/text_main"
+            android:textSize="30sp"
+            android:padding="10dp"/>
+
+        <TextView
+            android:id="@+id/cancel_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/okay_text"
+            android:layout_weight="1"
+            android:background="@color/theme_secondary"
+            android:gravity="center"
+            android:text="No"
+            android:textColor="@color/text_main"
+            android:textSize="30sp"
+            android:fontFamily="@font/lato"
+            android:padding="10dp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

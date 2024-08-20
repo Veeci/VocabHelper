@@ -12,7 +12,7 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Word"
+        android:text="@string/addStep2_add_word"
         android:textSize="20sp"
         android:textColor="@color/text_main"
         android:layout_marginTop="20dp"
@@ -21,7 +21,7 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Meaning:"
+        android:text="@string/addStep2_meaning"
         android:textSize="18sp"
         android:textColor="@color/text_main"
         android:layout_marginTop="20dp"/>
@@ -33,14 +33,14 @@
         android:background="@color/theme_tertiary"
         android:textSize="16sp"
         android:layout_marginTop="10dp"
-        android:hint="Enter meaning"
+        android:hint="@string/addStep2_enter_meaning"
         android:padding="10dp"
         android:id="@+id/meaningET"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Synonym:"
+        android:text="@string/addStep2_synonym"
         android:textSize="18sp"
         android:textColor="@color/text_main"
         android:layout_marginTop="20dp"/>
@@ -52,14 +52,14 @@
         android:background="@color/theme_tertiary"
         android:textSize="16sp"
         android:layout_marginTop="10dp"
-        android:hint="Enter synonym"
+        android:hint="@string/addStep2_enter_synonym"
         android:padding="10dp"
         android:id="@+id/synonymET"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Antonym:"
+        android:text="@string/addStep2_antonym"
         android:textSize="18sp"
         android:textColor="@color/text_main"
         android:layout_marginTop="20dp"/>
@@ -71,7 +71,7 @@
         android:background="@color/theme_tertiary"
         android:textSize="16sp"
         android:layout_marginTop="10dp"
-        android:hint="Enter antonym"
+        android:hint="@string/addStep2_enter_antonym"
         android:padding="10dp"
         android:id="@+id/antonymET"/>
 
@@ -84,7 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/theme_tertiary"
-            android:text="Back"
+            android:text="@string/addStep2_back"
             android:textColor="@color/text_main"
             android:fontFamily="@font/lato"
             android:textSize="16sp"
@@ -97,7 +97,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/theme_secondary"
-            android:text="Next"
+            android:text="@string/addStep2_next"
             android:textColor="@color/text_main"
             android:fontFamily="@font/lato"
             android:textSize="16sp"
@@ -107,7 +107,4 @@
             app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
 </LinearLayout>

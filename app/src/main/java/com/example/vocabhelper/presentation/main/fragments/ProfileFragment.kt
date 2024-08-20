@@ -1,12 +1,13 @@
 package com.example.vocabhelper.presentation.main.fragments
 
+import android.app.Dialog
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
+import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import coil.load
 import com.example.vocabhelper.R
@@ -48,7 +49,25 @@ class ProfileFragment : Fragment() {
 
     private fun setupFunctions() {
         binding.logout.setOnClickListener {
-            authViewModel.logOut(requireContext(), googleSignInClient)
+            val dialog = Dialog(requireContext())
+            dialog.setContentView(R.layout.custom_dialog)
+            dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+            dialog.setCancelable(false)
+            dialog.window?.attributes?.windowAnimations = R.style.animation
+
+            val okayText = dialog.findViewById<TextView>(R.id.okay_text)
+            val cancelText = dialog.findViewById<TextView>(R.id.cancel_text)
+
+            okayText.setOnClickListener {
+                dialog.dismiss()
+                authViewModel.logOut(requireContext(), googleSignInClient)
+            }
+
+            cancelText.setOnClickListener {
+                dialog.dismiss()
+            }
+
+            dialog.show()
         }
     }
 

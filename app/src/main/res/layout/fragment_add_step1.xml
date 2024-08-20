@@ -11,7 +11,7 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Word"
+        android:text="@string/addStep1_add_word"
         android:textSize="20sp"
         android:textColor="@color/text_main"
         android:layout_marginTop="20dp"
@@ -20,7 +20,7 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Word:"
+        android:text="@string/addStep1_word"
         android:textSize="18sp"
         android:textColor="@color/text_main"
         android:layout_marginTop="20dp"/>
@@ -32,14 +32,14 @@
         android:background="@color/theme_tertiary"
         android:textSize="16sp"
         android:layout_marginTop="10dp"
-        android:hint="Enter word"
+        android:hint="@string/addStep1_enter_word"
         android:padding="10dp"
         android:id="@+id/wordET"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Phonetic:"
+        android:text="@string/addStep1_phonetic"
         android:textSize="18sp"
         android:textColor="@color/text_main"
         android:layout_marginTop="20dp"/>
@@ -51,7 +51,7 @@
         android:background="@color/theme_tertiary"
         android:textSize="16sp"
         android:layout_marginTop="10dp"
-        android:hint="Enter phonetic"
+        android:hint="@string/addStep1_enter_phonetic"
         android:padding="10dp"
         android:id="@+id/phoneticET"/>
 
@@ -59,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/theme_secondary"
-        android:text="Next"
+        android:text="@string/addStep1_next"
         android:textColor="@color/text_main"
         android:fontFamily="@font/lato"
         android:textSize="16sp"
