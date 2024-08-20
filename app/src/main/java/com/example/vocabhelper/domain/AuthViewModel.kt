@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.vocabhelper.presentation.auth.AuthActivity
 import com.example.vocabhelper.presentation.auth.fragments.LoginFragment
 import com.example.vocabhelper.presentation.main.MainActivity
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -147,11 +148,15 @@ class AuthViewModel : ViewModel() {
         }
     }
 
-    fun logOut(context: Context)
-    {
-        auth.signOut()
-        Toast.makeText(context, "Sign out successfully", Toast.LENGTH_SHORT).show()
-        val intent = Intent(context, LoginFragment::class.java)
-        context.startActivity(intent)
+    fun logOut(context: Context, googleSignInClient: GoogleSignInClient) {
+        viewModelScope.launch {
+            auth.signOut()
+            googleSignInClient.signOut().await()
+            withContext(Dispatchers.Main) {
+                Toast.makeText(context, "Sign out successfully", Toast.LENGTH_SHORT).show()
+                val intent = Intent(context, AuthActivity::class.java)
+                context.startActivity(intent)
+            }
+        }
     }
 }

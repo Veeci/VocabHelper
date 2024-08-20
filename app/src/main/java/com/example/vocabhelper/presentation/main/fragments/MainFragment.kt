@@ -20,6 +20,8 @@ import com.example.vocabhelper.presentation.main.fragments.home.HomeFragment
 import com.example.vocabhelper.presentation.main.fragments.home.tabs.bottomsheet.BottomSheetFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class MainFragment : Fragment() {
 
@@ -84,21 +86,25 @@ class MainFragment : Fragment() {
         bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.menu_home -> {
+                    binding.topBar.header.visibility = View.VISIBLE
                     viewPager.currentItem = 0
                     view.findViewById<AppCompatTextView>(R.id.headerTitle).text = "Index"
                     true
                 }
                 R.id.menu_search -> {
+                    binding.topBar.header.visibility = View.VISIBLE
                     viewPager.currentItem = 1
                     view.findViewById<AppCompatTextView>(R.id.headerTitle).text = "Search"
                     true
                 }
                 R.id.menu_focus -> {
+                    binding.topBar.header.visibility = View.VISIBLE
                     viewPager.currentItem = 2
                     view.findViewById<AppCompatTextView>(R.id.headerTitle).text = "Pomodoro"
                     true
                 }
                 R.id.menu_profile -> {
+                    binding.topBar.header.visibility = View.GONE
                     viewPager.currentItem = 3
                     view.findViewById<AppCompatTextView>(R.id.headerTitle).text = "Profile"
                     true
@@ -114,5 +120,11 @@ class MainFragment : Fragment() {
             bottomSheetFragment.show(requireActivity().supportFragmentManager, bottomSheetFragment.tag)
         }
 
+        binding.topBar.profilePicture.load(Firebase.auth.currentUser?.photoUrl)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

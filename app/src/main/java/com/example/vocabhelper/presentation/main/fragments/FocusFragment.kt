@@ -72,5 +72,4 @@ class FocusFragment : Fragment() {
         _binding = null
         countDownTimer.cancel()
     }
-
 }
