@@ -46,7 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:src="@drawable/baseline_volume_up_24"
+                android:src="@drawable/icon_pronunciation_search"
                 app:layout_constraintStart_toEndOf="@+id/word"
                 app:layout_constraintTop_toTopOf="parent"/>
 

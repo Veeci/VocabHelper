@@ -37,7 +37,7 @@ class WordViewModel(private val repository: WordRepository) : ViewModel() {
 
 
     fun playAudio(context: Context, audioUrl: String) {
-        mediaPlayer?.release() // Release any existing MediaPlayer instance
+        mediaPlayer?.release()
         mediaPlayer = MediaPlayer().apply {
             setDataSource(audioUrl)
             prepareAsync()
@@ -45,7 +45,6 @@ class WordViewModel(private val repository: WordRepository) : ViewModel() {
                 it.start()
             }
             setOnCompletionListener {
-                // Release the MediaPlayer once playback is done
                 it.release()
             }
             setOnErrorListener { _, _, _ ->

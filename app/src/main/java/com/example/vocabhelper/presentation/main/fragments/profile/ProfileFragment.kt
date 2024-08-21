@@ -49,7 +49,7 @@ class ProfileFragment : Fragment() {
     private fun setupFunctions() {
         binding.logout.setOnClickListener {
             val dialog = Dialog(requireContext())
-            dialog.setContentView(R.layout.custom_dialog)
+            dialog.setContentView(R.layout.logout_dialog)
             dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
             dialog.setCancelable(false)
             dialog.window?.attributes?.windowAnimations = R.style.animation

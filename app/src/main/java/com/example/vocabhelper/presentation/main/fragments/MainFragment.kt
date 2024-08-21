@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import coil.load
 import com.example.vocabhelper.R
 import com.example.vocabhelper.databinding.FragmentMainBinding
@@ -124,6 +125,10 @@ class MainFragment : Fragment() {
         }
 
         binding.topBar.profilePicture.load(Firebase.auth.currentUser?.photoUrl)
+
+        binding.topBar.setting.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_settingFragment)
+        }
     }
 
     override fun onDestroyView() {

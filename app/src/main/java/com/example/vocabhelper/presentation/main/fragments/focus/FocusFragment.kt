@@ -1,5 +1,6 @@
 package com.example.vocabhelper.presentation.main.fragments.focus
 
+import android.app.Dialog
 import android.icu.text.DecimalFormat
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -7,7 +8,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.appcompat.widget.AppCompatTextView
+import com.example.vocabhelper.R
 import com.example.vocabhelper.databinding.FragmentFocusBinding
 
 class FocusFragment : Fragment() {
@@ -51,7 +54,43 @@ class FocusFragment : Fragment() {
         }
 
         binding.endCountdownButton.setOnClickListener {
-            resetTimer()
+            if(!::countDownTimer.isInitialized)
+            {
+                val dialog = Dialog(requireContext())
+                dialog.setContentView(R.layout.not_started_dialog)
+                dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+                dialog.setCancelable(true)
+                dialog.window?.attributes?.windowAnimations = R.style.animation
+
+                val okayText = dialog.findViewById<TextView>(R.id.okay_text)
+                okayText.setOnClickListener {
+                    dialog.dismiss()
+                }
+
+                dialog.show()
+            }
+            else
+            {
+                val dialog = Dialog(requireContext())
+                dialog.setContentView(R.layout.giveup_dialog)
+                dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+                dialog.setCancelable(false)
+                dialog.window?.attributes?.windowAnimations = R.style.animation
+
+                val okayText = dialog.findViewById<TextView>(R.id.okay_text)
+                val cancelText = dialog.findViewById<TextView>(R.id.cancel_text)
+
+                okayText.setOnClickListener {
+                    dialog.dismiss()
+                    resetTimer()
+                }
+
+                cancelText.setOnClickListener {
+                    dialog.dismiss()
+                }
+
+                dialog.show()
+            }
         }
     }
 
@@ -99,7 +138,10 @@ class FocusFragment : Fragment() {
     }
 
     private fun resetTimer() {
-        countDownTimer.cancel()
+        if (::countDownTimer.isInitialized) {
+            countDownTimer.cancel()
+
+        }
         sessionCount = 0
         timeRemaining = focusTime * 1000L
         binding.circularTimer.max = focusTime
