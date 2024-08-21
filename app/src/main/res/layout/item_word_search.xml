@@ -7,18 +7,6 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/meaningsTV"
-        android:text="Meaning:"
-        android:textColor="@color/text_main"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:fontFamily="@font/lato"
-        android:gravity="center"
-        android:layout_gravity="center"/>
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/partOfSpeech"
         android:fontFamily="@font/lato"
         android:textStyle="italic"
@@ -33,15 +21,20 @@
         android:fontFamily="@font/lato"
         android:textStyle="bold"
         android:textSize="14sp"
-        android:textColor="@color/text_main"
+        android:textColor="@color/theme_secondary"
         android:text="Definition:"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/theme_secondary"
+        android:layout_marginTop="5dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/definitionRecyclerView"
         android:orientation="vertical"
-        android:layout_marginTop="10dp"
         android:nestedScrollingEnabled="false"/>
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -63,5 +56,11 @@
         android:textColor="@color/text_main"
         android:layout_marginTop="10dp"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/theme_secondary"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="50dp"/>
 
 </LinearLayout>

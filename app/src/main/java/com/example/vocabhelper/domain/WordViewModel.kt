@@ -1,5 +1,8 @@
 package com.example.vocabhelper.domain
 
+import android.content.Context
+import android.media.MediaPlayer
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -16,6 +19,8 @@ class WordViewModel(private val repository: WordRepository) : ViewModel() {
     private val _word = MutableLiveData<Response>()
     val word: MutableLiveData<Response> get() = _word
 
+    private var mediaPlayer: MediaPlayer? = null
+
     // Fetch word definition from API
     fun getWordDefinition(word: String) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -28,6 +33,31 @@ class WordViewModel(private val repository: WordRepository) : ViewModel() {
                 e.printStackTrace()
             }
         }
+    }
+
+
+    fun playAudio(context: Context, audioUrl: String) {
+        mediaPlayer?.release() // Release any existing MediaPlayer instance
+        mediaPlayer = MediaPlayer().apply {
+            setDataSource(audioUrl)
+            prepareAsync()
+            setOnPreparedListener {
+                it.start()
+            }
+            setOnCompletionListener {
+                // Release the MediaPlayer once playback is done
+                it.release()
+            }
+            setOnErrorListener { _, _, _ ->
+                Toast.makeText(context, "Failed to play audio", Toast.LENGTH_SHORT).show()
+                false
+            }
+        }
+    }
+
+    fun releaseMediaPlayer() {
+        mediaPlayer?.release()
+        mediaPlayer = null
     }
 
     // Fetch word definition from the local database

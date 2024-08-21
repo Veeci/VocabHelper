@@ -2,11 +2,11 @@ package com.example.vocabhelper.presentation.main.fragments.search
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -95,13 +95,29 @@ class SearchFragment : Fragment() {
         binding.word.text = word.word
         binding.phonetic.text = word.phonetic
         word.meanings?.let { meanings ->
-            wordSearchAdapter.updateMeanings(meanings.filterNotNull())
-        }
+            if (meanings.isEmpty()) {
+                binding.meaningsTV.visibility = View.GONE
+                binding.meaningsRecyclerView.visibility = View.GONE
+            } else {
+                wordSearchAdapter.updateMeanings(meanings.filterNotNull())
+            }
 
+        }
+        binding.pronunciation.setOnClickListener {
+            var audioUrl = ""
+            for (audio in word.phonetics!!) {
+                if (!audio?.audio.isNullOrEmpty()) {
+                    audioUrl = audio?.audio!!
+                }
+            }
+
+            wordViewModel.playAudio(requireContext(), audioUrl)
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        wordViewModel.releaseMediaPlayer()
         _binding = null
     }
 }
