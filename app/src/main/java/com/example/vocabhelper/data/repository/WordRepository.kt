@@ -1,44 +1,41 @@
 package com.example.vocabhelper.data.repository
 
+import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.example.vocabhelper.data.api.APIService
-import com.example.vocabhelper.data.database.WordDAO
-import com.example.vocabhelper.data.database.WordEntity
 import com.example.vocabhelper.data.models.Response
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
-class WordRepository(private val apiService: APIService, private val wordDAO: WordDAO) {
+class WordRepository(private val apiService: APIService) {
+
+    private val firestore = FirebaseFirestore.getInstance()
 
     suspend fun getWordFromAPI(word: String): List<Response> {
         return apiService.getWord(word)
     }
 
-    suspend fun getWordFromDb(word: String): List<Response>? {
-        return withContext(Dispatchers.IO) {
-            wordDAO.getWord(word)?.let { wordEntity ->
-                listOf(
-                    Response(
-                        word = wordEntity.word,
-                        phonetic = wordEntity.phonetic,
-                        phonetics = wordEntity.phonetics,
-                        meanings = wordEntity.meanings,
-                        license = wordEntity.license,
-                        sourceUrls = wordEntity.sourceUrls
-                    )
-                )
+    fun saveWord(word: String, meaning: String?, category: String?, audioUrl: String?, synonym: String?, antonym: String?, collocation: String?, example: String?) {
+        val wordData = hashMapOf(
+            "word" to word,
+            "meaning" to meaning,
+            "category" to category,
+            "audioUrl" to audioUrl,
+            "synonym" to synonym,
+            "antonym" to antonym,
+            "collocation" to collocation,
+            "example" to example
+        )
+
+        firestore.collection("USERS")
+            .document(FirebaseAuth.getInstance().currentUser?.uid ?: "")
+            .collection("WORDS")
+            .add(wordData)
+            .addOnSuccessListener {
+
             }
-        }
-    }
-
-    suspend fun insertWord(wordEntity: WordEntity) {
-        withContext(Dispatchers.IO) {
-            wordDAO.insertWord(wordEntity)
-        }
-    }
-
-    suspend fun deleteWord(word: String) {
-        withContext(Dispatchers.IO) {
-            wordDAO.deleteWord(word)
-        }
+            .addOnFailureListener {
+                // Handle failure
+            }
     }
 }

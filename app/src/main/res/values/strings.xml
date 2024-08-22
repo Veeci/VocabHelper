@@ -19,4 +19,19 @@
     <string name="addStep2_enter_antonym">Enter antonym</string>
     <string name="addStep2_back">Back</string>
     <string name="addStep2_next">Next</string>
+
+    <string-array name="categories_array">
+        <item>Friends and Family</item>
+        <item>Nature and Environment</item>
+        <item>Technology and Innovation</item>
+        <item>Health and Wellness</item>
+        <item>Travel and Geography</item>
+        <item>Food and Culinary Terms</item>
+        <item>Arts and Literature</item>
+        <item>Business and Economics</item>
+        <item>Sports and Recreation</item>
+        <item>Emotions and Psychology</item>
+        <item>History and Culture</item>
+        <item>Other</item>
+    </string-array>
 </resources>

@@ -64,7 +64,6 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.core)
-    implementation(libs.firebase.firestore)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -105,6 +104,8 @@ dependencies {
     //Firebase
     implementation(libs.firebase.auth)
     implementation(libs.play.services.auth)
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.storage)
 
     //Coil
     implementation(libs.coil)

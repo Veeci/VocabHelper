@@ -1,110 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.main.fragments.home.tabs.bottomsheet.AddStep1Fragment"
     android:orientation="vertical"
     android:padding="16dp"
     android:background="@drawable/bottomsheet">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/addStep2_add_word"
-        android:textSize="20sp"
-        android:textColor="@color/text_main"
-        android:layout_marginTop="20dp"
-        android:textStyle="bold"/>
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/addStep2_meaning"
-        android:textSize="18sp"
-        android:textColor="@color/text_main"
-        android:layout_marginTop="20dp"/>
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:textColor="@color/text_main"
-        android:background="@color/theme_tertiary"
-        android:textSize="16sp"
-        android:layout_marginTop="10dp"
-        android:hint="@string/addStep2_enter_meaning"
-        android:padding="10dp"
-        android:id="@+id/meaningET"/>
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/addStep2_synonym"
-        android:textSize="18sp"
-        android:textColor="@color/text_main"
-        android:layout_marginTop="20dp"/>
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:textColor="@color/text_main"
-        android:background="@color/theme_tertiary"
-        android:textSize="16sp"
-        android:layout_marginTop="10dp"
-        android:hint="@string/addStep2_enter_synonym"
-        android:padding="10dp"
-        android:id="@+id/synonymET"/>
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/addStep2_antonym"
-        android:textSize="18sp"
-        android:textColor="@color/text_main"
-        android:layout_marginTop="20dp"/>
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:textColor="@color/text_main"
-        android:background="@color/theme_tertiary"
-        android:textSize="16sp"
-        android:layout_marginTop="10dp"
-        android:hint="@string/addStep2_enter_antonym"
-        android:padding="10dp"
-        android:id="@+id/antonymET"/>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
+        android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/addStep2_add_word"
+            android:textSize="20sp"
+            android:textColor="@color/text_main"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/addStep2_synonym"
+            android:textSize="18sp"
+            android:textColor="@color/text_main"
+            android:layout_marginTop="20dp"/>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textColor="@color/text_main"
             android:background="@color/theme_tertiary"
-            android:text="@string/addStep2_back"
-            android:textColor="@color/text_main"
-            android:fontFamily="@font/lato"
             android:textSize="16sp"
-            android:id="@+id/backStep2Button"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            android:layout_marginTop="10dp"
+            android:hint="@string/addStep2_enter_synonym"
+            android:padding="10dp"
+            android:id="@+id/synonymET"/>
 
-        <androidx.appcompat.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/theme_secondary"
-            android:text="@string/addStep2_next"
+            android:text="@string/addStep2_antonym"
+            android:textSize="18sp"
             android:textColor="@color/text_main"
-            android:fontFamily="@font/lato"
-            android:textSize="16sp"
-            android:id="@+id/nextStep2Button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            android:layout_marginTop="20dp"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</LinearLayout>
+        <androidx.appcompat.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textColor="@color/text_main"
+            android:background="@color/theme_tertiary"
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"
+            android:hint="@string/addStep2_enter_antonym"
+            android:padding="10dp"
+            android:id="@+id/antonymET"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/theme_tertiary"
+                android:text="@string/addStep2_back"
+                android:textColor="@color/text_main"
+                android:fontFamily="@font/lato"
+                android:textSize="16sp"
+                android:id="@+id/backStep2Button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/theme_secondary"
+                android:text="@string/addStep2_next"
+                android:textColor="@color/text_main"
+                android:fontFamily="@font/lato"
+                android:textSize="16sp"
+                android:id="@+id/nextStep2Button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+</ScrollView>
