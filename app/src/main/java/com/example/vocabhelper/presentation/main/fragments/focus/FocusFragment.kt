@@ -165,6 +165,8 @@ class FocusFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-        countDownTimer.cancel()
+        if (::countDownTimer.isInitialized) {
+            countDownTimer.cancel()
+        }
     }
 }

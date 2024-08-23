@@ -52,6 +52,9 @@ class AddStep1Fragment : Fragment() {
         val adapter = CategorySpinnerAdapter(requireContext(), categories)
         spinner.adapter = adapter
 
+
+        checkPermissions()
+
         binding.recordButton.setOnClickListener {
             startRecording()
         }
@@ -100,16 +103,14 @@ class AddStep1Fragment : Fragment() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == PERMISSION_REQUEST_CODE) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permission granted
+                Toast.makeText(requireContext(), "Permission granted", Toast.LENGTH_SHORT).show()
             } else {
-                // Permission denied
                 Toast.makeText(requireContext(), "Permission denied", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
     private fun startRecording() {
-        checkPermissions()
         if (audioFilePath.isNullOrEmpty()) {
             audioFilePath =
                 "${requireContext().externalCacheDir?.absolutePath}/audio_${binding.wordET.text.toString()}.mp3"

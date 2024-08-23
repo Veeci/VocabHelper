@@ -61,7 +61,6 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
         viewpager.offscreenPageLimit = 3
 
         step1Fragment.onNextClick = {
-            Log.d("Step1Fragment", "switched to page 2")
             viewpager.currentItem = 1
         }
 

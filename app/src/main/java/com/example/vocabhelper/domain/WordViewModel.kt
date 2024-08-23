@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.example.vocabhelper.data.models.Response
 import com.example.vocabhelper.data.repository.WordRepository
@@ -31,12 +32,6 @@ class WordViewModel(private val repository: WordRepository) : ViewModel() {
     val word: MutableLiveData<Response> get() = _word
 
     private var mediaPlayer: MediaPlayer? = null
-
-    // Firebase references
-    private val firebaseAuth = FirebaseAuth.getInstance()
-    private val storageRef = FirebaseStorage.getInstance().reference
-
-    // Fetch word definition from API
 
     // Fetch word definition from API
     fun getWordDefinition(word: String) {
@@ -85,6 +80,10 @@ class WordViewModel(private val repository: WordRepository) : ViewModel() {
         }
     }
 
+    fun fetchWords() = liveData(Dispatchers.IO) {
+        val words = repository.getWords()
+        emit(words)
+    }
 
     class Factory(private val repository: WordRepository) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
