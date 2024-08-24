@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.example.vocabhelper.data.models.Response
+import com.example.vocabhelper.data.models.WordData
 import com.example.vocabhelper.data.repository.WordRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
@@ -30,6 +31,9 @@ class WordViewModel(private val repository: WordRepository) : ViewModel() {
 
     private val _word = MutableLiveData<Response>()
     val word: MutableLiveData<Response> get() = _word
+
+    private val _wordStored = MutableLiveData<List<WordData>>()
+    val wordStored: MutableLiveData<List<WordData>> get() = _wordStored
 
     private var mediaPlayer: MediaPlayer? = null
 
@@ -73,16 +77,26 @@ class WordViewModel(private val repository: WordRepository) : ViewModel() {
 
 
     fun saveWord() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             repository.saveWord(
                 wordToAdd, meaning, category, audioUrl, synonym, antonym, collocation, example
             )
         }
     }
 
-    fun fetchWords() = liveData(Dispatchers.IO) {
-        val words = repository.getWords()
-        emit(words)
+    fun fetchWords() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val wordStored = repository.getWords()
+            _wordStored.postValue(wordStored)
+        }
+    }
+
+    fun getWordDetail(word: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.getWordDetail(word) { wordList ->
+                _wordStored.postValue(wordList)
+            }
+        }
     }
 
     class Factory(private val repository: WordRepository) : ViewModelProvider.Factory {

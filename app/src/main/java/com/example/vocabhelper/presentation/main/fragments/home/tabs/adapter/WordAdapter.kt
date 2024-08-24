@@ -10,8 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.vocabhelper.data.models.WordData
 import com.example.vocabhelper.databinding.ItemAddedwordBinding
 
-class WordAdapter(private var words: List<WordData>): RecyclerView.Adapter<WordAdapter.WordViewHolder>()
+class WordAdapter(): RecyclerView.Adapter<WordAdapter.WordViewHolder>()
 {
+    private var words: List<WordData> = listOf()
 
     private var mediaPlayer: MediaPlayer? = null
 

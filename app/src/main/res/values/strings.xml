@@ -23,15 +23,13 @@
     <string-array name="categories_array">
         <item>Friends and Family</item>
         <item>Nature and Environment</item>
-        <item>Technology and Innovation</item>
-        <item>Health and Wellness</item>
-        <item>Travel and Geography</item>
-        <item>Food and Culinary Terms</item>
-        <item>Arts and Literature</item>
-        <item>Business and Economics</item>
-        <item>Sports and Recreation</item>
-        <item>Emotions and Psychology</item>
-        <item>History and Culture</item>
+        <item>Technology</item>
+        <item>Health</item>
+        <item>Travel</item>
+        <item>Food</item>
+        <item>Arts</item>
+        <item>Business</item>
+        <item>Sports</item>
         <item>Other</item>
     </string-array>
 </resources>
