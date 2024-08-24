@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.vocabhelper.data.models.WordData
 import com.example.vocabhelper.databinding.ItemAddedwordBinding
 
-class WordAdapter(): RecyclerView.Adapter<WordAdapter.WordViewHolder>()
+class WordAdapter(private val onItemClick: (WordData) -> Unit): RecyclerView.Adapter<WordAdapter.WordViewHolder>()
 {
     private var words: List<WordData> = listOf()
 
@@ -39,6 +39,10 @@ class WordAdapter(): RecyclerView.Adapter<WordAdapter.WordViewHolder>()
                 } else {
                     Toast.makeText(holder.itemView.context, "No audio available", Toast.LENGTH_SHORT).show()
                 }
+            }
+
+            root.setOnClickListener {
+                onItemClick(wordItem)
             }
         }
     }

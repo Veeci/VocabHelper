@@ -4,6 +4,7 @@ import android.content.Context
 import android.media.MediaPlayer
 import android.net.Uri
 import android.widget.Toast
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -28,6 +29,13 @@ class WordViewModel(private val repository: WordRepository) : ViewModel() {
     var antonym: String? = null
     var collocation: String? = null
     var example: String? = null
+
+    private val _wordRemember = MutableLiveData<String>()
+    val wordRemember: LiveData<String> get() = _wordRemember
+
+    fun setWordRemember(word: String) {
+        _wordRemember.value = word
+    }
 
     private val _word = MutableLiveData<Response>()
     val word: MutableLiveData<Response> get() = _word

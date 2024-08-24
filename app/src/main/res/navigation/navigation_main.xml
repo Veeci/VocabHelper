@@ -17,6 +17,9 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"  />
+        <action
+            android:id="@+id/action_mainFragment_to_wordDetailFragment"
+            app:destination="@id/wordDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingFragment"
@@ -28,5 +31,14 @@
             app:destination="@id/mainFragment"
             app:enterAnim="@anim/slide_in_left"
             app:exitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/wordDetailFragment"
+        android:name="com.example.vocabhelper.presentation.main.fragments.home.tabs.bottomsheet.WordDetailFragment"
+        android:label="fragment_word_detail"
+        tools:layout="@layout/fragment_word_detail" >
+        <action
+            android:id="@+id/action_wordDetailFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
 </navigation>

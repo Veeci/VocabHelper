@@ -6,8 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.vocabhelper.R
 import com.example.vocabhelper.data.api.APIService
+import com.example.vocabhelper.data.models.WordData
 import com.example.vocabhelper.data.repository.WordRepository
 import com.example.vocabhelper.databinding.FragmentAllWordsBinding
 import com.example.vocabhelper.domain.WordViewModel
@@ -28,33 +31,43 @@ class AllWordsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        setupRecyclerView()
-
         return binding.root
     }
 
-    private fun setupRecyclerView() {
-        adapter = WordAdapter()
-        binding.allWordsRecyclerView.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = this@AllWordsFragment.adapter
-        }
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupRecyclerView()
+        wordViewModel.fetchWords()
         observeViewModel()
     }
 
-    private fun observeViewModel() {
-        wordViewModel.wordStored.observe(viewLifecycleOwner) { words ->
-            adapter.updateData(words)
+    private fun setupRecyclerView() {
+        val wordAdapter = WordAdapter { wordData ->
+            wordViewModel.getWordDetail(wordData.word)
+            findNavController().navigate(R.id.action_mainFragment_to_wordDetailFragment)
         }
+        binding.allWordsRecyclerView.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = wordAdapter
+        }
+    }
+
+    private fun observeViewModel() {
+        wordViewModel.wordStored.observe(viewLifecycleOwner){ wordData ->
+            (binding.allWordsRecyclerView.adapter as WordAdapter).updateData(wordData)
+        }
+    }
+
+    private fun onItemClick(word: WordData) {
+        wordViewModel.setWordRemember(word.word)
+        findNavController().navigate(R.id.action_mainFragment_to_wordDetailFragment)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         wordViewModel.releaseMediaPlayer()
+        adapter.releaseMediaPlayer()
     }
 }

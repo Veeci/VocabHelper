@@ -66,7 +66,7 @@ class WordRepository(private val apiService: APIService) {
     suspend fun getWordDetail(word: String, onComplete: (List<WordData>) -> Unit) {
         val userId = auth.currentUser?.uid?: return
         firestore.collection("USERS")
-            .document(userId) // Use the specific user ID
+            .document(userId)
             .collection("WORDS")
             .whereEqualTo("word", word)
             .get()
@@ -80,7 +80,7 @@ class WordRepository(private val apiService: APIService) {
             }
             .addOnFailureListener { exception ->
                 Log.e("FirestoreError", "Error fetching word data: ", exception)
-                onComplete(emptyList()) // Return an empty list on failure
+                onComplete(emptyList())
             }
     }
 }
