@@ -10,8 +10,8 @@ import com.example.vocabhelper.databinding.ItemCategoryBinding
 class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() 
 {
     private val categories: List<Category> = listOf(
-        Category("Friends and Family", ""),
-        Category("Nature and Environment", ""),
+        Category("Friends", ""),
+        Category("Environment", ""),
         Category("Technology", ""),
         Category("Health", ""),
         Category("Travel", ""),
@@ -39,10 +39,19 @@ class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>(
         val categoryItem = categories[position]
         holder.binding.apply {
             categoryName.text = categoryItem.name
-//            when(categoryItem.name)
-//            {
-//                "Friends and Family" -> categoryImage.setImageResource()
-//            }
+            when(categoryItem.name)
+            {
+                "Friends" -> categoryImage.setImageResource(R.drawable.img_friends_category)
+                "Environment" -> categoryImage.setImageResource(R.drawable.img_natural_category)
+                "Technology" -> categoryImage.setImageResource(R.drawable.img_technology_category)
+                "Health" -> categoryImage.setImageResource(R.drawable.img_health_category)
+                "Travel" -> categoryImage.setImageResource(R.drawable.img_travel_category)
+                "Food" -> categoryImage.setImageResource(R.drawable.img_food_category)
+                "Arts" -> categoryImage.setImageResource(R.drawable.img_art_category)
+                "Business" -> categoryImage.setImageResource(R.drawable.img_business_category)
+                "Sports" -> categoryImage.setImageResource(R.drawable.img_sport_category)
+                "Other" -> categoryImage.setImageResource(R.drawable.img_other_category)
+            }
         }
     }
 

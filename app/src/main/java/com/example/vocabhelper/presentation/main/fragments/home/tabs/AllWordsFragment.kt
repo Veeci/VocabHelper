@@ -39,7 +39,7 @@ class AllWordsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupRecyclerView()
-        wordViewModel.fetchWords()
+//        wordViewModel.fetchWords()
         observeViewModel()
     }
 
@@ -68,6 +68,8 @@ class AllWordsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         wordViewModel.releaseMediaPlayer()
-        adapter.releaseMediaPlayer()
+        if (::adapter.isInitialized) {
+            adapter.releaseMediaPlayer()
+        }
     }
 }
