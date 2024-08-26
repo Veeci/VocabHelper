@@ -12,6 +12,7 @@ class WordRepository(private val apiService: APIService) {
 
     private val firestore = FirebaseFirestore.getInstance()
     private val auth = FirebaseAuth.getInstance()
+    val userId = auth.currentUser?.uid!!
 
     suspend fun getWordFromAPI(word: String): List<Response> {
         return apiService.getWord(word)
@@ -41,17 +42,46 @@ class WordRepository(private val apiService: APIService) {
         firestore.collection("USERS")
             .document(FirebaseAuth.getInstance().currentUser?.uid ?: "")
             .collection("WORDS")
-            .add(wordData)
+            .document(word)
+            .set(wordData)
             .addOnSuccessListener {
 
             }
-            .addOnFailureListener {
+            .addOnFailureListener { e ->
 
             }
     }
 
+    suspend fun updateWord(word: String, updatedData: Map<String, Any>) {
+        firestore.collection("USERS")
+            .document(userId)
+            .collection("WORDS")
+            .document(word)
+            .update(updatedData)
+            .addOnSuccessListener {
+                Log.d("Firestore", "Updated data successfully!")
+            }
+            .addOnFailureListener { e ->
+                Log.w("Firestore", "Error updating data", e)
+            }
+    }
+
+    suspend fun deleteWord(word: String)
+    {
+        firestore.collection("USERS")
+            .document(userId)
+            .collection("WORDS")
+            .document(word)
+            .delete()
+            .addOnSuccessListener {
+                Log.d("Firestore", "Deleted data successfully!")
+            }
+            .addOnFailureListener { e ->
+                Log.w("Firestore", "Error deleting data", e)
+            }
+    }
+
     suspend fun getWords(): List<WordData> {
-        val userId = auth.currentUser?.uid ?: return emptyList()
         val wordList = firestore.collection("USERS")
             .document(userId)
             .collection("WORDS")
@@ -64,7 +94,6 @@ class WordRepository(private val apiService: APIService) {
     }
 
     suspend fun getWordDetail(word: String, onComplete: (List<WordData>) -> Unit) {
-        val userId = auth.currentUser?.uid?: return
         firestore.collection("USERS")
             .document(userId)
             .collection("WORDS")
@@ -82,5 +111,18 @@ class WordRepository(private val apiService: APIService) {
                 Log.e("FirestoreError", "Error fetching word data: ", exception)
                 onComplete(emptyList())
             }
+    }
+
+    suspend fun getWordsByCategory(category: String): List<WordData> {
+        val wordList = firestore.collection("USERS")
+            .document(userId)
+            .collection("WORDS")
+            .whereEqualTo("category", category)
+            .get()
+            .await()
+
+        return wordList.documents.mapNotNull {
+            it.toObject(WordData::class.java)
+        }
     }
 }

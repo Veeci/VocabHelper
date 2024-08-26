@@ -1,5 +1,6 @@
 package com.example.vocabhelper.presentation.main.fragments.home.tabs.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -7,9 +8,9 @@ import com.example.vocabhelper.R
 import com.example.vocabhelper.data.models.Category
 import com.example.vocabhelper.databinding.ItemCategoryBinding
 
-class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() 
+class CategoryAdapter(private val onItemClick: (Category) -> Unit): RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>()
 {
-    private val categories: List<Category> = listOf(
+    private var categories: List<Category> = listOf(
         Category("Friends", ""),
         Category("Environment", ""),
         Category("Technology", ""),
@@ -52,7 +53,17 @@ class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>(
                 "Sports" -> categoryImage.setImageResource(R.drawable.img_sport_category)
                 "Other" -> categoryImage.setImageResource(R.drawable.img_other_category)
             }
+
+            root.setOnClickListener {
+                onItemClick(categoryItem)
+            }
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateData(newCategories: List<Category>) {
+        categories = newCategories
+        notifyDataSetChanged()
+
+    }
 }

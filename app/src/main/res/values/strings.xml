@@ -21,8 +21,8 @@
     <string name="addStep2_next">Next</string>
 
     <string-array name="categories_array">
-        <item>Friends and Family</item>
-        <item>Nature and Environment</item>
+        <item>Friends</item>
+        <item>Environment</item>
         <item>Technology</item>
         <item>Health</item>
         <item>Travel</item>

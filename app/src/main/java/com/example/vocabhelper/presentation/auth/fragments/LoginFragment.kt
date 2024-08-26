@@ -66,8 +66,7 @@ class LoginFragment : Fragment() {
 
     private fun setUpFunction() {
         binding.loginButton.setOnClickListener {
-            authViewModel.signIn(binding.emailET.text.toString(), binding.passwordET.text.toString(), requireContext()
-            )
+            authViewModel.signIn(binding.emailET.text.toString(), binding.passwordET.text.toString(), requireContext())
         }
 
         binding.goToRegister.setOnClickListener {

@@ -15,6 +15,7 @@ import com.example.vocabhelper.data.repository.WordRepository
 import com.example.vocabhelper.databinding.FragmentAddStep3Binding
 import com.example.vocabhelper.domain.WordViewModel
 import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageMetadata
 import java.io.File
 
 class AddStep3Fragment : Fragment(R.layout.fragment_add_step3) {
@@ -54,6 +55,7 @@ class AddStep3Fragment : Fragment(R.layout.fragment_add_step3) {
         val audioFilePath = wordViewModel.audioUrl
         if(audioFilePath != null)
         {
+
             val file = Uri.fromFile(File(audioFilePath))
             val storageRef = FirebaseStorage.getInstance().reference.child("audio/${file.lastPathSegment}")
 

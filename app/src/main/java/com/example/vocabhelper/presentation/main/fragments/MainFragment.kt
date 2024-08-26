@@ -124,7 +124,9 @@ class MainFragment : Fragment() {
             bottomSheetFragment.show(requireActivity().supportFragmentManager, bottomSheetFragment.tag)
         }
 
-        binding.topBar.profilePicture.load(Firebase.auth.currentUser?.photoUrl)
+        authViewModel.profilePicUrl.observe(viewLifecycleOwner) { url ->
+            binding.topBar.profilePicture.load(url)
+        }
 
         binding.topBar.setting.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_settingFragment)

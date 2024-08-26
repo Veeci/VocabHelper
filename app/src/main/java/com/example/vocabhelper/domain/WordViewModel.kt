@@ -21,6 +21,7 @@ import kotlinx.coroutines.tasks.await
 
 class WordViewModel(private val repository: WordRepository) : ViewModel() {
 
+
     var wordToAdd: String = ""
     var meaning: String? = null
     var audioUrl: String? = null
@@ -43,12 +44,25 @@ class WordViewModel(private val repository: WordRepository) : ViewModel() {
     private val _wordStored = MutableLiveData<List<WordData>>()
     val wordStored: MutableLiveData<List<WordData>> get() = _wordStored
 
+    private val _wordDetail = MutableLiveData<List<WordData>>()
+    val wordDetail: MutableLiveData<List<WordData>> get() = _wordDetail
+
+    private val _categoryRemember = MutableLiveData<String>()
+    val categoryRemember: MutableLiveData<String> get() = _categoryRemember
+
+    private val _wordsByCategory = MutableLiveData<List<WordData>>()
+    val wordsByCategory: MutableLiveData<List<WordData>> get() = _wordsByCategory
+
+    fun setCategoryRemember(category: String) {
+        _categoryRemember.value = category
+    }
+
     private var mediaPlayer: MediaPlayer? = null
 
     // Fetch word definition from API
     fun getWordDefinition(word: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            try{
+            try {
                 val response = repository.getWordFromAPI(word)
                 if (response.isNotEmpty()) {
                     _word.postValue(response[0])
@@ -58,7 +72,6 @@ class WordViewModel(private val repository: WordRepository) : ViewModel() {
             }
         }
     }
-
 
     fun playAudio(context: Context, audioUrl: String) {
         mediaPlayer?.release()
@@ -102,8 +115,28 @@ class WordViewModel(private val repository: WordRepository) : ViewModel() {
     fun getWordDetail(word: String) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.getWordDetail(word) { wordList ->
-                _wordStored.postValue(wordList)
+                _wordDetail.postValue(wordList)
             }
+        }
+    }
+
+    fun fetchWordsByCategory(category: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val words = repository.getWordsByCategory(category)
+            _wordsByCategory.postValue(words)
+        }
+    }
+
+    fun updateWord(wordData: WordData, updatedData: Map<String, Any>) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateWord(wordData.word, updatedData)
+        }
+    }
+
+    fun deleteWord(wordData: WordData) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteWord(wordData.word)
+            fetchWords()
         }
     }
 

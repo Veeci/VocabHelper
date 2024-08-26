@@ -119,8 +119,8 @@ class AddStep1Fragment : Fragment() {
         if (mediaRecorder == null) {
             mediaRecorder = MediaRecorder().apply {
                 setAudioSource(MediaRecorder.AudioSource.MIC)
-                setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
-                setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
+                setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
+                setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
                 setOutputFile(audioFilePath)
                 try {
                     Toast.makeText(requireContext(), "Recording started", Toast.LENGTH_SHORT).show()

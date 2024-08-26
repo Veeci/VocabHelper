@@ -1,7 +1,10 @@
 package com.example.vocabhelper.presentation.main.fragments.profile
 
 import android.app.Dialog
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -27,6 +30,12 @@ class ProfileFragment : Fragment() {
 
     private lateinit var googleSignInClient: GoogleSignInClient
 
+    private val pickImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+        uri?.let {
+            authViewModel.uploadProfileImage(it, requireContext())
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,7 +48,6 @@ class ProfileFragment : Fragment() {
             .build()
 
         googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
-
 
         setupFunctions()
 
@@ -68,12 +76,19 @@ class ProfileFragment : Fragment() {
 
             dialog.show()
         }
+
+        binding.changeAccountAvatar.setOnClickListener {
+            pickImageLauncher.launch("image/*")
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding.profilePic.load(Firebase.auth.currentUser?.photoUrl)
+
+        authViewModel.profilePicUrl.observe(viewLifecycleOwner) { url ->
+            binding.profilePic.load(url)
+        }
     }
 
     override fun onDestroyView() {

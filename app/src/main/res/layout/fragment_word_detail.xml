@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/theme_primary"
     android:padding="16dp"
-    tools:context=".presentation.main.fragments.home.tabs.bottomsheet.WordDetailFragment">
+    tools:context=".presentation.main.fragments.home.tabs.WordDetailFragment">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="wrap_content"
@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="2dp"
         android:src="@drawable/icon_pronunciation_search"
         app:layout_constraintStart_toEndOf="@+id/wordDetail"
         app:layout_constraintTop_toTopOf="parent" />
@@ -57,16 +57,22 @@
             android:textColor="@color/text_main"
             android:textSize="16sp" />
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/meaningDetail"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="4"
-            android:background="@null"
-            android:fontFamily="@font/lato"
-            android:padding="5dp"
-            android:textColor="@color/text_main"
-            android:textSize="16sp" />
+            android:layout_weight="4">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/meaningDetail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:fontFamily="@font/lato"
+                android:padding="5dp"
+                android:textColor="@color/text_main"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
     </TableRow>
 
@@ -123,16 +129,21 @@
             android:textColor="@color/text_main"
             android:textSize="16sp" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/synonymDetail"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="4"
-            android:background="@null"
-            android:fontFamily="@font/lato"
-            android:padding="5dp"
-            android:textColor="@color/text_main"
-            android:textSize="16sp" />
+            android:layout_weight="4">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/synonymDetail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:fontFamily="@font/lato"
+                android:padding="5dp"
+                android:textColor="@color/text_main"
+                android:textSize="16sp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
     </TableRow>
 
@@ -156,16 +167,21 @@
             android:textColor="@color/text_main"
             android:textSize="16sp" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/antonymDetail"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="4"
-            android:background="@null"
-            android:fontFamily="@font/lato"
-            android:padding="5dp"
-            android:textColor="@color/text_main"
-            android:textSize="16sp" />
+            android:layout_weight="4">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/antonymDetail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:fontFamily="@font/lato"
+                android:padding="5dp"
+                android:textColor="@color/text_main"
+                android:textSize="16sp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
     </TableRow>
 
@@ -189,17 +205,22 @@
             android:textColor="@color/text_main"
             android:textSize="16sp" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/collocationDetail"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="3.8"
-            android:background="@null"
-            android:fontFamily="@font/lato"
-            android:padding="5dp"
-            android:textColor="@color/text_main"
-            android:textSize="16sp" />
+            android:layout_weight="4">
 
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/collocationDetail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3.8"
+                android:background="@null"
+                android:fontFamily="@font/lato"
+                android:padding="5dp"
+                android:textColor="@color/text_main"
+                android:textSize="16sp" />
+        </com.google.android.material.textfield.TextInputLayout>
     </TableRow>
 
     <TableRow
@@ -222,29 +243,48 @@
             android:textColor="@color/text_main"
             android:textSize="16sp" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/exampleDetail"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="4"
-            android:background="@null"
-            android:fontFamily="@font/lato"
-            android:padding="5dp"
-            android:textColor="@color/text_main"
-            android:textSize="16sp" />
+            android:layout_weight="4">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/exampleDetail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:background="@null"
+                android:fontFamily="@font/lato"
+                android:padding="5dp"
+                android:textColor="@color/text_main"
+                android:textSize="16sp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
     </TableRow>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/exampleRow"
-        android:id="@+id/saveButton"
+        android:layout_marginEnd="10dp"
+        android:background="@color/theme_secondary"
+        android:fontFamily="@font/lato"
         android:text="Save"
         android:textColor="@color/text_main"
+        app:layout_constraintEnd_toStartOf="@+id/deleteButton"
+        app:layout_constraintTop_toBottomOf="@+id/exampleRow" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/deleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@color/theme_tertiary"
         android:fontFamily="@font/lato"
-        android:background="@color/theme_secondary"/>
+        android:text="Delete"
+        android:textColor="@color/text_main"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exampleRow" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

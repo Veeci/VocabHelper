@@ -39,7 +39,6 @@ class AllWordsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupRecyclerView()
-//        wordViewModel.fetchWords()
         observeViewModel()
     }
 
@@ -48,6 +47,7 @@ class AllWordsFragment : Fragment() {
             wordViewModel.getWordDetail(wordData.word)
             findNavController().navigate(R.id.action_mainFragment_to_wordDetailFragment)
         }
+
         binding.allWordsRecyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = wordAdapter
@@ -58,11 +58,6 @@ class AllWordsFragment : Fragment() {
         wordViewModel.wordStored.observe(viewLifecycleOwner){ wordData ->
             (binding.allWordsRecyclerView.adapter as WordAdapter).updateData(wordData)
         }
-    }
-
-    private fun onItemClick(word: WordData) {
-        wordViewModel.setWordRemember(word.word)
-        findNavController().navigate(R.id.action_mainFragment_to_wordDetailFragment)
     }
 
     override fun onDestroyView() {

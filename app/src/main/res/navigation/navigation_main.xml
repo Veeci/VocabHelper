@@ -20,6 +20,9 @@
         <action
             android:id="@+id/action_mainFragment_to_wordDetailFragment"
             app:destination="@id/wordDetailFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_wordListFragment"
+            app:destination="@id/wordListFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingFragment"
@@ -34,11 +37,26 @@
     </fragment>
     <fragment
         android:id="@+id/wordDetailFragment"
-        android:name="com.example.vocabhelper.presentation.main.fragments.home.tabs.bottomsheet.WordDetailFragment"
+        android:name="com.example.vocabhelper.presentation.main.fragments.home.tabs.WordDetailFragment"
         android:label="fragment_word_detail"
         tools:layout="@layout/fragment_word_detail" >
         <action
             android:id="@+id/action_wordDetailFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_wordDetailFragment_to_wordListFragment"
+            app:destination="@id/wordListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/wordListFragment"
+        android:name="com.example.vocabhelper.presentation.main.fragments.home.tabs.WordListFragment"
+        android:label="fragment_word_list"
+        tools:layout="@layout/fragment_word_list" >
+        <action
+            android:id="@+id/action_wordListFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_wordListFragment_to_wordDetailFragment"
+            app:destination="@id/wordDetailFragment" />
     </fragment>
 </navigation>
