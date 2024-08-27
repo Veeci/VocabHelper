@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "VocabHelper"
 include(":app")
+include(":base")
