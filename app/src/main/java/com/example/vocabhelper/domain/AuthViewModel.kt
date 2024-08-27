@@ -29,6 +29,9 @@ class AuthViewModel : ViewModel() {
     private val auth = FirebaseAuth.getInstance()
     private val db = FirebaseFirestore.getInstance()
 
+    private val _fullName = MutableLiveData<String>()
+    val fullName: LiveData<String> get() = _fullName
+
     companion object {
         const val REQUEST_CODE_PICK_IMAGE = 1001
     }
@@ -95,13 +98,13 @@ class AuthViewModel : ViewModel() {
                 if (document.exists()) {
                     profileDocumentRef.update("profilePicUrl", downloadUrl)
                         .addOnSuccessListener {
+                            _profilePicUrl.value = downloadUrl
                             Toast.makeText(context, "Profile picture updated successfully", Toast.LENGTH_SHORT).show()
                         }
                         .addOnFailureListener {
                             Toast.makeText(context, "Failed to update Firestore", Toast.LENGTH_SHORT).show()
                         }
                 } else {
-                    // Document does not exist, create it with the profilePicUrl field
                     val user = hashMapOf("profilePicUrl" to downloadUrl)
                     profileDocumentRef.set(user, SetOptions.merge())
                         .addOnSuccessListener {
@@ -117,7 +120,6 @@ class AuthViewModel : ViewModel() {
             }
     }
 
-    // Signs up a new user and stores their information in Firestore
     fun signUp(email: String, password: String, fullname: String, context: Context) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
@@ -136,6 +138,7 @@ class AuthViewModel : ViewModel() {
                         .set(user)
                         .addOnSuccessListener {
                             Toast.makeText(context, "Sign up successfully", Toast.LENGTH_SHORT).show()
+                            _fullName.postValue(fullname)
                             verifyEmail(result.user!!, context)
                         }
                         .addOnFailureListener { e ->
@@ -150,7 +153,6 @@ class AuthViewModel : ViewModel() {
         }
     }
 
-    // Sends a verification email to the user
     private fun verifyEmail(user: FirebaseUser, context: Context) {
         user.sendEmailVerification().addOnCompleteListener { task ->
             if (task.isSuccessful) {
@@ -161,7 +163,6 @@ class AuthViewModel : ViewModel() {
         }
     }
 
-    // Signs in a user with Google credentials
     fun FirebaseAuthWithGoogle(account: GoogleSignInAccount, context: Context) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
@@ -188,7 +189,6 @@ class AuthViewModel : ViewModel() {
         }
     }
 
-    // Signs in a user with email and password
     fun signIn(email: String, password: String, context: Context) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
@@ -222,9 +222,21 @@ class AuthViewModel : ViewModel() {
         }
     }
 
-    // Signs out the user from both Firebase Auth and Google Sign-In
+    fun sendPasswordResetEmail(email: String, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
+        auth.sendPasswordResetEmail(email)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    onSuccess()
+                } else {
+                    task.exception?.let {
+                        onFailure(it)
+                    }
+                }
+            }
+    }
+
     fun logOut(context: Context, googleSignInClient: GoogleSignInClient) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             auth.signOut()
             googleSignInClient.signOut().await()
             withContext(Dispatchers.Main) {

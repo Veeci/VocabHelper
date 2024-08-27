@@ -52,7 +52,7 @@ class WordRepository(private val apiService: APIService) {
             }
     }
 
-    suspend fun updateWord(word: String, updatedData: Map<String, Any>) {
+    fun updateWord(word: String, updatedData: Map<String, Any>) {
         firestore.collection("USERS")
             .document(userId)
             .collection("WORDS")
@@ -66,7 +66,7 @@ class WordRepository(private val apiService: APIService) {
             }
     }
 
-    suspend fun deleteWord(word: String)
+    fun deleteWord(word: String)
     {
         firestore.collection("USERS")
             .document(userId)

@@ -20,7 +20,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/lato"
-            android:text="Profile"
+            android:id="@+id/fullName"
             android:textColor="@color/text_main"
             android:textSize="20sp" />
 
@@ -57,38 +57,6 @@
             android:text="Account"
             android:textColor="@color/text_secondary"
             android:textSize="14sp" />
-
-        <LinearLayout
-            android:id="@+id/changeAccountName"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            android:weightSum="6">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5"
-                android:src="@drawable/icon_user_home" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="5"
-                android:fontFamily="@font/lato"
-                android:padding="6dp"
-                android:text="Change account name"
-                android:textColor="@color/text_main"
-                android:textSize="14sp" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5"
-                android:src="@drawable/icon_goto" />
-
-        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/changeAccountPassword"
