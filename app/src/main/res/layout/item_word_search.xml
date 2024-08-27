@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/partOfSpeech"
+        android:fontFamily="@font/lato"
+        android:textStyle="italic"
+        android:textSize="14sp"
+        android:textColor="@color/text_main"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/definitionTV"
+        android:fontFamily="@font/lato"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:textColor="@color/theme_secondary"
+        android:text="Definition:"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/theme_secondary"
+        android:layout_marginTop="5dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/definitionRecyclerView"
+        android:orientation="vertical"
+        android:nestedScrollingEnabled="false"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/synonyms"
+        android:fontFamily="@font/lato"
+        android:textSize="16sp"
+        android:textColor="@color/text_main"
+        android:layout_marginTop="10dp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/antonyms"
+        android:fontFamily="@font/lato"
+        android:textStyle="italic"
+        android:textSize="16sp"
+        android:textColor="@color/text_main"
+        android:layout_marginTop="10dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/theme_secondary"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="50dp"/>
+
+</LinearLayout>

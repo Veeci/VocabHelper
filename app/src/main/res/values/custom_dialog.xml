@@ -1,0 +1,8 @@
+<resources>
+    <style name="CustomAlertDialog" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="colorAccent">@color/theme_primary</item>
+        <item name="android:textColorPrimary">@color/text_main</item>
+        <item name="android:background">@color/theme_selection</item>
+        <!-- Add more customizations as needed -->
+    </style>
+</resources>

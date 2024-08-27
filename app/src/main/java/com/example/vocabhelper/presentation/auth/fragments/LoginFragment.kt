@@ -1,6 +1,5 @@
 package com.example.vocabhelper.presentation.auth.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -67,11 +66,7 @@ class LoginFragment : Fragment() {
 
     private fun setUpFunction() {
         binding.loginButton.setOnClickListener {
-            authViewModel.signIn(
-                binding.emailET.text.toString(),
-                binding.passwordET.text.toString(),
-                requireContext()
-            )
+            authViewModel.signIn(binding.emailET.text.toString(), binding.passwordET.text.toString(), requireContext())
         }
 
         binding.goToRegister.setOnClickListener {

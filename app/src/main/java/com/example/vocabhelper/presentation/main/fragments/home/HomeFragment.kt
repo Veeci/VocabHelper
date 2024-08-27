@@ -6,12 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.example.vocabhelper.R
+import androidx.viewpager2.widget.ViewPager2
 import com.example.vocabhelper.data.api.APIService
-import com.example.vocabhelper.data.database.WordDatabase
 import com.example.vocabhelper.data.repository.WordRepository
 import com.example.vocabhelper.databinding.FragmentHomeBinding
-import com.example.vocabhelper.ui.viewmodel.WordViewModel
+import com.example.vocabhelper.domain.WordViewModel
+import com.example.vocabhelper.presentation.main.fragments.home.tabs.adapter.HomeTabLayout
+import com.example.vocabhelper.presentation.main.fragments.home.tabs.adapter.WordAdapter
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 
 
 class HomeFragment : Fragment() {
@@ -20,18 +23,47 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val wordViewModel: WordViewModel by activityViewModels {
-        WordViewModel.Factory(WordRepository(
-            apiService = APIService.create(),
-            wordDAO = WordDatabase.getDatabase(requireContext()).wordDao()
-        ))
+        WordViewModel.Factory(WordRepository(apiService = APIService.create()))
     }
+
+    private lateinit var viewpager: ViewPager2
+    private lateinit var tabLayout: TabLayout
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        wordViewModel.fetchWords()
+        setupFunction()
+    }
+
+    private fun setupFunction()
+    {
+        tabLayout = binding.homeTabLayout
+        viewpager = binding.homeViewPager
+
+        val adapter = HomeTabLayout(this)
+        viewpager.adapter = adapter
+        viewpager.offscreenPageLimit = 2
+
+        TabLayoutMediator(tabLayout, viewpager) { tab, position ->
+            when (position) {
+                0 -> tab.text = "All Words"
+                1 -> tab.text = "Categories"
+            }
+        }.attach()
+
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

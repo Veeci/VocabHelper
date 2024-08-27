@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.main.fragments.FocusFragment"
-    android:padding="16dp"
     android:background="@color/theme_primary"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".presentation.main.fragments.focus.FocusFragment">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/appCompatTextView2"
@@ -24,17 +24,17 @@
 
     <ProgressBar
         android:id="@+id/circularTimer"
+        style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_gravity="center"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="50"
+        android:progressDrawable="@drawable/ciricular_progressbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appCompatTextView2"
-        android:progressDrawable="@drawable/ciricular_progressbar"
-        android:max="100"
-        android:indeterminate="false"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:progress="50"/>
+        app:layout_constraintTop_toBottomOf="@+id/appCompatTextView2" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/countdownTV"
@@ -47,7 +47,7 @@
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appCompatTextView2"/>
+        app:layout_constraintTop_toBottomOf="@+id/appCompatTextView2" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/appCompatTextView3"
@@ -78,6 +78,7 @@
         android:id="@+id/endCountdownButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:background="@color/theme_tertiary"
         android:padding="12dp"
         android:text="Give up"
@@ -85,9 +86,7 @@
         android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startCountDownButton"
-        android:layout_marginTop="10dp"/>
-
+        app:layout_constraintTop_toBottomOf="@+id/startCountDownButton" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

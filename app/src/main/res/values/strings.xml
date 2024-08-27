@@ -2,4 +2,34 @@
     <string name="default_web_client_id">373369689147-p789046cd029v00bm7q9m4fsnoltc51j.apps.googleusercontent.com</string>
     <string name="app_name">VocabHelper</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--Add step 1-->
+    <string name="addStep1_add_word">Add Word</string>
+    <string name="addStep1_word">Word:</string>
+    <string name="addStep1_enter_word">Enter word</string>
+    <string name="addStep1_phonetic">Phonetic:</string>
+    <string name="addStep1_enter_phonetic">Enter phonetic</string>
+    <string name="addStep1_next">Next</string>
+    <string name="addStep2_add_word">Add Word</string>
+    <string name="addStep2_meaning">Meaning:</string>
+    <string name="addStep2_enter_meaning">Enter meaning</string>
+    <string name="addStep2_synonym">Synonym:</string>
+    <string name="addStep2_enter_synonym">Enter synonym</string>
+    <string name="addStep2_antonym">Antonym:</string>
+    <string name="addStep2_enter_antonym">Enter antonym</string>
+    <string name="addStep2_back">Back</string>
+    <string name="addStep2_next">Next</string>
+
+    <string-array name="categories_array">
+        <item>Friends</item>
+        <item>Environment</item>
+        <item>Technology</item>
+        <item>Health</item>
+        <item>Travel</item>
+        <item>Food</item>
+        <item>Arts</item>
+        <item>Business</item>
+        <item>Sports</item>
+        <item>Other</item>
+    </string-array>
 </resources>

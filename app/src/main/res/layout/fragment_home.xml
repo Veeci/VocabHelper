@@ -13,9 +13,9 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include
-            layout="@layout/empty_placeholder"
-            android:visibility="gone"/>
+<!--        <include-->
+<!--            layout="@layout/empty_placeholder"-->
+<!--            android:visibility="visible"/>-->
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/homeTabLayout"
@@ -24,11 +24,12 @@
             android:background="@null"
             app:tabIndicatorColor="@color/theme_secondary"
             app:tabTextColor="@color/text_main"
-            android:layout_marginTop="30dp"/>
+            android:layout_marginTop="20dp"/>
+
 
         <androidx.viewpager2.widget.ViewPager2
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="500dp"
             android:layout_marginTop="10dp"
             android:id="@+id/homeViewPager"/>
 

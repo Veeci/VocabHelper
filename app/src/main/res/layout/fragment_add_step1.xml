@@ -1,70 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.main.fragments.home.tabs.bottomsheet.AddStep1Fragment"
     android:orientation="vertical"
     android:padding="16dp"
     android:background="@drawable/bottomsheet">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Word"
-        android:textSize="20sp"
-        android:textColor="@color/text_main"
-        android:layout_marginTop="20dp"
-        android:textStyle="bold"/>
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Word:"
-        android:textSize="18sp"
-        android:textColor="@color/text_main"
-        android:layout_marginTop="20dp"/>
-
-    <androidx.appcompat.widget.AppCompatEditText
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:textColor="@color/text_main"
-        android:background="@color/theme_tertiary"
-        android:textSize="16sp"
-        android:layout_marginTop="10dp"
-        android:hint="Enter word"
-        android:padding="10dp"
-        android:id="@+id/wordET"/>
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Phonetic:"
-        android:textSize="18sp"
-        android:textColor="@color/text_main"
-        android:layout_marginTop="20dp"/>
+        android:orientation="vertical">
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:textColor="@color/text_main"
-        android:background="@color/theme_tertiary"
-        android:textSize="16sp"
-        android:layout_marginTop="10dp"
-        android:hint="Enter phonetic"
-        android:padding="10dp"
-        android:id="@+id/phoneticET"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/addStep2_add_word"
+            android:textSize="20sp"
+            android:textColor="@color/text_main"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"/>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/theme_secondary"
-        android:text="Next"
-        android:textColor="@color/text_main"
-        android:fontFamily="@font/lato"
-        android:textSize="16sp"
-        android:layout_marginTop="20dp"
-        android:id="@+id/nextStep1Button"
-        android:layout_gravity="end"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/addStep1_word"
+            android:textSize="18sp"
+            android:textColor="@color/text_main"
+            android:layout_marginTop="20dp"/>
 
-</LinearLayout>
+        <androidx.appcompat.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textColor="@color/text_main"
+            android:background="@color/theme_tertiary"
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"
+            android:hint="@string/addStep1_add_word"
+            android:padding="10dp"
+            android:id="@+id/wordET"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Meaning: "
+            android:textSize="18sp"
+            android:textColor="@color/text_main"
+            android:layout_marginTop="20dp"/>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textColor="@color/text_main"
+            android:background="@color/theme_tertiary"
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"
+            android:hint="Add word meaning"
+            android:padding="10dp"
+            android:id="@+id/meaningET"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:weightSum="6"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_weight="4"
+                android:layout_height="match_parent"
+                android:text="Pronunciation: "
+                android:textSize="18sp"
+                android:textColor="@color/text_main"
+                android:gravity="center_vertical"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/icon_record_addword"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:id="@+id/recordButton"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/icon_stoprecording_addword"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:id="@+id/stopRecordingButton"/>
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Category: "
+            android:textSize="18sp"
+            android:textColor="@color/text_main"
+            android:layout_marginTop="20dp"/>
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textColor="@color/text_main"
+            android:background="@color/theme_tertiary"
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/categorySpinner"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/theme_secondary"
+            android:text="@string/addStep2_next"
+            android:textColor="@color/text_main"
+            android:fontFamily="@font/lato"
+            android:textSize="16sp"
+            android:id="@+id/nextStep1Button"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="end"/>
+    </LinearLayout>
+
+</ScrollView>
