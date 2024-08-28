@@ -3,6 +3,10 @@
     <string name="app_name">VocabHelper</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="tab_all_words">All Words</string>
+    <string name="tab_categories">Categories</string>
+
+
     <!--Splash screen-->
     <string name="splash_skip">Skip</string>
     <string name="splash_vocabulary_learning_tips">Vocabulary Learning Tips</string>
@@ -162,4 +166,16 @@
         <item>Sports</item>
         <item>Other</item>
     </string-array>
+
+    <string name="category_friends">Friends</string>
+    <string name="category_environment">Environment</string>
+    <string name="category_technology">Technology</string>
+    <string name="category_health">Health</string>
+    <string name="category_travel">Travel</string>
+    <string name="category_food">Food</string>
+    <string name="category_arts">Arts</string>
+    <string name="category_business">Business</string>
+    <string name="category_sports">Sports</string>
+    <string name="category_other">Other</string>
+
 </resources>

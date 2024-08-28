@@ -42,8 +42,9 @@ class WordsByCategoryFragment : Fragment() {
 
     private fun setupRecyclerView() {
         val categoryAdapter = CategoryAdapter { category ->
-            wordViewModel.fetchWordsByCategory(category.name)
-            wordViewModel.setCategoryRemember(category.name)
+            val categoryName = getString(category.nameResId)
+            wordViewModel.fetchWordsByCategory(categoryName)
+            wordViewModel.setCategoryRemember(categoryName)
             findNavController().navigate(R.id.action_mainFragment_to_wordListFragment)
         }
 

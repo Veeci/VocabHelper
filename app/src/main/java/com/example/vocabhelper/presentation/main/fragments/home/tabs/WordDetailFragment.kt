@@ -90,7 +90,7 @@ class WordDetailFragment : Fragment() {
             }
 
             back.setOnClickListener {
-                requireActivity().onBackPressedDispatcher
+                requireActivity().onBackPressed()
             }
         }
     }

@@ -33,7 +33,6 @@ class MainViewModel: ViewModel() {
                         _profilePicUrl.postValue(profilePicUrl)
                     }
                 } else {
-                    // Handle the case where there is no profile picture saved
                     val defaultPicUrl = auth.currentUser?.photoUrl?.toString()
                     _profilePicUrl.postValue(defaultPicUrl?: "")
                 }

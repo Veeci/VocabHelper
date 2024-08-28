@@ -4,24 +4,91 @@ import android.app.Activity
 import android.content.Intent
 import android.content.res.Configuration
 import android.content.res.Resources
+import android.os.CountDownTimer
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.vocabhelper.presentation.auth.AuthActivity
 import com.example.vocabhelper.presentation.main.MainActivity
 import java.util.Locale
 
-class SettingViewModel: ViewModel() {
+class SettingViewModel : ViewModel() {
 
-    fun changeAppLanguage(activity: Activity, languageCode: String) {
-        val locale = Locale(languageCode)
-        Locale.setDefault(locale)
-        val resources: Resources = activity.resources
-        val config: Configuration = resources.configuration
-        config.setLocale(locale)
-        resources.updateConfiguration(config, resources.displayMetrics)
+    // LiveData to observe timer progress and state
+    private val _timeRemaining = MutableLiveData<Long>()
+    val timeRemaining: LiveData<Long> get() = _timeRemaining
 
-        val refreshIntent = Intent(activity, AuthActivity::class.java)
-        refreshIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-        activity.recreate()
-        activity.startActivity(refreshIntent)
+    private val _isTimerRunning = MutableLiveData<Boolean>()
+    val isTimerRunning: LiveData<Boolean> get() = _isTimerRunning
+
+    private val _isFocusSession = MutableLiveData<Boolean>()
+    val isFocusSession: LiveData<Boolean> get() = _isFocusSession
+
+    private val _sessionCount = MutableLiveData<Int>()
+    val sessionCount: LiveData<Int> get() = _sessionCount
+
+    private var countDownTimer: CountDownTimer? = null
+
+    // Pomodoro timing configurations in seconds
+    var focusTime = 25 * 60
+    var shortBreakTime = 5 * 60
+    var longBreakTime = 10 * 60
+
+    fun setTime(focusTime: Int, shortBreakTime: Int, longBreakTime: Int)
+    {
+        this.focusTime = focusTime * 60
+        this.shortBreakTime = shortBreakTime * 60
+        this.longBreakTime = longBreakTime * 60
+
+        resetTimer()
+    }
+
+    init {
+        _timeRemaining.value = focusTime * 1000L
+        _isTimerRunning.value = false
+        _isFocusSession.value = true
+        _sessionCount.value = 0
+    }
+
+    fun startTimer() {
+        countDownTimer?.cancel()
+
+        countDownTimer = object : CountDownTimer(_timeRemaining.value!!, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                _timeRemaining.value = millisUntilFinished
+            }
+
+            override fun onFinish() {
+                handleTimerFinish()
+            }
+        }.start()
+
+        _isTimerRunning.value = true
+    }
+
+    fun pauseTimer() {
+        countDownTimer?.cancel()
+        _isTimerRunning.value = false
+    }
+
+    fun resetTimer() {
+        countDownTimer?.cancel()
+        _sessionCount.value = 0
+        _timeRemaining.value = focusTime * 1000L
+        _isFocusSession.value = true
+        _isTimerRunning.value = false
+    }
+
+    private fun handleTimerFinish() {
+        _sessionCount.value = (_sessionCount.value ?: 0) + 1
+        _isFocusSession.value = !(_isFocusSession.value ?: true)
+
+        _timeRemaining.value = if (_isFocusSession.value == true) {
+            if (_sessionCount.value!! % 4 == 0) longBreakTime * 1000L else shortBreakTime * 1000L
+        } else {
+            focusTime * 1000L
+        }
+
+        startTimer()
     }
 }

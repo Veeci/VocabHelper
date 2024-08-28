@@ -3,6 +3,9 @@
     <string name="app_name">VocabHelper</string>
     <string name="hello_blank_fragment">Chào bạn, đây là một fragment trống</string>
 
+    <string name="tab_all_words">Tất cả từ vựng</string>
+    <string name="tab_categories">Danh mục</string>
+
     <!--Splash screen-->
     <string name="splash_skip">Bỏ qua</string>
     <string name="splash_vocabulary_learning_tips">Mẹo học từ vựng</string>
@@ -162,4 +165,16 @@
         <item>Thể thao</item>
         <item>Khác</item>
     </string-array>
+
+    <string name="category_friends">Bạn bè</string>
+    <string name="category_environment">Môi trường</string>
+    <string name="category_technology">Công nghệ</string>
+    <string name="category_health">Sức khỏe</string>
+    <string name="category_travel">Du lịch</string>
+    <string name="category_food">Ẩm thực</string>
+    <string name="category_arts">Nghệ thuật</string>
+    <string name="category_business">Kinh doanh</string>
+    <string name="category_sports">Thể thao</string>
+    <string name="category_other">Khác</string>
+
 </resources>

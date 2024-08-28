@@ -3,6 +3,9 @@
     <string name="app_name">VocabHelper</string>
     <string name="hello_blank_fragment">Bonjour, c\'est un fragment vide</string>
 
+    <string name="tab_all_words">Tous les mots</string>
+    <string name="tab_categories">Catégories</string>
+
     <!--Splash screen-->
     <string name="splash_skip">Passer</string>
     <string name="splash_vocabulary_learning_tips">Conseils pour l\'apprentissage du vocabulaire</string>
@@ -162,4 +165,15 @@
         <item>Sports</item>
         <item>Autre</item>
     </string-array>
+
+    <string name="category_friends">Amis</string>
+    <string name="category_environment">Environnement</string>
+    <string name="category_technology">Technologie</string>
+    <string name="category_health">Santé</string>
+    <string name="category_travel">Voyage</string>
+    <string name="category_food">Nourriture</string>
+    <string name="category_arts">Arts</string>
+    <string name="category_business">Affaires</string>
+    <string name="category_sports">Sports</string>
+    <string name="category_other">Autre</string>
 </resources>

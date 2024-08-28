@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.NumberPicker
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.base.BaseActivity
@@ -39,7 +40,10 @@ class SettingFragment : Fragment() {
         binding.changeAppLanguage.setOnClickListener {
             val dialog = Dialog(requireContext())
             dialog.setContentView(R.layout.language_setting_dialog)
-            dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+            dialog.window?.setLayout(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
             dialog.setCancelable(true)
 
             val english = dialog.findViewById<LinearLayout>(R.id.language_english)
@@ -64,6 +68,48 @@ class SettingFragment : Fragment() {
 
             french.setOnClickListener {
                 (activity as? BaseActivity)?.changeLanguage("fr")
+                dialog.dismiss()
+            }
+
+            dialog.show()
+        }
+
+        binding.setFocusTime.setOnClickListener {
+            val dialog = Dialog(requireContext())
+            dialog.setContentView(R.layout.time_setting_dialog)
+            dialog.window?.setLayout(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+            dialog.setCancelable(true)
+
+            val focusPicker = dialog.findViewById<NumberPicker>(R.id.focusPicker)
+            val longBreakPicker = dialog.findViewById<NumberPicker>(R.id.longBreakPicker)
+            val shortBreakPicker = dialog.findViewById<NumberPicker>(R.id.shortBreakPicker)
+
+            // Set up NumberPicker ranges and values
+            focusPicker.minValue = 1
+            focusPicker.maxValue = 60
+            focusPicker.value = settingViewModel.focusTime / 60 // Set initial value
+
+            longBreakPicker.minValue = 1
+            longBreakPicker.maxValue = 30
+            longBreakPicker.value = settingViewModel.longBreakTime / 60 // Set initial value
+
+            shortBreakPicker.minValue = 1
+            shortBreakPicker.maxValue = 30
+            shortBreakPicker.value = settingViewModel.shortBreakTime / 60 // Set initial value
+
+            dialog.findViewById<View>(R.id.saveButton).setOnClickListener {
+                settingViewModel.setTime(
+                    focusPicker.value,
+                    shortBreakPicker.value,
+                    longBreakPicker.value
+                )
+                dialog.dismiss()
+            }
+
+            dialog.findViewById<View>(R.id.cancelButton).setOnClickListener {
                 dialog.dismiss()
             }
 

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.viewpager2.widget.ViewPager2
+import com.example.vocabhelper.R
 import com.example.vocabhelper.data.api.APIService
 import com.example.vocabhelper.data.implementation.WordRepoImplementation
 import com.example.vocabhelper.databinding.FragmentHomeBinding
@@ -59,8 +60,8 @@ class HomeFragment : Fragment() {
 
         TabLayoutMediator(tabLayout, viewpager) { tab, position ->
             when (position) {
-                0 -> tab.text = "All Words"
-                1 -> tab.text = "Categories"
+                0 -> tab.text = getString(R.string.tab_all_words)
+                1 -> tab.text = getString(R.string.tab_categories)
             }
         }.attach()
 

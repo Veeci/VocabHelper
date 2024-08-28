@@ -3,6 +3,9 @@
     <string name="app_name">VocabHelper</string>
     <string name="hello_blank_fragment">こんにちは、これは空のフラグメントです</string>
 
+    <string name="tab_all_words">すべての単語</string>
+    <string name="tab_categories">カテゴリ</string>
+
     <!--Splash screen-->
     <string name="splash_skip">スキップ</string>
     <string name="splash_vocabulary_learning_tips">語彙学習のヒント</string>
@@ -162,4 +165,15 @@
         <item>スポーツ</item>
         <item>その他</item>
     </string-array>
+
+    <string name="category_friends">友達</string>
+    <string name="category_environment">環境</string>
+    <string name="category_technology">技術</string>
+    <string name="category_health">健康</string>
+    <string name="category_travel">旅行</string>
+    <string name="category_food">食べ物</string>
+    <string name="category_arts">芸術</string>
+    <string name="category_business">ビジネス</string>
+    <string name="category_sports">スポーツ</string>
+    <string name="category_other">その他</string>
 </resources>
