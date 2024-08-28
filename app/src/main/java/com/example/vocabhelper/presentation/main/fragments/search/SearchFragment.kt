@@ -12,8 +12,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.vocabhelper.data.api.APIService
+import com.example.vocabhelper.data.implementation.WordRepoImplementation
 import com.example.vocabhelper.data.models.Response
-import com.example.vocabhelper.data.repository.WordRepository
 import com.example.vocabhelper.databinding.FragmentSearchBinding
 import com.example.vocabhelper.domain.WordViewModel
 import com.example.vocabhelper.presentation.main.fragments.search.adapter.WordSearchAdapter
@@ -24,8 +24,12 @@ class SearchFragment : Fragment() {
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
 
+    private val apiService by lazy { APIService.create() }
+
+    private val wordRepository by lazy { WordRepoImplementation(apiService) }
+
     private val wordViewModel: WordViewModel by activityViewModels {
-        WordViewModel.Factory(WordRepository(apiService = APIService.create()))
+        WordViewModel.Factory(wordRepository)
     }
 
     private lateinit var wordSearchAdapter: WordSearchAdapter

@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.example.vocabhelper.data.api.APIService
-import com.example.vocabhelper.data.repository.WordRepository
+import com.example.vocabhelper.data.implementation.WordRepoImplementation
 import com.example.vocabhelper.databinding.FragmentHomeBinding
 import com.example.vocabhelper.domain.WordViewModel
 import com.example.vocabhelper.presentation.main.fragments.home.tabs.adapter.HomeTabLayout
@@ -22,8 +22,12 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
+    private val apiService by lazy { APIService.create() }
+
+    private val wordRepository by lazy { WordRepoImplementation(apiService) }
+
     private val wordViewModel: WordViewModel by activityViewModels {
-        WordViewModel.Factory(WordRepository(apiService = APIService.create()))
+        WordViewModel.Factory(wordRepository)
     }
 
     private lateinit var viewpager: ViewPager2

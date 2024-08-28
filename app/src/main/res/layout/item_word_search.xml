@@ -22,7 +22,7 @@
         android:textStyle="bold"
         android:textSize="14sp"
         android:textColor="@color/theme_secondary"
-        android:text="Definition:"/>
+        android:text="@string/definition"/>
 
     <View
         android:layout_width="match_parent"

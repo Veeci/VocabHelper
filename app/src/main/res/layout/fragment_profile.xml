@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/lato"
-            android:text="Account"
+            android:text="@string/profile_account"
             android:textColor="@color/text_secondary"
             android:textSize="14sp" />
 
@@ -78,7 +78,7 @@
                 android:layout_weight="5"
                 android:fontFamily="@font/lato"
                 android:padding="6dp"
-                android:text="Change account password"
+                android:text="@string/profile_change_account_password"
                 android:textColor="@color/text_main"
                 android:textSize="14sp" />
 
@@ -110,7 +110,7 @@
                 android:layout_weight="5"
                 android:fontFamily="@font/lato"
                 android:padding="6dp"
-                android:text="Change account avatar"
+                android:text="@string/profile_change_account_avatar"
                 android:textColor="@color/text_main"
                 android:textSize="14sp" />
 
@@ -151,7 +151,7 @@
                 android:layout_weight="5"
                 android:fontFamily="@font/lato"
                 android:padding="6dp"
-                android:text="Feedback"
+                android:text="@string/profile_feedback"
                 android:textColor="@color/text_main"
                 android:textSize="14sp" />
 
@@ -183,7 +183,7 @@
                 android:layout_weight="5"
                 android:fontFamily="@font/lato"
                 android:padding="7dp"
-                android:text="Logout"
+                android:text="@string/profile_logout"
                 android:textColor="@color/theme_danger"
                 android:textSize="15sp" />
 

@@ -9,6 +9,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.vocabhelper.R
+import com.example.vocabhelper.data.api.APIService
+import com.example.vocabhelper.data.implementation.WordRepoImplementation
 import com.example.vocabhelper.databinding.FragmentWordListBinding
 import com.example.vocabhelper.domain.WordViewModel
 import com.example.vocabhelper.presentation.main.fragments.home.tabs.adapter.WordAdapter
@@ -17,7 +19,13 @@ class WordListFragment : Fragment() {
 
     private val binding by lazy { FragmentWordListBinding.inflate(layoutInflater) }
 
-    private val wordViewModel: WordViewModel by activityViewModels()
+    private val apiService by lazy { APIService.create() }
+
+    private val wordRepository by lazy { WordRepoImplementation(apiService) }
+
+    private val wordViewModel: WordViewModel by activityViewModels {
+        WordViewModel.Factory(wordRepository)
+    }
 
     private lateinit var wordAdapter: WordAdapter
 

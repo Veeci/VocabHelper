@@ -3,13 +3,13 @@
     <item
         android:id="@+id/menu_home"
         android:enabled="true"
-        android:title="Home"
+        android:title="@string/bottombar_home"
         android:icon="@drawable/icon_home_home"/>
 
     <item
         android:id="@+id/menu_search"
         android:enabled="true"
-        android:title="Search"
+        android:title="@string/bottombar_search"
         android:icon="@drawable/icon_search_home"/>
     <item
         android:id="@+id/placeholder"
@@ -18,12 +18,12 @@
     <item
         android:id="@+id/menu_focus"
         android:enabled="true"
-        android:title="Focus"
+        android:title="@string/bottombar_focus"
         android:icon="@drawable/icon_clock_home"/>
 
     <item
         android:id="@+id/menu_profile"
         android:enabled="true"
-        android:title="Profile"
+        android:title="@string/bottombar_profile"
         android:icon="@drawable/icon_user_home"/>
 </menu>

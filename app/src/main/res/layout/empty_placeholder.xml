@@ -13,7 +13,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:src="@drawable/banner_banner1_home"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="150dp"/>
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -22,10 +21,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="@font/lato"
-        android:text="What do you want to do today?"
+        android:text="@string/home_what_do_you_want_to_do_today"
         android:textColor="@color/text_main"
         android:textSize="20sp"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"/>
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -33,10 +31,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="@font/lato"
-        android:text="Tap + to add your tasks"
+        android:text="@string/home_tap_to_add_your_tasks"
         android:textColor="@color/text_secondary"
         android:textSize="16sp"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"/>
 
 </LinearLayout>

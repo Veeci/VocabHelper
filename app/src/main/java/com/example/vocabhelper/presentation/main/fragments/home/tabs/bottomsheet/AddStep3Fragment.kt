@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.vocabhelper.R
 import com.example.vocabhelper.data.api.APIService
-import com.example.vocabhelper.data.repository.WordRepository
+import com.example.vocabhelper.data.implementation.WordRepoImplementation
 import com.example.vocabhelper.databinding.FragmentAddStep3Binding
 import com.example.vocabhelper.domain.WordViewModel
 import com.google.firebase.storage.FirebaseStorage
@@ -22,8 +22,12 @@ class AddStep3Fragment : Fragment(R.layout.fragment_add_step3) {
 
     private val binding by lazy { FragmentAddStep3Binding.inflate(layoutInflater) }
 
+    private val apiService by lazy { APIService.create() }
+
+    private val wordRepository by lazy { WordRepoImplementation(apiService) }
+
     private val wordViewModel: WordViewModel by activityViewModels {
-        WordViewModel.Factory(WordRepository(apiService = APIService.create()))
+        WordViewModel.Factory(wordRepository)
     }
 
     var onCompleteClick: (() -> Unit)? = null

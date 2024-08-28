@@ -3,14 +3,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/theme_primary"
-    android:padding="10dp"
     android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato"
+        android:text="@string/dialog_language_choose_language"
+        android:textColor="@color/text_main"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:background="@color/theme_secondary"
+        android:padding="5dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:weightSum="5"
-        android:id="@+id/language_english">
+        android:id="@+id/language_english"
+        android:layout_marginTop="10dp">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="0dp"
@@ -23,7 +34,7 @@
             android:layout_height="match_parent"
             android:layout_weight="4"
             android:fontFamily="@font/lato"
-            android:text="English"
+            android:text="@string/dialog_language_english"
             android:textColor="@color/text_main"
             android:textSize="25sp"
             android:gravity="start|center_vertical"/>
@@ -49,7 +60,7 @@
             android:layout_height="match_parent"
             android:layout_weight="4"
             android:fontFamily="@font/lato"
-            android:text="Vietnamese"
+            android:text="@string/dialog_language_vietnamese_3"
             android:textColor="@color/text_main"
             android:textSize="25sp"
             android:gravity="start|center_vertical"/>
@@ -74,7 +85,7 @@
             android:layout_height="match_parent"
             android:layout_weight="4"
             android:fontFamily="@font/lato"
-            android:text="Japanese"
+            android:text="@string/dialog_language_japanese"
             android:textColor="@color/text_main"
             android:textSize="25sp"
             android:gravity="start|center_vertical"/>
@@ -97,7 +108,7 @@
             android:layout_height="match_parent"
             android:layout_weight="4"
             android:fontFamily="@font/lato"
-            android:text="French"
+            android:text="@string/dialog_language_french"
             android:textColor="@color/text_main"
             android:textSize="25sp"
             android:gravity="start|center_vertical"/>

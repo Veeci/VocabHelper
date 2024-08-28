@@ -9,7 +9,7 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Your feedback is important to me :333"
+        android:text="@string/dialog_feedback_your_feedback_is_important_to_me_333"
         android:fontFamily="@font/lato"
         android:textColor="@color/text_main"
         android:textSize="20sp"
@@ -20,7 +20,7 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Title"
+        android:text="@string/dialog_feedback_title"
         android:fontFamily="@font/lato"
         android:textColor="@color/text_main"
         android:textSize="16sp"
@@ -35,7 +35,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Enter the title"
+            android:hint="@string/dialog_feedback_enter_the_title"
             android:id="@+id/titleET"
             android:textColor="@color/text_main"/>
 
@@ -44,7 +44,7 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Feedback"
+        android:text="@string/dialog_feedback_feedback"
         android:fontFamily="@font/lato"
         android:textColor="@color/text_main"
         android:textSize="16sp"
@@ -59,7 +59,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Enter your feedback"
+            android:hint="@string/dialog_feedback_enter_your_feedback"
             android:id="@+id/feedbackET"
             android:textColor="@color/text_main"/>
 
@@ -68,7 +68,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Send Feedback"
+        android:text="@string/dialog_feedback_send_feedback"
         android:fontFamily="@font/lato"
         android:textColor="@color/text_main"
         android:textSize="16sp"

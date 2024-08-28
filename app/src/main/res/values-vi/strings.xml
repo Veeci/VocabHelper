@@ -1,0 +1,165 @@
+<resources>
+    <string name="default_web_client_id">373369689147-p789046cd029v00bm7q9m4fsnoltc51j.apps.googleusercontent.com</string>
+    <string name="app_name">VocabHelper</string>
+    <string name="hello_blank_fragment">Chào bạn, đây là một fragment trống</string>
+
+    <!--Splash screen-->
+    <string name="splash_skip">Bỏ qua</string>
+    <string name="splash_vocabulary_learning_tips">Mẹo học từ vựng</string>
+    <string name="splash_you_can_easily_apply_the_tip_provided_by_using_this_app">Bạn có thể dễ dàng áp dụng mẹo được cung cấp qua ứng dụng này</string>
+    <string name="splash_back">Quay lại</string>
+    <string name="splash_next">Tiếp theo</string>
+    <string name="splash_in_vocabhelper_you_can_create_your_personalized_routine_to_stay_productive">Với VocabHelper, bạn có thể tạo thói quen cá nhân hóa để duy trì hiệu quả công việc</string>
+    <string name="splash_create_daily_routine">Tạo thói quen hàng ngày</string>
+    <string name="splash_get_started">BẮT ĐẦU</string>
+    <string name="splash_you_can_organize_your_daily_tasks_by_adding_your_tasks_into_separate_categories">Bạn có thể tổ chức công việc hàng ngày của mình bằng cách phân loại chúng vào các danh mục khác nhau</string>
+    <string name="splash_organize_your_tasks">Tổ chức công việc của bạn</string>
+    <string name="splash_welcome_to_vocabhelper">Chào mừng bạn đến với VocabHelper</string>
+    <string name="splash_please_login_to_your_account_or_create_new_account_to_continue">Vui lòng đăng nhập vào tài khoản của bạn hoặc tạo tài khoản mới để tiếp tục</string>
+    <string name="splash_login">ĐĂNG NHẬP</string>
+    <string name="splash_create_account">TẠO TÀI KHOẢN</string>
+
+    <!--Login-->
+    <string name="login_login">Đăng nhập</string>
+    <string name="login_email">Email</string>
+    <string name="login_enter_your_email">Nhập email của bạn</string>
+    <string name="login_password">Mật khẩu</string>
+    <string name="login_and_also_the_password">Và mật khẩu</string>
+    <string name="login_or">hoặc</string>
+    <string name="login_login_with_google">Đăng nhập bằng Google</string>
+    <string name="login_don_t_have_an_account">Bạn chưa có tài khoản?</string>
+    <string name="login_register">Đăng ký</string>
+
+    <!--Signup-->
+    <string name="register_full_name">Họ và tên</string>
+    <string name="register_enter_your_full_name">Nhập họ và tên của bạn</string>
+    <string name="register_email">Email</string>
+    <string name="register_enter_your_email">Nhập email của bạn</string>
+    <string name="register_password">Mật khẩu</string>
+    <string name="register_and_also_the_password">Và mật khẩu</string>
+    <string name="register_password_must_be_at_least_8_characters_with_at_least_one_uppercase_letter_one_lowercase_letter_one_number_and_one_special_character">Mật khẩu phải có ít nhất 8 ký tự, bao gồm ít nhất một chữ cái viết hoa, một chữ cái viết thường, một số và một ký tự đặc biệt.</string>
+    <string name="register_confirm_password">Xác nhận mật khẩu</string>
+    <string name="register_and_confirm_it_again">Và xác nhận lại mật khẩu</string>
+    <string name="register_already_have_an_account">Bạn đã có tài khoản?</string>
+
+    <!--Add words-->
+    <string name="addStep1_add_word">Thêm từ</string>
+    <string name="addStep1_word">Từ:</string>
+    <string name="addStep1_enter_word">Nhập từ</string>
+    <string name="addStep1_phonetic">Phát âm:</string>
+    <string name="addStep1_enter_phonetic">Nhập phát âm</string>
+    <string name="addStep1_next">Tiếp theo</string>
+    <string name="addStep2_add_word">Thêm từ</string>
+    <string name="addStep2_meaning">Ý nghĩa:</string>
+    <string name="addStep2_enter_meaning">Nhập ý nghĩa</string>
+    <string name="addStep2_synonym">Từ đồng nghĩa:</string>
+    <string name="addStep2_enter_synonym">Nhập từ đồng nghĩa</string>
+    <string name="addStep2_antonym">Từ trái nghĩa:</string>
+    <string name="addStep2_enter_antonym">Nhập từ trái nghĩa</string>
+    <string name="addStep2_back">Quay lại</string>
+    <string name="addStep2_next">Tiếp theo</string>
+    <string name="addstep1_meaning">Ý nghĩa:</string>
+    <string name="addstep1_add_word_meaning">Thêm ý nghĩa của từ</string>
+    <string name="addstep1_pronunciation">Phát âm:</string>
+    <string name="addstep1_category">Danh mục:</string>
+    <string name="addstep3_collocation">Cụm từ:</string>
+    <string name="addstep3enter_collocation">Nhập cụm từ</string>
+    <string name="addstep3_example_sentence">Câu ví dụ:</string>
+    <string name="addstep3_enter_example_sentence">Nhập câu ví dụ</string>
+
+    <!--Home-->
+    <string name="home_what_do_you_want_to_do_today">Chào người đẹp!</string>
+    <string name="home_tap_to_add_your_tasks">Nhấn + để thêm từ mới</string>
+
+    <!--Focus-->
+    <string name="focus_focus">Tập trung</string>
+    <string name="focus_focus_and_learn_new_words">Tập trung và học từ mới.</string>
+    <string name="focus_start_pomodoro">Bắt đầu Pomodoro</string>
+    <string name="focus_give_up">Bỏ cuộc</string>
+
+    <!--Profile-->
+    <string name="profile_account">Tài khoản</string>
+    <string name="profile_change_account_password">Thay đổi mật khẩu tài khoản</string>
+    <string name="profile_change_account_avatar">Thay đổi ảnh đại diện</string>
+    <string name="profile_feedback">Góp ý</string>
+    <string name="profile_logout">Đăng xuất</string>
+    <string name="search_meanings_of_this_word">Ý nghĩa của từ này:</string>
+    <string name="synonym">Từ đồng nghĩa:</string>
+    <string name="antonyms">Từ trái nghĩa:</string>
+    <string name="example">Ví dụ:</string>
+    <string name="definition">Định nghĩa:</string>
+
+    <!--Setting-->
+    <string name="setting_settings">Cài đặt</string>
+    <string name="setting_change_display_mode">Thay đổi chế độ hiển thị</string>
+    <string name="setting_change_app_language">Thay đổi ngôn ngữ</string>
+    <string name="setting_set_focus_time">Đặt thời gian tập trung</string>
+    <string name="setting_remember_password">Nhớ mật khẩu</string>
+
+    <!--Top bar-->
+    <string name="topbar_index">Trang chính</string>
+
+    <!--Bottom bar-->
+    <string name="bottombar_home">Trang chủ</string>
+    <string name="bottombar_search">Tìm kiếm</string>
+    <string name="bottombar_focus">Tập trung</string>
+    <string name="bottombar_profile">Hồ sơ</string>
+
+    <!--Word detail-->
+    <string name="worddetail_meaning">Ý nghĩa:</string>
+    <string name="worddetail_category">Danh mục:</string>
+    <string name="worddetail_synonym">Từ đồng nghĩa:</string>
+    <string name="worddetail_antonym">Từ trái nghĩa:</string>
+    <string name="worddetail_collocation">Cụm từ:</string>
+    <string name="worddetail_example">Ví dụ:</string>
+    <string name="worddetail_save">Lưu</string>
+    <string name="worddetail_delete">Xóa</string>
+
+    <!--Dialog_feedback_reset_email-->
+    <string name="dialog_feedback_your_email">Email của bạn</string>
+    <string name="dialog_feedback_send_reset_email">Gửi email khôi phục</string>
+    <string name="dialog_feedback_cancel">Hủy</string>
+
+    <!--Dialog_not started-->
+    <string name="dialog_notstarted_oh_come_on_you_cannot_give_up_even_before_you_start">Nào nào còn chưa bắt đầu đã bỏ cuộc -.-</string>
+    <string name="dialog_notstarted_stop_rambling_and_get_back_to_work">Quay lại học nhanh khẩn trương!!!</string>
+
+    <!--Dialog_logout-->
+    <string name="dialog_logout_are_you_sure_you_want_to_log_out">Bạn có chắc chắn muốn đăng xuất không?</string>
+    <string name="dialog_logout_yes">Có</string>
+    <string name="dialog_logout_no">Không</string>
+
+    <!--Dialog_language-->
+    <string name="dialog_language_english">Tiếng Anh</string>
+    <string name="dialog_language_choose_language">Tùy chỉnh ngôn ngữ:</string>
+    <string name="dialog_language_vietnamese_3"><![CDATA[Tiếng Việt <3]]></string>
+    <string name="dialog_language_japanese">Tiếng Nhật</string>
+    <string name="dialog_language_french">Tiếng Pháp</string>
+
+    <!--Dialog_giveup-->
+    <string name="dialog_giveup_and_you_just_give_up_like_that">Vậy là từ bỏ dễ dàng như vậy sao? Tưởng thế nào…</string>
+    <string name="dialog_giveup_yeah_im_quit">Chỉ đến thế thôi :\'(</string>
+    <string name="dialog_giveup_oh_hell_nahh">Không đời nào!!</string>
+
+    <!--Dialog_feedback-->
+    <string name="dialog_feedback_your_feedback_is_important_to_me_333">Phản hồi của bạn góp phần rất lớn trong việc cải thiện dự án này :333</string>
+    <string name="dialog_feedback_title">Tiêu đề</string>
+    <string name="dialog_feedback_enter_the_title">Nhập tiêu đề</string>
+    <string name="dialog_feedback_feedback">Phản hồi</string>
+    <string name="dialog_feedback_enter_your_feedback">Nhập phản hồi của bạn</string>
+    <string name="dialog_feedback_send_feedback">Gửi Phản Hồi</string>
+
+    <!--Categories-->
+    <string-array name="categories_array">
+        <item>Bạn bè</item>
+        <item>Môi trường</item>
+        <item>Công nghệ</item>
+        <item>Sức khỏe</item>
+        <item>Du lịch</item>
+        <item>Ẩm thực</item>
+        <item>Nghệ thuật</item>
+        <item>Kinh doanh</item>
+        <item>Thể thao</item>
+        <item>Khác</item>
+    </string-array>
+</resources>

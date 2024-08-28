@@ -35,7 +35,7 @@ open class BaseActivity : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("AppSettings", Context.MODE_PRIVATE)
         with(sharedPreferences.edit()) {
             putString("AppLanguage", languageCode)
-            apply()
+            commit()
         }
         recreate()
     }

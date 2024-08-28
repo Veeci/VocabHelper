@@ -25,7 +25,7 @@
         android:layout_weight="1"
         android:fontFamily="@font/lato"
         android:gravity="center"
-        android:text="Index"
+        android:text="@string/topbar_index"
         android:textColor="@color/text_main"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/setting"

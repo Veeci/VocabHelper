@@ -27,7 +27,7 @@
             android:fontFamily="@font/lato"
             android:textSize="16sp"
             android:textColor="@color/theme_secondary"
-            android:text="Synonym: "/>
+            android:text="@string/synonym"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="0dp"
@@ -53,7 +53,7 @@
             android:fontFamily="@font/lato"
             android:textSize="16sp"
             android:textColor="@color/theme_secondary"
-            android:text="Antonyms: "/>
+            android:text="@string/antonyms"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="0dp"
@@ -80,7 +80,7 @@
             android:fontFamily="@font/lato"
             android:textSize="16sp"
             android:textColor="@color/theme_secondary"
-            android:text="Example: "/>
+            android:text="@string/example"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="0dp"

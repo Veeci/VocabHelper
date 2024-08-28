@@ -10,8 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.vocabhelper.R
 import com.example.vocabhelper.data.api.APIService
-import com.example.vocabhelper.data.models.WordData
-import com.example.vocabhelper.data.repository.WordRepository
+import com.example.vocabhelper.data.implementation.WordRepoImplementation
 import com.example.vocabhelper.databinding.FragmentAllWordsBinding
 import com.example.vocabhelper.domain.WordViewModel
 import com.example.vocabhelper.presentation.main.fragments.home.tabs.adapter.WordAdapter
@@ -20,8 +19,12 @@ class AllWordsFragment : Fragment() {
 
     private val binding by lazy { FragmentAllWordsBinding.inflate(layoutInflater) }
 
+    private val apiService by lazy { APIService.create() }
+
+    private val wordRepository by lazy { WordRepoImplementation(apiService) }
+
     private val wordViewModel: WordViewModel by activityViewModels {
-        WordViewModel.Factory(WordRepository(apiService = APIService.create()))
+        WordViewModel.Factory(wordRepository)
     }
 
     private lateinit var adapter: WordAdapter

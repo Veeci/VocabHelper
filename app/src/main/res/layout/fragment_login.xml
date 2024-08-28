@@ -18,7 +18,7 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="@string/login_login"
         android:fontFamily="@font/lato"
         android:textColor="@color/text_main"
         android:textStyle="bold"
@@ -28,7 +28,7 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Email"
+        android:text="@string/login_email"
         android:fontFamily="@font/lato"
         android:textColor="@color/text_main"
         android:textSize="16sp"
@@ -43,16 +43,17 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Enter your email"
+            android:hint="@string/login_enter_your_email"
             android:id="@+id/emailET"
-            android:textColor="@color/text_main"/>
+            android:textColor="@color/text_main"
+            tools:ignore="Autofill,TextFields" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Password"
+        android:text="@string/login_password"
         android:fontFamily="@font/lato"
         android:textColor="@color/text_main"
         android:textSize="16sp"
@@ -68,10 +69,11 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="And also the Password"
+            android:hint="@string/login_and_also_the_password"
             android:id="@+id/passwordET"
             android:inputType="textPassword"
-            android:textColor="@color/text_main"/>
+            android:textColor="@color/text_main"
+            tools:ignore="Autofill" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -87,7 +89,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/lato"
-            android:text="Login"
+            android:text="@string/login_login"
             android:textColor="@color/text_main"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -126,7 +128,7 @@
             android:layout_width="0dp"
             android:layout_weight="0.2"
             android:layout_height="wrap_content"
-            android:text="or"
+            android:text="@string/login_or"
             android:fontFamily="@font/lato"
             android:textColor="@color/text_secondary"
             android:textSize="16sp"
@@ -160,7 +162,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Login with Google"
+            android:text="@string/login_login_with_google"
             android:fontFamily="@font/lato"
             android:textColor="@color/text_main"
             android:textSize="16sp"
@@ -179,7 +181,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Don't have an account?"
+            android:text="@string/login_don_t_have_an_account"
             android:fontFamily="@font/lato"
             android:textColor="@color/theme_tertiary"
             android:textSize="12sp"
@@ -188,7 +190,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Register"
+            android:text="@string/login_register"
             android:fontFamily="@font/lato"
             android:textColor="@color/text_secondary"
             android:textSize="12sp"
