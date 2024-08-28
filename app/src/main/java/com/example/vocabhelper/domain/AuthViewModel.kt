@@ -1,16 +1,10 @@
 package com.example.vocabhelper.domain
 
-import android.app.Activity
-import android.content.Context
-import android.content.Intent
 import android.net.Uri
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.vocabhelper.presentation.auth.AuthActivity
-import com.example.vocabhelper.presentation.main.MainActivity
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.firebase.auth.FirebaseAuth
@@ -32,9 +26,11 @@ class AuthViewModel : ViewModel() {
     private val _fullName = MutableLiveData<String>()
     val fullName: LiveData<String> get() = _fullName
 
-    companion object {
-        const val REQUEST_CODE_PICK_IMAGE = 1001
-    }
+    private val _email = MutableLiveData<String>()
+    val email: LiveData<String> get() = _email
+
+    private val _password = MutableLiveData<String>()
+    val password: LiveData<String> get() = _password
 
     private val _profilePicUrl = MutableLiveData<String>()
     val profilePicUrl: LiveData<String> get() = _profilePicUrl
@@ -43,15 +39,7 @@ class AuthViewModel : ViewModel() {
         _profilePicUrl.value = url
     }
 
-    // Opens the gallery to pick an image
-    fun openGallery(activity: Activity) {
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*"
-        activity.startActivityForResult(intent, REQUEST_CODE_PICK_IMAGE)
-    }
-
-    // Uploads the selected image to Firebase Storage and updates profile picture URL
-    fun uploadProfileImage(imageUri: Uri, context: Context) {
+    fun uploadProfileImage(imageUri: Uri, onSuccess: (String) -> Unit, onFailure: (Exception) -> Unit) {
         val userId = auth.currentUser?.uid ?: return
         val storageRef = FirebaseStorage.getInstance().reference.child("profile_images/$userId.jpg")
 
@@ -59,17 +47,16 @@ class AuthViewModel : ViewModel() {
             try {
                 storageRef.putFile(imageUri).await()
                 val downloadUrl = storageRef.downloadUrl.await().toString()
-                updateProfilePicture(downloadUrl, context)
+                updateProfilePicture(downloadUrl, onSuccess, onFailure)
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(context, "Failed to upload image", Toast.LENGTH_SHORT).show()
+                    onFailure(e)
                 }
             }
         }
     }
 
-    // Updates the profile picture URL in Firebase Authentication and Firestore
-    private fun updateProfilePicture(downloadUrl: String, context: Context) {
+    private fun updateProfilePicture(downloadUrl: String, onSuccess: (String) -> Unit, onFailure: (Exception) -> Unit) {
         val user = auth.currentUser ?: return
 
         val profileUpdates = UserProfileChangeRequest.Builder()
@@ -79,15 +66,16 @@ class AuthViewModel : ViewModel() {
         user.updateProfile(profileUpdates).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 setProfilePicUrl(downloadUrl)
-                updateFirestoreProfilePicUrl(downloadUrl, user.uid, context)
+                updateFirestoreProfilePicUrl(downloadUrl, user.uid, onSuccess, onFailure)
             } else {
-                Toast.makeText(context, "Failed to update profile picture", Toast.LENGTH_SHORT).show()
+                task.exception?.let {
+                    onFailure(it)
+                }
             }
         }
     }
 
-    // Updates or creates the profile document in Firestore with the new profile picture URL
-    private fun updateFirestoreProfilePicUrl(downloadUrl: String, userId: String, context: Context) {
+    private fun updateFirestoreProfilePicUrl(downloadUrl: String, userId: String, onSuccess: (String) -> Unit, onFailure: (Exception) -> Unit) {
         val profileDocumentRef = db.collection("USERS")
             .document(userId)
             .collection("PROFILE")
@@ -99,125 +87,117 @@ class AuthViewModel : ViewModel() {
                     profileDocumentRef.update("profilePicUrl", downloadUrl)
                         .addOnSuccessListener {
                             _profilePicUrl.value = downloadUrl
-                            Toast.makeText(context, "Profile picture updated successfully", Toast.LENGTH_SHORT).show()
+                            onSuccess(downloadUrl)
                         }
                         .addOnFailureListener {
-                            Toast.makeText(context, "Failed to update Firestore", Toast.LENGTH_SHORT).show()
+                            onFailure(it)
                         }
                 } else {
                     val user = hashMapOf("profilePicUrl" to downloadUrl)
                     profileDocumentRef.set(user, SetOptions.merge())
                         .addOnSuccessListener {
-                            Toast.makeText(context, "Profile picture added successfully", Toast.LENGTH_SHORT).show()
+                            onSuccess(downloadUrl)
                         }
                         .addOnFailureListener {
-                            Toast.makeText(context, "Failed to add profile picture", Toast.LENGTH_SHORT).show()
+                            onFailure(it)
                         }
                 }
             }
             .addOnFailureListener {
-                Toast.makeText(context, "Failed to retrieve profile document", Toast.LENGTH_SHORT).show()
+                onFailure(it)
             }
     }
 
-    fun signUp(email: String, password: String, fullname: String, context: Context) {
+    fun signUp(email: String, password: String, fullname: String, onSuccess: (FirebaseUser) -> Unit, onFailure: (Exception) -> Unit) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val trimmedEmail = email.trim()
                 val result = auth.createUserWithEmailAndPassword(trimmedEmail, password).await()
-                if (result.user != null) {
-                    val user = hashMapOf(
+                result.user?.let { user ->
+                    val userData = hashMapOf(
                         "email" to trimmedEmail,
                         "fullname" to fullname,
                         "createdAt" to System.currentTimeMillis()
                     )
                     db.collection("USERS")
-                        .document(result.user!!.uid)
+                        .document(user.uid)
                         .collection("PROFILE")
                         .document(fullname)
-                        .set(user)
-                        .addOnSuccessListener {
-                            Toast.makeText(context, "Sign up successfully", Toast.LENGTH_SHORT).show()
-                            _fullName.postValue(fullname)
-                            verifyEmail(result.user!!, context)
-                        }
-                        .addOnFailureListener { e ->
-                            Toast.makeText(context, "Sign up failed", Toast.LENGTH_SHORT).show()
-                            e.printStackTrace()
-                        }
+                        .set(userData, SetOptions.merge())
                         .await()
+
+                    _fullName.postValue(fullname)
+                    withContext(Dispatchers.Main) {
+                        onSuccess(user)
+                    }
                 }
             } catch (e: Exception) {
-                e.printStackTrace()
+                withContext(Dispatchers.Main) {
+                    onFailure(e)
+                }
             }
         }
     }
 
-    private fun verifyEmail(user: FirebaseUser, context: Context) {
-        user.sendEmailVerification().addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                Toast.makeText(context, "Verification email sent! Check your email to log in", Toast.LENGTH_LONG).show()
-            } else {
-                Toast.makeText(context, "Failed to send verification email", Toast.LENGTH_SHORT).show()
+    fun verifyEmail(user: FirebaseUser, onSuccess: () -> Unit, onFailure: () -> Unit) {
+        if(!user.isEmailVerified)
+        {
+            user.sendEmailVerification().addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    onSuccess()
+                } else {
+                    onFailure()
+                }
             }
         }
     }
 
-    fun FirebaseAuthWithGoogle(account: GoogleSignInAccount, context: Context) {
+    fun firebaseAuthWithGoogle(account: GoogleSignInAccount, onSuccess: () -> Unit, onFailure: () -> Unit) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val credential = GoogleAuthProvider.getCredential(account.idToken, null)
                 val result = auth.signInWithCredential(credential).await()
-                if (result.user != null) {
+                result.user?.let { user ->
                     withContext(Dispatchers.Main) {
-                        Toast.makeText(context, "Google Sign in successful", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(context, MainActivity::class.java)
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                        context.startActivity(intent)
+                        onSuccess()
                     }
-                } else {
-                    withContext(Dispatchers.Main) {
-                        Toast.makeText(context, "Google Sign in failed", Toast.LENGTH_SHORT).show()
-                    }
+                } ?: withContext(Dispatchers.Main) {
+                    onFailure()
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(context, "Google Sign in failed", Toast.LENGTH_SHORT).show()
+                    onFailure()
                 }
             }
         }
     }
 
-    fun signIn(email: String, password: String, context: Context) {
+    fun signIn(email: String, password: String, onSuccess: () -> Unit, onFailure: () -> Unit) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val trimmedEmail = email.trim()
-                if (auth.currentUser != null) {
-                    val intent = Intent(context, MainActivity::class.java)
-                    context.startActivity(intent)
-                } else {
-                    val result = auth.signInWithEmailAndPassword(trimmedEmail, password).await()
-                    if (result.user != null) {
-                        if (result.user!!.isEmailVerified) {
-                            withContext(Dispatchers.Main) {
-                                Toast.makeText(context, "Sign in successful", Toast.LENGTH_SHORT).show()
-                                val intent = Intent(context, MainActivity::class.java)
-                                context.startActivity(intent)
-                            }
-                        } else {
-                            withContext(Dispatchers.Main) {
-                                Toast.makeText(context, "Please verify your email", Toast.LENGTH_SHORT).show()
-                            }
+                val result = auth.signInWithEmailAndPassword(trimmedEmail, password).await()
+                result.user?.let { user ->
+                    if (user.isEmailVerified) {
+                        _email.postValue(email)
+                        _password.postValue(password)
+                        withContext(Dispatchers.Main) {
+                            onSuccess()
                         }
                     } else {
                         withContext(Dispatchers.Main) {
-                            Toast.makeText(context, "Invalid email or password", Toast.LENGTH_SHORT).show()
+                            onFailure()
                         }
                     }
+                } ?: withContext(Dispatchers.Main) {
+                    onFailure()
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
+                withContext(Dispatchers.Main) {
+                    onFailure()
+                }
             }
         }
     }
@@ -235,15 +215,18 @@ class AuthViewModel : ViewModel() {
             }
     }
 
-    fun logOut(context: Context, googleSignInClient: GoogleSignInClient) {
+    fun logOut(googleSignInClient: GoogleSignInClient, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
         viewModelScope.launch(Dispatchers.IO) {
-            auth.signOut()
-            googleSignInClient.signOut().await()
-            withContext(Dispatchers.Main) {
-                Toast.makeText(context, "Sign out successful", Toast.LENGTH_SHORT).show()
-                val intent = Intent(context, AuthActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                context.startActivity(intent)
+            try {
+                auth.signOut()
+                googleSignInClient.signOut().await()
+                withContext(Dispatchers.Main) {
+                    onSuccess()
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    onFailure(e)
+                }
             }
         }
     }

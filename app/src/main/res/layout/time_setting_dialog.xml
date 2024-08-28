@@ -25,11 +25,11 @@
         <NumberPicker
             android:id="@+id/focusPicker"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/lato"
             android:textColor="@color/text_main"
-            android:theme="@style/AppTheme.Picker"/>
+            android:theme="@style/AppTheme.Picker" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="0dp"
@@ -62,7 +62,7 @@
         <NumberPicker
             android:id="@+id/longBreakPicker"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/lato"
             android:textColor="@color/text_main"
@@ -100,7 +100,7 @@
         <NumberPicker
             android:id="@+id/shortBreakPicker"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/lato"
             android:textColor="@color/text_main"

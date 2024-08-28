@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_splashFragment_to_onboardingViewpagerFragment"
             app:destination="@id/onboardingViewpagerFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/onboardingViewpagerFragment"

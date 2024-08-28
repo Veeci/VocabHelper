@@ -15,7 +15,6 @@ import androidx.navigation.fragment.findNavController
 import coil.load
 import com.example.vocabhelper.R
 import com.example.vocabhelper.databinding.FragmentMainBinding
-import com.example.vocabhelper.domain.AuthViewModel
 import com.example.vocabhelper.domain.MainViewModel
 import com.example.vocabhelper.presentation.ViewPagerAdapter
 import com.example.vocabhelper.presentation.main.fragments.focus.FocusFragment

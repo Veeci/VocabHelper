@@ -19,6 +19,7 @@ import com.example.vocabhelper.R
 import com.example.vocabhelper.databinding.FragmentProfileBinding
 import com.example.vocabhelper.domain.AuthViewModel
 import com.example.vocabhelper.domain.MainViewModel
+import com.example.vocabhelper.presentation.auth.AuthActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -38,7 +39,14 @@ class ProfileFragment : Fragment() {
 
     private val pickImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         uri?.let {
-            authViewModel.uploadProfileImage(it, requireContext())
+            authViewModel.uploadProfileImage(it,
+                onSuccess = {
+                    Toast.makeText(requireContext(), "Profile image uploaded successfully", Toast.LENGTH_SHORT).show()
+                },
+                onFailure = {
+                    Toast.makeText(requireContext(), "Failed to upload profile image", Toast.LENGTH_SHORT).show()
+                }
+            )
         }
     }
 
@@ -152,7 +160,17 @@ class ProfileFragment : Fragment() {
 
             okayText.setOnClickListener {
                 dialog.dismiss()
-                authViewModel.logOut(requireContext(), googleSignInClient)
+                authViewModel.logOut(googleSignInClient,
+                    onSuccess = {
+                        Toast.makeText(context, "Sign out successful", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(context, AuthActivity::class.java)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                        context?.startActivity(intent)
+                    },
+                    onFailure = {
+                        Toast.makeText(context, "Sign out failed", Toast.LENGTH_SHORT).show()
+                    }
+                )
             }
 
             cancelText.setOnClickListener {
@@ -161,7 +179,6 @@ class ProfileFragment : Fragment() {
 
             dialog.show()
         }
-
     }
 
     override fun onDestroyView() {

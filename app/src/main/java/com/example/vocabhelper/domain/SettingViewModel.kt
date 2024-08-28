@@ -14,7 +14,6 @@ import java.util.Locale
 
 class SettingViewModel : ViewModel() {
 
-    // LiveData to observe timer progress and state
     private val _timeRemaining = MutableLiveData<Long>()
     val timeRemaining: LiveData<Long> get() = _timeRemaining
 
