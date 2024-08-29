@@ -15,7 +15,7 @@ import androidx.navigation.fragment.findNavController
 import coil.load
 import com.example.vocabhelper.R
 import com.example.vocabhelper.databinding.FragmentMainBinding
-import com.example.vocabhelper.domain.AuthViewModel
+import com.example.vocabhelper.domain.MainViewModel
 import com.example.vocabhelper.presentation.ViewPagerAdapter
 import com.example.vocabhelper.presentation.main.fragments.focus.FocusFragment
 import com.example.vocabhelper.presentation.main.fragments.home.HomeFragment
@@ -24,21 +24,22 @@ import com.example.vocabhelper.presentation.main.fragments.profile.ProfileFragme
 import com.example.vocabhelper.presentation.main.fragments.search.SearchFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 
 class MainFragment : Fragment() {
 
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
 
-    private val authViewModel: AuthViewModel by activityViewModels()
+    //private val authViewModel: AuthViewModel by activityViewModels()
+    private val mainViewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMainBinding.inflate(layoutInflater, container, false)
+
+        context?.let { mainViewModel.fetchUserProfile(it) }
 
         return binding.root
     }
@@ -58,7 +59,7 @@ class MainFragment : Fragment() {
             insets
         }
 
-        authViewModel.profilePicUrl.observe(viewLifecycleOwner){ url ->
+        mainViewModel.profilePicUrl.observe(viewLifecycleOwner) { url ->
             binding.topBar.profilePicture.load(url)
         }
 
@@ -122,10 +123,6 @@ class MainFragment : Fragment() {
         addButton.setOnClickListener {
             val bottomSheetFragment = BottomSheetFragment()
             bottomSheetFragment.show(requireActivity().supportFragmentManager, bottomSheetFragment.tag)
-        }
-
-        authViewModel.profilePicUrl.observe(viewLifecycleOwner) { url ->
-            binding.topBar.profilePicture.load(url)
         }
 
         binding.topBar.setting.setOnClickListener {

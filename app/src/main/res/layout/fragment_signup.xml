@@ -18,7 +18,7 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register"
+        android:text="@string/login_register"
         android:fontFamily="@font/lato"
         android:textColor="@color/text_main"
         android:textStyle="bold"
@@ -28,7 +28,7 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Full name"
+        android:text="@string/register_full_name"
         android:fontFamily="@font/lato"
         android:textColor="@color/text_main"
         android:textSize="16sp"
@@ -43,16 +43,17 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Enter your full name"
+            android:hint="@string/register_enter_your_full_name"
             android:id="@+id/fullnameET"
-            android:textColor="@color/text_main"/>
+            android:textColor="@color/text_main"
+            tools:ignore="Autofill,TextFields" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Email"
+        android:text="@string/register_email"
         android:fontFamily="@font/lato"
         android:textColor="@color/text_main"
         android:textSize="16sp"
@@ -67,16 +68,17 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Enter your email"
+            android:hint="@string/register_enter_your_email"
             android:id="@+id/emailET"
-            android:textColor="@color/text_main"/>
+            android:textColor="@color/text_main"
+            tools:ignore="Autofill,TextFields" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Password"
+        android:text="@string/register_password"
         android:fontFamily="@font/lato"
         android:textColor="@color/text_main"
         android:textSize="16sp"
@@ -92,10 +94,11 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="And also the Password"
+            android:hint="@string/register_and_also_the_password"
             android:id="@+id/passwordET"
             android:inputType="textPassword"
-            android:textColor="@color/text_main"/>
+            android:textColor="@color/text_main"
+            tools:ignore="Autofill" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -103,7 +106,7 @@
         android:id="@+id/passwordRegex"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Password must be at least 8 characters with at least one uppercase letter, one lowercase letter, one number, and one special character."
+        android:text="@string/register_password_must_be_at_least_8_characters_with_at_least_one_uppercase_letter_one_lowercase_letter_one_number_and_one_special_character"
         android:fontFamily="@font/lato"
         android:textColor="@color/theme_danger"
         android:textSize="12sp"
@@ -113,7 +116,7 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Confirm Password"
+        android:text="@string/register_confirm_password"
         android:fontFamily="@font/lato"
         android:textColor="@color/text_main"
         android:textSize="16sp"
@@ -129,7 +132,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="And confirm it again"
+            android:hint="@string/register_and_confirm_it_again"
             android:id="@+id/confirmPasswordET"
             android:inputType="textPassword"
             android:textColor="@color/text_main"/>
@@ -143,7 +146,7 @@
         android:layout_marginTop="50dp"
         android:background="@drawable/button_mainbutton"
         android:fontFamily="@font/lato"
-        android:text="Register"
+        android:text="@string/login_register"
         android:textAlignment="center"
         android:textColor="@color/text_main"
         android:textSize="16sp" />
@@ -158,7 +161,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Already have an account?"
+            android:text="@string/register_already_have_an_account"
             android:fontFamily="@font/lato"
             android:textColor="@color/theme_tertiary"
             android:textSize="12sp"
@@ -167,7 +170,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Login"
+            android:text="@string/login_login"
             android:fontFamily="@font/lato"
             android:textColor="@color/text_secondary"
             android:textSize="12sp"

@@ -20,7 +20,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/lato"
-            android:text="Profile"
+            android:id="@+id/fullName"
             android:textColor="@color/text_main"
             android:textSize="20sp" />
 
@@ -54,41 +54,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/lato"
-            android:text="Account"
+            android:text="@string/profile_account"
             android:textColor="@color/text_secondary"
             android:textSize="14sp" />
-
-        <LinearLayout
-            android:id="@+id/changeAccountName"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            android:weightSum="6">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5"
-                android:src="@drawable/icon_user_home" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="5"
-                android:fontFamily="@font/lato"
-                android:padding="6dp"
-                android:text="Change account name"
-                android:textColor="@color/text_main"
-                android:textSize="14sp" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5"
-                android:src="@drawable/icon_goto" />
-
-        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/changeAccountPassword"
@@ -110,7 +78,7 @@
                 android:layout_weight="5"
                 android:fontFamily="@font/lato"
                 android:padding="6dp"
-                android:text="Change account password"
+                android:text="@string/profile_change_account_password"
                 android:textColor="@color/text_main"
                 android:textSize="14sp" />
 
@@ -142,7 +110,7 @@
                 android:layout_weight="5"
                 android:fontFamily="@font/lato"
                 android:padding="6dp"
-                android:text="Change account avatar"
+                android:text="@string/profile_change_account_avatar"
                 android:textColor="@color/text_main"
                 android:textSize="14sp" />
 
@@ -183,7 +151,7 @@
                 android:layout_weight="5"
                 android:fontFamily="@font/lato"
                 android:padding="6dp"
-                android:text="Feedback"
+                android:text="@string/profile_feedback"
                 android:textColor="@color/text_main"
                 android:textSize="14sp" />
 
@@ -215,7 +183,7 @@
                 android:layout_weight="5"
                 android:fontFamily="@font/lato"
                 android:padding="7dp"
-                android:text="Logout"
+                android:text="@string/profile_logout"
                 android:textColor="@color/theme_danger"
                 android:textSize="15sp" />
 

@@ -53,7 +53,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/lato"
             android:gravity="center"
-            android:text="Meaning: "
+            android:text="@string/worddetail_meaning"
             android:textColor="@color/text_main"
             android:textSize="16sp" />
 
@@ -92,7 +92,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/lato"
             android:gravity="center"
-            android:text="Category: "
+            android:text="@string/worddetail_category"
             android:textColor="@color/text_main"
             android:textSize="16sp" />
 
@@ -125,7 +125,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/lato"
             android:gravity="center"
-            android:text="Synonym: "
+            android:text="@string/worddetail_synonym"
             android:textColor="@color/text_main"
             android:textSize="16sp" />
 
@@ -163,7 +163,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/lato"
             android:gravity="center"
-            android:text="Antonym: "
+            android:text="@string/worddetail_antonym"
             android:textColor="@color/text_main"
             android:textSize="16sp" />
 
@@ -201,7 +201,7 @@
             android:layout_weight="1.2"
             android:fontFamily="@font/lato"
             android:gravity="center"
-            android:text="Collocation: "
+            android:text="@string/worddetail_collocation"
             android:textColor="@color/text_main"
             android:textSize="16sp" />
 
@@ -239,7 +239,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/lato"
             android:gravity="center"
-            android:text="Example: "
+            android:text="@string/worddetail_example"
             android:textColor="@color/text_main"
             android:textSize="16sp" />
 
@@ -270,7 +270,7 @@
         android:layout_marginEnd="10dp"
         android:background="@color/theme_secondary"
         android:fontFamily="@font/lato"
-        android:text="Save"
+        android:text="@string/worddetail_save"
         android:textColor="@color/text_main"
         app:layout_constraintEnd_toStartOf="@+id/deleteButton"
         app:layout_constraintTop_toBottomOf="@+id/exampleRow" />
@@ -282,7 +282,7 @@
         android:layout_marginTop="20dp"
         android:background="@color/theme_tertiary"
         android:fontFamily="@font/lato"
-        android:text="Delete"
+        android:text="@string/worddetail_delete"
         android:textColor="@color/text_main"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/exampleRow" />

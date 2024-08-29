@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="-10dp"
         android:fontFamily="@font/lato"
-        android:text="Settings"
+        android:text="@string/setting_settings"
         android:textColor="@color/text_main"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +45,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.6"
-            android:src="@drawable/icon_changetheme_setting" />
+            android:src="@drawable/icon_changetheme_setting"
+            tools:ignore="ContentDescription" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="0dp"
@@ -53,7 +54,7 @@
             android:layout_weight="5"
             android:fontFamily="@font/lato"
             android:gravity="center_vertical"
-            android:text="Change Display Mode"
+            android:text="@string/setting_change_display_mode"
             android:textColor="@color/text_main"
             android:textSize="16sp" />
 
@@ -61,7 +62,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.4"
-            android:src="@drawable/icon_goto" />
+            android:src="@drawable/icon_goto"
+            tools:ignore="ContentDescription" />
 
     </LinearLayout>
 
@@ -81,23 +83,25 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.6"
-            android:src="@drawable/icon_changelanguage_setting" />
+            android:src="@drawable/icon_changelanguage_setting"
+            tools:ignore="ContentDescription" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="5"
             android:fontFamily="@font/lato"
-            android:text="Change app language"
+            android:gravity="center_vertical"
+            android:text="@string/setting_change_app_language"
             android:textColor="@color/text_main"
-            android:textSize="16sp"
-            android:gravity="center_vertical"/>
+            android:textSize="16sp" />
 
         <ImageView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.4"
-            android:src="@drawable/icon_goto" />
+            android:src="@drawable/icon_goto"
+            tools:ignore="ContentDescription" />
 
     </LinearLayout>
 
@@ -117,14 +121,15 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.6"
-            android:src="@drawable/icon_setfocustime_setting" />
+            android:src="@drawable/icon_setfocustime_setting"
+            tools:ignore="ContentDescription" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="5"
             android:fontFamily="@font/lato"
-            android:text="Set focus time"
+            android:text="@string/setting_set_focus_time"
             android:textColor="@color/text_main"
             android:textSize="16sp"
             android:gravity="center_vertical"/>
@@ -133,7 +138,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.4"
-            android:src="@drawable/icon_goto" />
+            android:src="@drawable/icon_goto"
+            tools:ignore="ContentDescription" />
 
     </LinearLayout>
 
@@ -154,14 +160,15 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.6"
             android:src="@drawable/icon_rememberpassword_setting"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            tools:ignore="ContentDescription" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="4"
             android:fontFamily="@font/lato"
-            android:text="Remember password"
+            android:text="@string/setting_remember_password"
             android:textColor="@color/text_main"
             android:textSize="16sp"
             android:gravity="center_vertical"/>
@@ -170,11 +177,8 @@
             android:id="@+id/rememberPasswordSwitch"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1.4"
-            />
+            android:layout_weight="1.4" />
 
     </LinearLayout>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

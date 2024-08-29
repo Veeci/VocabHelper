@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -21,7 +22,8 @@
         app:layout_constraintTop_toTopOf="@+id/bottom_navigation"
         app:maxImageSize="30dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="-30dp"/>
+        android:layout_marginBottom="-30dp"
+        tools:ignore="ContentDescription" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

@@ -19,7 +19,7 @@ class SecondFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentSecondBinding.inflate(layoutInflater, container, false)
 
         val viewPager = activity?.findViewById<ViewPager2>(R.id.onboardingViewpager)

@@ -58,6 +58,8 @@ android {
 
 dependencies {
 
+    implementation(project(":base"))
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -109,4 +111,7 @@ dependencies {
 
     //Coil
     implementation(libs.coil)
+
+    //Biometric
+    implementation(libs.androidx.biometric)
 }

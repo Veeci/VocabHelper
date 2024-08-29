@@ -2,13 +2,21 @@ package com.example.vocabhelper.presentation.main
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
+import com.example.base.BaseActivity
 import com.example.vocabhelper.R
+import com.example.vocabhelper.domain.AuthViewModel
+import com.example.vocabhelper.presentation.main.fragments.setting.SettingFragment
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -28,5 +36,20 @@ class MainActivity : AppCompatActivity() {
         }
 
         supportActionBar?.hide()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        val authViewModel: AuthViewModel = ViewModelProvider(this)[AuthViewModel::class.java]
+        val googleSignInClient = GoogleSignIn.getClient(this, GoogleSignInOptions.DEFAULT_SIGN_IN)
+        authViewModel.logOut(googleSignInClient,
+            onSuccess = {
+                Toast.makeText(this, "Sign out successful", Toast.LENGTH_SHORT).show()
+                finish()
+            },
+            onFailure = {
+                Toast.makeText(this, "There was an error signing out", Toast.LENGTH_SHORT).show()
+            })
     }
 }

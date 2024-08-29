@@ -44,7 +44,21 @@ class SignupFragment : Fragment() {
         binding.registerButton.setOnClickListener {
             if(validateInfo())
             {
-                authViewModel.signUp(binding.emailET.text.toString(), binding.passwordET.text.toString(), binding.fullnameET.text.toString(), requireContext())
+                authViewModel.signUp(binding.emailET.text.toString(), binding.passwordET.text.toString(), binding.fullnameET.text.toString(),
+                    onSuccess = {
+                        Toast.makeText(context, "Sign up successfully", Toast.LENGTH_SHORT).show()
+                        authViewModel.verifyEmail(it,
+                            onSuccess = {
+                                Toast.makeText(context, "Go to your email to verify your account, then enjoy the app!", Toast.LENGTH_SHORT).show()
+                                findNavController().navigate(R.id.action_signupFragment_to_loginFragment)
+                            },
+                            onFailure = {
+                                Toast.makeText(context, "Email verification failed", Toast.LENGTH_SHORT).show()
+                            })
+                    },
+                    onFailure = {
+                        Toast.makeText(context, "Sign up failed", Toast.LENGTH_SHORT).show()
+                    })
             }
         }
 

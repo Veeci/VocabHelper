@@ -1,0 +1,179 @@
+<resources>
+    <string name="default_web_client_id">373369689147-p789046cd029v00bm7q9m4fsnoltc51j.apps.googleusercontent.com</string>
+    <string name="app_name">VocabHelper</string>
+    <string name="hello_blank_fragment">こんにちは、これは空のフラグメントです</string>
+
+    <string name="tab_all_words">すべての単語</string>
+    <string name="tab_categories">カテゴリ</string>
+
+    <!--Splash screen-->
+    <string name="splash_skip">スキップ</string>
+    <string name="splash_vocabulary_learning_tips">語彙学習のヒント</string>
+    <string name="splash_you_can_easily_apply_the_tip_provided_by_using_this_app">このアプリを使って提供されているヒントを簡単に適用できます</string>
+    <string name="splash_back">戻る</string>
+    <string name="splash_next">次へ</string>
+    <string name="splash_in_vocabhelper_you_can_create_your_personalized_routine_to_stay_productive">VocabHelperを使って、生産的でいるためのパーソナライズされたルーチンを作成できます</string>
+    <string name="splash_create_daily_routine">日々のルーチンを作成</string>
+    <string name="splash_get_started">始める</string>
+    <string name="splash_you_can_organize_your_daily_tasks_by_adding_your_tasks_into_separate_categories">仕事を異なるカテゴリーに分けて整理できます</string>
+    <string name="splash_organize_your_tasks">タスクを整理する</string>
+    <string name="splash_welcome_to_vocabhelper">VocabHelperへようこそ</string>
+    <string name="splash_please_login_to_your_account_or_create_new_account_to_continue">アカウントにログインするか、新しいアカウントを作成して続行してください</string>
+    <string name="splash_login">ログイン</string>
+    <string name="splash_create_account">アカウント作成</string>
+
+    <!--Login-->
+    <string name="login_login">ログイン</string>
+    <string name="login_email">メールアドレス</string>
+    <string name="login_enter_your_email">メールアドレスを入力してください</string>
+    <string name="login_password">パスワード</string>
+    <string name="login_and_also_the_password">そしてパスワード</string>
+    <string name="login_or">または</string>
+    <string name="login_login_with_google">Googleでログイン</string>
+    <string name="login_don_t_have_an_account">アカウントを持っていませんか？</string>
+    <string name="login_register">登録</string>
+
+    <!--Signup-->
+    <string name="register_full_name">フルネーム</string>
+    <string name="register_enter_your_full_name">フルネームを入力してください</string>
+    <string name="register_email">メールアドレス</string>
+    <string name="register_enter_your_email">メールアドレスを入力してください</string>
+    <string name="register_password">パスワード</string>
+    <string name="register_and_also_the_password">そしてパスワード</string>
+    <string name="register_password_must_be_at_least_8_characters_with_at_least_one_uppercase_letter_one_lowercase_letter_one_number_and_one_special_character">パスワードは最低8文字以上で、少なくとも1つの大文字、1つの小文字、1つの数字、および1つの特殊文字を含む必要があります。</string>
+    <string name="register_confirm_password">パスワード確認</string>
+    <string name="register_and_confirm_it_again">再度パスワードを確認してください</string>
+    <string name="register_already_have_an_account">すでにアカウントを持っていますか？</string>
+
+    <!--Add words-->
+    <string name="addStep1_add_word">単語を追加</string>
+    <string name="addStep1_word">単語:</string>
+    <string name="addStep1_enter_word">単語を入力</string>
+    <string name="addStep1_phonetic">発音:</string>
+    <string name="addStep1_enter_phonetic">発音を入力</string>
+    <string name="addStep1_next">次へ</string>
+    <string name="addStep2_add_word">単語を追加</string>
+    <string name="addStep2_meaning">意味:</string>
+    <string name="addStep2_enter_meaning">意味を入力</string>
+    <string name="addStep2_synonym">同義語:</string>
+    <string name="addStep2_enter_synonym">同義語を入力</string>
+    <string name="addStep2_antonym">反意語:</string>
+    <string name="addStep2_enter_antonym">反意語を入力</string>
+    <string name="addStep2_back">戻る</string>
+    <string name="addStep2_next">次へ</string>
+    <string name="addstep1_meaning">意味:</string>
+    <string name="addstep1_add_word_meaning">単語の意味を追加</string>
+    <string name="addstep1_pronunciation">発音:</string>
+    <string name="addstep1_category">カテゴリー:</string>
+    <string name="addstep3_collocation">コロケーション:</string>
+    <string name="addstep3enter_collocation">コロケーションを入力</string>
+    <string name="addstep3_example_sentence">例文:</string>
+    <string name="addstep3_enter_example_sentence">例文を入力</string>
+
+    <!--Home-->
+    <string name="home_what_do_you_want_to_do_today">今日は何をしたいですか？</string>
+    <string name="home_tap_to_add_your_tasks">+をタップしてタスクを追加</string>
+
+    <!--Focus-->
+    <string name="focus_focus">集中</string>
+    <string name="focus_focus_and_learn_new_words">集中して新しい単語を学びましょう。</string>
+    <string name="focus_start_pomodoro">ポモドーロを開始</string>
+    <string name="focus_give_up">諦める</string>
+
+    <!--Profile-->
+    <string name="profile_account">アカウント</string>
+    <string name="profile_change_account_password">アカウントのパスワードを変更</string>
+    <string name="profile_change_account_avatar">アバターを変更</string>
+    <string name="profile_feedback">フィードバック</string>
+    <string name="profile_logout">ログアウト</string>
+    <string name="search_meanings_of_this_word">この単語の意味:</string>
+    <string name="synonym">同義語:</string>
+    <string name="antonyms">反意語:</string>
+    <string name="example">例文:</string>
+    <string name="definition">定義:</string>
+
+    <!--Setting-->
+    <string name="setting_settings">設定</string>
+    <string name="setting_change_display_mode">表示モードを変更</string>
+    <string name="setting_change_app_language">アプリの言語を変更</string>
+    <string name="setting_set_focus_time">集中時間を設定</string>
+    <string name="setting_remember_password">パスワードを記憶</string>
+
+    <!--Top bar-->
+    <string name="topbar_index">ホーム</string>
+
+    <!--Bottom bar-->
+    <string name="bottombar_home">ホーム</string>
+    <string name="bottombar_search">検索</string>
+    <string name="bottombar_focus">集中</string>
+    <string name="bottombar_profile">プロフィール</string>
+
+    <!--Word detail-->
+    <string name="worddetail_meaning">意味:</string>
+    <string name="worddetail_category">カテゴリー:</string>
+    <string name="worddetail_synonym">同義語:</string>
+    <string name="worddetail_antonym">反意語:</string>
+    <string name="worddetail_collocation">コロケーション:</string>
+    <string name="worddetail_example">例文:</string>
+    <string name="worddetail_save">保存</string>
+    <string name="worddetail_delete">削除</string>
+
+    <!--Dialog_feedback_reset_email-->
+    <string name="dialog_feedback_your_email">あなたのメールアドレス</string>
+    <string name="dialog_feedback_send_reset_email">パスワードリセットメールを送信</string>
+    <string name="dialog_feedback_cancel">キャンセル</string>
+
+    <!--Dialog_not started-->
+    <string name="dialog_notstarted_oh_come_on_you_cannot_give_up_even_before_you_start">おいおい、始める前に諦めるわけにはいかないよ -,-</string>
+    <string name="dialog_notstarted_stop_rambling_and_get_back_to_work">だらだらせずに、仕事に戻ろう！！！</string>
+
+    <!--Dialog_logout-->
+    <string name="dialog_logout_are_you_sure_you_want_to_log_out">ログアウトしてもよろしいですか？</string>
+    <string name="dialog_logout_yes">はい</string>
+    <string name="dialog_logout_no">いいえ</string>
+
+    <!--Dialog_language-->
+    <string name="dialog_language_english">英語</string>
+    <string name="dialog_language_choose_language">言語を選択:</string>
+    <string name="dialog_language_vietnamese_3"><![CDATA[ベトナム語 <3]]></string>
+    <string name="dialog_language_japanese">日本語</string>
+    <string name="dialog_language_french">フランス語</string>
+
+    <!--Dialog_giveup-->
+    <string name="dialog_giveup_and_you_just_give_up_like_that">そんな簡単に諦めるのか？</string>
+    <string name="dialog_giveup_yeah_im_quit">うん…やめた :\'(</string>
+    <string name="dialog_giveup_oh_hell_nahh">いや、絶対無理!!</string>
+
+    <!--Dialog_feedback-->
+    <string name="dialog_feedback_your_feedback_is_important_to_me_333">あなたのフィードバックは私にとって重要です :333</string>
+    <string name="dialog_feedback_title">タイトル</string>
+    <string name="dialog_feedback_enter_the_title">タイトルを入力してください</string>
+    <string name="dialog_feedback_feedback">フィードバック</string>
+    <string name="dialog_feedback_enter_your_feedback">フィードバックを入力してください</string>
+    <string name="dialog_feedback_send_feedback">フィードバックを送信</string>
+
+    <!--Categories-->
+    <string-array name="categories_array">
+        <item>友達</item>
+        <item>環境</item>
+        <item>テクノロジー</item>
+        <item>健康</item>
+        <item>旅行</item>
+        <item>食べ物</item>
+        <item>芸術</item>
+        <item>ビジネス</item>
+        <item>スポーツ</item>
+        <item>その他</item>
+    </string-array>
+
+    <string name="category_friends">友達</string>
+    <string name="category_environment">環境</string>
+    <string name="category_technology">技術</string>
+    <string name="category_health">健康</string>
+    <string name="category_travel">旅行</string>
+    <string name="category_food">食べ物</string>
+    <string name="category_arts">芸術</string>
+    <string name="category_business">ビジネス</string>
+    <string name="category_sports">スポーツ</string>
+    <string name="category_other">その他</string>
+</resources>

@@ -17,7 +17,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add Word"
+            android:text="@string/addStep1_add_word"
             android:textSize="20sp"
             android:textColor="@color/text_main"
             android:layout_marginTop="20dp"
@@ -26,7 +26,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Collocation:"
+            android:text="@string/addstep3_collocation"
             android:textSize="18sp"
             android:textColor="@color/text_main"
             android:layout_marginTop="20dp"/>
@@ -38,14 +38,14 @@
             android:background="@color/theme_tertiary"
             android:textSize="16sp"
             android:layout_marginTop="10dp"
-            android:hint="Enter collocation"
+            android:hint="@string/addstep3enter_collocation"
             android:padding="10dp"
             android:id="@+id/collocationET"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Example sentence:"
+            android:text="@string/addstep3_example_sentence"
             android:textSize="18sp"
             android:textColor="@color/text_main"
             android:layout_marginTop="20dp"/>
@@ -57,7 +57,7 @@
             android:background="@color/theme_tertiary"
             android:textSize="16sp"
             android:layout_marginTop="10dp"
-            android:hint="Enter example sentence"
+            android:hint="@string/addstep3_enter_example_sentence"
             android:padding="10dp"
             android:id="@+id/exampleET"/>
 
@@ -70,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/theme_tertiary"
-                android:text="Back"
+                android:text="@string/addStep2_back"
                 android:textColor="@color/text_main"
                 android:fontFamily="@font/lato"
                 android:textSize="16sp"

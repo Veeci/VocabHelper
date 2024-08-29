@@ -45,7 +45,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Meaning: "
+            android:text="@string/addstep1_meaning"
             android:textSize="18sp"
             android:textColor="@color/text_main"
             android:layout_marginTop="20dp"/>
@@ -57,7 +57,7 @@
             android:background="@color/theme_tertiary"
             android:textSize="16sp"
             android:layout_marginTop="10dp"
-            android:hint="Add word meaning"
+            android:hint="@string/addstep1_add_word_meaning"
             android:padding="10dp"
             android:id="@+id/meaningET"/>
 
@@ -72,7 +72,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="4"
                 android:layout_height="match_parent"
-                android:text="Pronunciation: "
+                android:text="@string/addstep1_pronunciation"
                 android:textSize="18sp"
                 android:textColor="@color/text_main"
                 android:gravity="center_vertical"/>
@@ -98,7 +98,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Category: "
+            android:text="@string/addstep1_category"
             android:textSize="18sp"
             android:textColor="@color/text_main"
             android:layout_marginTop="20dp"/>
