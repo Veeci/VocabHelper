@@ -246,7 +246,7 @@ class AuthViewModel : ViewModel() {
     }
 
     suspend fun encrypt(input: String): String {
-        return viewModelScope.async(Dispatchers.IO) {
+        return withContext(Dispatchers.IO) {
             val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding")
             val iv = ByteArray(16)
             SecureRandom().nextBytes(iv)
@@ -255,20 +255,20 @@ class AuthViewModel : ViewModel() {
             val encrypted = cipher.doFinal(input.toByteArray())
             val ivAndEncrypted = iv + encrypted
             Base64.encodeToString(ivAndEncrypted, Base64.DEFAULT)
-        }.await()
+        }
     }
 
     suspend fun decrypt(input: String): String {
-        return viewModelScope.async(Dispatchers.IO) {
-            val ivAndEncrypted= Base64.decode(input, Base64.DEFAULT)
-            val iv = ivAndEncrypted.take(16).toByteArray()
-            val encrypted = ivAndEncrypted.drop(16).toByteArray()
+        return withContext(Dispatchers.IO) {
+            val ivAndEncrypted = Base64.decode(input, Base64.DEFAULT)
+            val iv = ivAndEncrypted.copyOfRange(0, 16)
+            val encrypted = ivAndEncrypted.copyOfRange(16, ivAndEncrypted.size)
             val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding")
             val ivParameterSpec = IvParameterSpec(iv)
             cipher.init(Cipher.DECRYPT_MODE, secretKey, ivParameterSpec)
             val decrypted = cipher.doFinal(encrypted)
             String(decrypted)
-        }.await()
+        }
     }
 
     fun logOut(

@@ -46,9 +46,6 @@ class SettingFragment : Fragment() {
         prefs = requireContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         val savedToggleSwitch = prefs.getBoolean(PREF_TOGGLE_SWITCH, false)
 
-        email = activity?.intent?.getStringExtra("email") ?: ""
-        password = activity?.intent?.getStringExtra("password") ?: ""
-
         settingViewModel.setToggleSwitch(savedToggleSwitch)
 
         setupFunction()
@@ -62,6 +59,9 @@ class SettingFragment : Fragment() {
         settingViewModel.toggleSwitch.observe(viewLifecycleOwner) { isChecked ->
             binding.rememberPasswordSwitch.isChecked = isChecked
         }
+
+        email = activity?.intent?.getStringExtra("encryptedEmail") ?: ""
+        password = activity?.intent?.getStringExtra("encryptedPassword") ?: ""
     }
 
     private fun setupFunction() {
@@ -101,7 +101,7 @@ class SettingFragment : Fragment() {
                 prefs.edit().putString(PREF_REMEMBER_EMAIL, email).apply()
                 prefs.edit().putString(PREF_REMEMBER_PASSWORD, password).apply()
                 Log.d("SharedPreference", "Saving email: ${prefs.getString(PREF_REMEMBER_EMAIL, "")} " +
-                        "and password: ${prefs.getString(PREF_REMEMBER_PASSWORD, "")}.")
+                        "and password: ${prefs.getString(PREF_REMEMBER_PASSWORD, "")}")
             } else {
                 prefs.edit().remove(PREF_REMEMBER_EMAIL).apply()
                 prefs.edit().remove(PREF_REMEMBER_PASSWORD).apply()

@@ -108,13 +108,14 @@ class LoginFragment : Fragment() {
                     onSuccess = {
                         Toast.makeText(context, "Sign in successful", Toast.LENGTH_SHORT).show()
                         val intent = Intent(context, MainActivity::class.java)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                         viewLifecycleOwner.lifecycleScope.launch {
                             val encryptedEmail = authViewModel.encrypt(email)
                             val encryptedPassword = authViewModel.encrypt(password)
-                            intent.putExtra("email", encryptedEmail)
-                            intent.putExtra("password", encryptedPassword)
+                            intent.putExtra("encryptedEmail", encryptedEmail)
+                            intent.putExtra("encryptedPassword", encryptedPassword)
+                            context?.startActivity(intent)
                         }
-                        context?.startActivity(intent)
                     },
                     onFailure = {
                         Toast.makeText(
