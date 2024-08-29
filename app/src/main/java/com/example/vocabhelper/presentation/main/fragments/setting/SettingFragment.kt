@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,6 +34,8 @@ class SettingFragment : Fragment() {
     }
 
     private lateinit var prefs: SharedPreferences
+    private lateinit var email: String
+    private lateinit var password: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,6 +45,9 @@ class SettingFragment : Fragment() {
 
         prefs = requireContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         val savedToggleSwitch = prefs.getBoolean(PREF_TOGGLE_SWITCH, false)
+
+        email = activity?.intent?.getStringExtra("email") ?: ""
+        password = activity?.intent?.getStringExtra("password") ?: ""
 
         settingViewModel.setToggleSwitch(savedToggleSwitch)
 
@@ -57,11 +63,11 @@ class SettingFragment : Fragment() {
             binding.rememberPasswordSwitch.isChecked = isChecked
         }
 
-//        authViewModel.email.observe(viewLifecycleOwner) { email ->
-//            authViewModel.password.observe(viewLifecycleOwner) { password ->
-//                rememberPassword(email ?: "abc", password ?: "123")
-//            }
-//        }
+        authViewModel.email.observe(viewLifecycleOwner) { email ->
+            authViewModel.password.observe(viewLifecycleOwner) { password ->
+
+            }
+        }
     }
 
     private fun setupFunction() {
@@ -95,18 +101,20 @@ class SettingFragment : Fragment() {
 
         binding.rememberPasswordSwitch.setOnCheckedChangeListener { _, isChecked ->
             settingViewModel.setToggleSwitch(isChecked)
+            prefs.edit().putBoolean(PREF_TOGGLE_SWITCH, isChecked).apply()
+
             if (isChecked) {
-                authViewModel.email.observe(viewLifecycleOwner){email ->
-                    authViewModel.password.observe(viewLifecycleOwner){password ->
-                        prefs.edit().putString(PREF_REMEMBER_EMAIL, email).apply()
-                        prefs.edit().putString(PREF_REMEMBER_PASSWORD, password).apply()
-                    }
-                }
+                prefs.edit().putString(PREF_REMEMBER_EMAIL, email).apply()
+                prefs.edit().putString(PREF_REMEMBER_PASSWORD, password).apply()
+                Log.d("SharedPreference", "Saving email: ${prefs.getString(PREF_REMEMBER_EMAIL, "")} " +
+                        "and password: ${prefs.getString(PREF_REMEMBER_PASSWORD, "")}.")
             } else {
                 prefs.edit().remove(PREF_REMEMBER_EMAIL).apply()
                 prefs.edit().remove(PREF_REMEMBER_PASSWORD).apply()
+                Log.d("SharedPreference", "Removing email and password.")
             }
-            prefs.edit().putBoolean(PREF_TOGGLE_SWITCH, isChecked).apply()
+            //Log.d("ToggleSwitchState", "is check: $isChecked")
+            //Log.d("SharedPreferences", "toggle switch: ${prefs.getBoolean(PREF_TOGGLE_SWITCH, false)}")
         }
     }
 
@@ -172,22 +180,6 @@ class SettingFragment : Fragment() {
 
         dialog.show()
     }
-
-//    private fun rememberPassword(email: String, password: String) {
-//        settingViewModel.toggleSwitch.observe(viewLifecycleOwner) { isChecked ->
-//            if (isChecked) {
-//                prefs.edit().putString(PREF_REMEMBER_EMAIL, email).apply()
-//                prefs.edit().putString(PREF_REMEMBER_PASSWORD, password).apply()
-//                prefs.edit().putBoolean(PREF_TOGGLE_SWITCH, true).apply()
-//                Log.d("SharedPreference", "Saving email and password.")
-//            } else {
-//                prefs.edit().remove(PREF_REMEMBER_EMAIL).apply()
-//                prefs.edit().remove(PREF_REMEMBER_PASSWORD).apply()
-//                prefs.edit().putBoolean(PREF_TOGGLE_SWITCH, false).apply()
-//                Log.d("SharedPreference", "Removing email and password.")
-//            }
-//        }
-//    }
 
     override fun onDestroyView() {
         super.onDestroyView()

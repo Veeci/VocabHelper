@@ -92,6 +92,8 @@ class LoginFragment : Fragment() {
                     authViewModel.setEmailAndPassword(binding.emailET.text.toString(), binding.passwordET.text.toString())
                     Toast.makeText(context, "Sign in successful", Toast.LENGTH_SHORT).show()
                     val intent = Intent(context, MainActivity::class.java)
+                    intent.putExtra("email", binding.emailET.text.toString())
+                    intent.putExtra("password", binding.passwordET.text.toString())
                     context?.startActivity(intent)
                 },
                 onFailure = {
@@ -117,8 +119,8 @@ class LoginFragment : Fragment() {
         val isRememberEnabled = prefs.getBoolean(SettingFragment.PREF_TOGGLE_SWITCH, false)
 
         if (isRememberEnabled) {
-            val savedEmail = prefs.getString(SettingFragment.PREF_REMEMBER_EMAIL, "abc")
-            val savedPassword = prefs.getString(SettingFragment.PREF_REMEMBER_PASSWORD, "123")
+            val savedEmail = prefs.getString(SettingFragment.PREF_REMEMBER_EMAIL, "")
+            val savedPassword = prefs.getString(SettingFragment.PREF_REMEMBER_PASSWORD, "")
 
             if (!savedEmail.isNullOrEmpty() && !savedPassword.isNullOrEmpty()) {
                 binding.emailET.text = Editable.Factory.getInstance().newEditable(savedEmail)
