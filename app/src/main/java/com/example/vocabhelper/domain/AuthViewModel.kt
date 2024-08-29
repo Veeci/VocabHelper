@@ -1,6 +1,7 @@
 package com.example.vocabhelper.domain
 
 import android.net.Uri
+import android.util.Base64
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,9 +16,15 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import java.security.SecureRandom
+import javax.crypto.Cipher
+import javax.crypto.KeyGenerator
+import javax.crypto.SecretKey
+import javax.crypto.spec.IvParameterSpec
 
 class AuthViewModel : ViewModel() {
     private val auth = FirebaseAuth.getInstance()
@@ -26,18 +33,6 @@ class AuthViewModel : ViewModel() {
     private val _fullName = MutableLiveData<String>()
     val fullName: LiveData<String> get() = _fullName
 
-    private val _email = MutableLiveData<String>()
-    val email: LiveData<String> get() = _email
-
-    private val _password = MutableLiveData<String>()
-    val password: LiveData<String> get() = _password
-
-    fun setEmailAndPassword(email: String, password: String)
-    {
-        _email.value = email
-        _password.value = password
-    }
-
     private val _profilePicUrl = MutableLiveData<String>()
     val profilePicUrl: LiveData<String> get() = _profilePicUrl
 
@@ -45,7 +40,16 @@ class AuthViewModel : ViewModel() {
         _profilePicUrl.value = url
     }
 
-    fun uploadProfileImage(imageUri: Uri, onSuccess: (String) -> Unit, onFailure: (Exception) -> Unit) {
+    private val keyGenerator = KeyGenerator.getInstance("AES").apply { init(256) }
+    private val secretKey: SecretKey = keyGenerator.generateKey()
+    private val ivParameterSpec = IvParameterSpec(ByteArray(16))
+
+
+    fun uploadProfileImage(
+        imageUri: Uri,
+        onSuccess: (String) -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
         val userId = auth.currentUser?.uid ?: return
         val storageRef = FirebaseStorage.getInstance().reference.child("profile_images/$userId.jpg")
 
@@ -62,7 +66,11 @@ class AuthViewModel : ViewModel() {
         }
     }
 
-    private fun updateProfilePicture(downloadUrl: String, onSuccess: (String) -> Unit, onFailure: (Exception) -> Unit) {
+    private fun updateProfilePicture(
+        downloadUrl: String,
+        onSuccess: (String) -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
         val user = auth.currentUser ?: return
 
         val profileUpdates = UserProfileChangeRequest.Builder()
@@ -81,7 +89,12 @@ class AuthViewModel : ViewModel() {
         }
     }
 
-    private fun updateFirestoreProfilePicUrl(downloadUrl: String, userId: String, onSuccess: (String) -> Unit, onFailure: (Exception) -> Unit) {
+    private fun updateFirestoreProfilePicUrl(
+        downloadUrl: String,
+        userId: String,
+        onSuccess: (String) -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
         val profileDocumentRef = db.collection("USERS")
             .document(userId)
             .collection("PROFILE")
@@ -114,7 +127,13 @@ class AuthViewModel : ViewModel() {
             }
     }
 
-    fun signUp(email: String, password: String, fullname: String, onSuccess: (FirebaseUser) -> Unit, onFailure: (Exception) -> Unit) {
+    fun signUp(
+        email: String,
+        password: String,
+        fullname: String,
+        onSuccess: (FirebaseUser) -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val trimmedEmail = email.trim()
@@ -146,8 +165,7 @@ class AuthViewModel : ViewModel() {
     }
 
     fun verifyEmail(user: FirebaseUser, onSuccess: () -> Unit, onFailure: () -> Unit) {
-        if(!user.isEmailVerified)
-        {
+        if (!user.isEmailVerified) {
             user.sendEmailVerification().addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     onSuccess()
@@ -158,7 +176,11 @@ class AuthViewModel : ViewModel() {
         }
     }
 
-    fun firebaseAuthWithGoogle(account: GoogleSignInAccount, onSuccess: () -> Unit, onFailure: () -> Unit) {
+    fun firebaseAuthWithGoogle(
+        account: GoogleSignInAccount,
+        onSuccess: () -> Unit,
+        onFailure: () -> Unit
+    ) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val credential = GoogleAuthProvider.getCredential(account.idToken, null)
@@ -206,7 +228,11 @@ class AuthViewModel : ViewModel() {
         }
     }
 
-    fun sendPasswordResetEmail(email: String, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
+    fun sendPasswordResetEmail(
+        email: String,
+        onSuccess: () -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
         auth.sendPasswordResetEmail(email)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -219,7 +245,37 @@ class AuthViewModel : ViewModel() {
             }
     }
 
-    fun logOut(googleSignInClient: GoogleSignInClient, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
+    suspend fun encrypt(input: String): String {
+        return viewModelScope.async(Dispatchers.IO) {
+            val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding")
+            val iv = ByteArray(16)
+            SecureRandom().nextBytes(iv)
+            val ivParameterSpec = IvParameterSpec(iv)
+            cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivParameterSpec)
+            val encrypted = cipher.doFinal(input.toByteArray())
+            val ivAndEncrypted = iv + encrypted
+            Base64.encodeToString(ivAndEncrypted, Base64.DEFAULT)
+        }.await()
+    }
+
+    suspend fun decrypt(input: String): String {
+        return viewModelScope.async(Dispatchers.IO) {
+            val ivAndEncrypted= Base64.decode(input, Base64.DEFAULT)
+            val iv = ivAndEncrypted.take(16).toByteArray()
+            val encrypted = ivAndEncrypted.drop(16).toByteArray()
+            val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding")
+            val ivParameterSpec = IvParameterSpec(iv)
+            cipher.init(Cipher.DECRYPT_MODE, secretKey, ivParameterSpec)
+            val decrypted = cipher.doFinal(encrypted)
+            String(decrypted)
+        }.await()
+    }
+
+    fun logOut(
+        googleSignInClient: GoogleSignInClient,
+        onSuccess: () -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 auth.signOut()

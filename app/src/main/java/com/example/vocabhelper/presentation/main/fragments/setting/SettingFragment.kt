@@ -62,12 +62,6 @@ class SettingFragment : Fragment() {
         settingViewModel.toggleSwitch.observe(viewLifecycleOwner) { isChecked ->
             binding.rememberPasswordSwitch.isChecked = isChecked
         }
-
-        authViewModel.email.observe(viewLifecycleOwner) { email ->
-            authViewModel.password.observe(viewLifecycleOwner) { password ->
-
-            }
-        }
     }
 
     private fun setupFunction() {

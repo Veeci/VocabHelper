@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.vocabhelper.R
 import com.example.vocabhelper.databinding.FragmentLoginBinding
@@ -23,6 +24,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import kotlinx.coroutines.launch
 
 class LoginFragment : Fragment() {
 
@@ -34,35 +36,44 @@ class LoginFragment : Fragment() {
     private val authViewModel: AuthViewModel by activityViewModels()
     private lateinit var prefs: SharedPreferences
 
-    private val googleSignInLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
-        try {
-            val account = task.getResult(ApiException::class.java)
-            account?.let {
-                authViewModel.firebaseAuthWithGoogle(it,
-                    onSuccess = {
-                        val intent = Intent(context, MainActivity::class.java)
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK )
-                        Toast.makeText(context, "Google Sign in successful", Toast.LENGTH_SHORT).show()
-                        context?.startActivity(intent)
-                    },
-                    onFailure = {
-                        Toast.makeText(requireContext(), "Google Sign-In failed.", Toast.LENGTH_SHORT).show()
-                    })
-                val googleProfilePicUrl = it.photoUrl.toString()
+    private val googleSignInLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+            try {
+                val account = task.getResult(ApiException::class.java)
+                account?.let {
+                    authViewModel.firebaseAuthWithGoogle(it,
+                        onSuccess = {
+                            val intent = Intent(context, MainActivity::class.java)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                            Toast.makeText(context, "Google Sign in successful", Toast.LENGTH_SHORT)
+                                .show()
+                            context?.startActivity(intent)
+                        },
+                        onFailure = {
+                            Toast.makeText(
+                                requireContext(),
+                                "Google Sign-In failed.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        })
+                    val googleProfilePicUrl = it.photoUrl.toString()
 
-                authViewModel.setProfilePicUrl(googleProfilePicUrl)
+                    authViewModel.setProfilePicUrl(googleProfilePicUrl)
+                }
+            } catch (e: ApiException) {
+                e.printStackTrace()
+                Toast.makeText(requireContext(), "Google Sign-In failed.", Toast.LENGTH_SHORT)
+                    .show()
             }
-        } catch (e: ApiException) {
-            e.printStackTrace()
-            Toast.makeText(requireContext(), "Google Sign-In failed.", Toast.LENGTH_SHORT).show()
         }
-    }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentLoginBinding.inflate(layoutInflater, container, false)
-
-        setUpFunction()
 
         return binding.root
     }
@@ -76,29 +87,46 @@ class LoginFragment : Fragment() {
             .build()
 
         googleSignInClient = GoogleSignIn.getClient(requireContext(), gso)
-        prefs = requireContext().getSharedPreferences(SettingFragment.PREFS_NAME, Context.MODE_PRIVATE)
+        prefs =
+            requireContext().getSharedPreferences(SettingFragment.PREFS_NAME, Context.MODE_PRIVATE)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setUpFunction()
         setRememberPassword()
     }
 
     private fun setUpFunction() {
         binding.loginButton.setOnClickListener {
-            authViewModel.signIn(binding.emailET.text.toString(), binding.passwordET.text.toString(),
-                onSuccess = {
-                    authViewModel.setEmailAndPassword(binding.emailET.text.toString(), binding.passwordET.text.toString())
-                    Toast.makeText(context, "Sign in successful", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(context, MainActivity::class.java)
-                    intent.putExtra("email", binding.emailET.text.toString())
-                    intent.putExtra("password", binding.passwordET.text.toString())
-                    context?.startActivity(intent)
-                },
-                onFailure = {
-                    Toast.makeText(context, "Invalid Email or Password!", Toast.LENGTH_SHORT).show()
-                })
+            try {
+                val email = binding.emailET.text.toString()
+                val password = binding.passwordET.text.toString()
+
+                authViewModel.signIn(email, password,
+                    onSuccess = {
+                        Toast.makeText(context, "Sign in successful", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(context, MainActivity::class.java)
+                        viewLifecycleOwner.lifecycleScope.launch {
+                            val encryptedEmail = authViewModel.encrypt(email)
+                            val encryptedPassword = authViewModel.encrypt(password)
+                            intent.putExtra("email", encryptedEmail)
+                            intent.putExtra("password", encryptedPassword)
+                        }
+                        context?.startActivity(intent)
+                    },
+                    onFailure = {
+                        Toast.makeText(
+                            context,
+                            "Invalid Email or Password!",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    })
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Toast.makeText(context, "Error encrypting password", Toast.LENGTH_SHORT).show()
+            }
         }
 
         binding.goToRegister.setOnClickListener {
@@ -119,16 +147,30 @@ class LoginFragment : Fragment() {
         val isRememberEnabled = prefs.getBoolean(SettingFragment.PREF_TOGGLE_SWITCH, false)
 
         if (isRememberEnabled) {
-            val savedEmail = prefs.getString(SettingFragment.PREF_REMEMBER_EMAIL, "")
-            val savedPassword = prefs.getString(SettingFragment.PREF_REMEMBER_PASSWORD, "")
+            val savedEmail = prefs.getString(SettingFragment.PREF_REMEMBER_EMAIL, null)
+            val savedPassword = prefs.getString(SettingFragment.PREF_REMEMBER_PASSWORD, null)
 
-            if (!savedEmail.isNullOrEmpty() && !savedPassword.isNullOrEmpty()) {
-                binding.emailET.text = Editable.Factory.getInstance().newEditable(savedEmail)
-                binding.passwordET.text = Editable.Factory.getInstance().newEditable(savedPassword)
-            }
-            else
-            {
-                Log.e("LoginFragment", "Saved email or password in SharedPreferences is null or empty.")
+            if (savedEmail != null && savedPassword != null) {
+                viewLifecycleOwner.lifecycleScope.launch {
+                    try {
+                        val decryptedEmail = authViewModel.decrypt(savedEmail)
+                        val decryptedPassword = authViewModel.decrypt(savedPassword)
+
+                        if (decryptedEmail.isNotEmpty() && decryptedPassword.isNotEmpty()) {
+                            binding.emailET.text =
+                                Editable.Factory.getInstance().newEditable(decryptedEmail)
+                            binding.passwordET.text =
+                                Editable.Factory.getInstance().newEditable(decryptedPassword)
+                        } else {
+                            Log.e("LoginFragment", "Decrypted email or password is empty.")
+                        }
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                        Log.e("LoginFragment", "Error decrypting saved credentials")
+                    }
+                }
+            } else {
+                Log.e("LoginFragment", "Saved email or password in SharedPreferences is null.")
             }
         }
     }
@@ -138,3 +180,4 @@ class LoginFragment : Fragment() {
         _binding = null
     }
 }
+
