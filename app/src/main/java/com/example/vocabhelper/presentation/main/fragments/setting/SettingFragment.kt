@@ -24,7 +24,6 @@ class SettingFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val settingViewModel: SettingViewModel by activityViewModels()
-    private val authViewModel: AuthViewModel by activityViewModels()
 
     companion object {
         const val PREFS_NAME = "VocabHelperPrefs"
