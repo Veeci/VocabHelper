@@ -26,6 +26,14 @@ class SettingViewModel : ViewModel() {
     private val _sessionCount = MutableLiveData<Int>()
     val sessionCount: LiveData<Int> get() = _sessionCount
 
+    private val _toggleSwitch = MutableLiveData<Boolean>()
+    val toggleSwitch: LiveData<Boolean> get() = _toggleSwitch
+
+    fun setToggleSwitch(toggleSwitch: Boolean)
+    {
+        _toggleSwitch.postValue(toggleSwitch)
+    }
+
     private var countDownTimer: CountDownTimer? = null
 
     // Pomodoro timing configurations in seconds

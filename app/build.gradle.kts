@@ -111,4 +111,7 @@ dependencies {
 
     //Coil
     implementation(libs.coil)
+
+    //Biometric
+    implementation(libs.androidx.biometric)
 }

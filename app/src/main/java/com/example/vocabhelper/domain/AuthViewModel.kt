@@ -32,6 +32,12 @@ class AuthViewModel : ViewModel() {
     private val _password = MutableLiveData<String>()
     val password: LiveData<String> get() = _password
 
+    fun setEmailAndPassword(email: String, password: String)
+    {
+        _email.value = email
+        _password.value = password
+    }
+
     private val _profilePicUrl = MutableLiveData<String>()
     val profilePicUrl: LiveData<String> get() = _profilePicUrl
 
@@ -180,8 +186,6 @@ class AuthViewModel : ViewModel() {
                 val result = auth.signInWithEmailAndPassword(trimmedEmail, password).await()
                 result.user?.let { user ->
                     if (user.isEmailVerified) {
-                        _email.postValue(email)
-                        _password.postValue(password)
                         withContext(Dispatchers.Main) {
                             onSuccess()
                         }
