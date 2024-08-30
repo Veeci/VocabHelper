@@ -1,5 +1,6 @@
 package com.example.vocabhelper.presentation.main.fragments
 
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -17,6 +18,7 @@ import com.example.vocabhelper.R
 import com.example.vocabhelper.databinding.FragmentMainBinding
 import com.example.vocabhelper.domain.MainViewModel
 import com.example.vocabhelper.presentation.ViewPagerAdapter
+import com.example.vocabhelper.presentation.auth.AuthActivity
 import com.example.vocabhelper.presentation.main.fragments.focus.FocusFragment
 import com.example.vocabhelper.presentation.main.fragments.home.HomeFragment
 import com.example.vocabhelper.presentation.main.fragments.home.tabs.bottomsheet.BottomSheetFragment
@@ -61,6 +63,11 @@ class MainFragment : Fragment() {
 
         mainViewModel.profilePicUrl.observe(viewLifecycleOwner) { url ->
             binding.topBar.profilePicture.load(url)
+        }
+
+        binding.topBar.profilePicture.setOnClickListener{
+            val intent = Intent(context, AuthActivity::class.java)
+            startActivity(intent)
         }
 
         setupFunction(view)

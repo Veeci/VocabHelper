@@ -2,6 +2,7 @@ package com.example.vocabhelper.domain
 
 import android.net.Uri
 import android.util.Base64
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -246,28 +247,54 @@ class AuthViewModel : ViewModel() {
     }
 
     suspend fun encrypt(input: String): String {
-        return withContext(Dispatchers.IO) {
-            val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding")
+        return withContext(Dispatchers.Default) {
+            val cipher = Cipher.getInstance("AES/CBC/PKCS7Padding")
             val iv = ByteArray(16)
             SecureRandom().nextBytes(iv)
             val ivParameterSpec = IvParameterSpec(iv)
             cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivParameterSpec)
             val encrypted = cipher.doFinal(input.toByteArray())
+
+            Log.d("AuthViewModel", "Secret Key: ${secretKey.encoded.contentToString()}")
+            Log.d("AuthViewModel", "IV (Encryption): ${iv.contentToString()}")
+            Log.d("AuthViewModel", "Encrypted data (raw): ${encrypted.contentToString()}")
+
             val ivAndEncrypted = iv + encrypted
-            Base64.encodeToString(ivAndEncrypted, Base64.DEFAULT)
+            val encoded = Base64.encodeToString(ivAndEncrypted, Base64.NO_WRAP)
+
+            Log.d("AuthViewModel", "Encrypted data (Base64): $encoded")
+
+            encoded
         }
     }
 
     suspend fun decrypt(input: String): String {
-        return withContext(Dispatchers.IO) {
-            val ivAndEncrypted = Base64.decode(input, Base64.DEFAULT)
-            val iv = ivAndEncrypted.copyOfRange(0, 16)
-            val encrypted = ivAndEncrypted.copyOfRange(16, ivAndEncrypted.size)
-            val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding")
-            val ivParameterSpec = IvParameterSpec(iv)
-            cipher.init(Cipher.DECRYPT_MODE, secretKey, ivParameterSpec)
-            val decrypted = cipher.doFinal(encrypted)
-            String(decrypted)
+        return withContext(Dispatchers.Default) {
+            try {
+                Log.d("AuthViewModel", "Decryption - Input (Base64): $input")
+
+                // Decode Base64
+                val ivAndEncrypted = Base64.decode(input, Base64.NO_WRAP)
+                val iv = ivAndEncrypted.copyOfRange(0, 16)
+                val encrypted = ivAndEncrypted.copyOfRange(16, ivAndEncrypted.size)
+
+                Log.d("AuthViewModel", "Decryption - IV: ${iv.contentToString()}")
+                Log.d("AuthViewModel", "Decryption - Encrypted Data (raw): ${encrypted.contentToString()}")
+
+                // Initialize cipher for decryption
+                val cipher = Cipher.getInstance("AES/CBC/PKCS7Padding")
+                val ivParameterSpec = IvParameterSpec(iv)
+                cipher.init(Cipher.DECRYPT_MODE, secretKey, ivParameterSpec)
+
+                // Decrypt data
+                val decrypted = cipher.doFinal(encrypted)
+                val decryptedString = String(decrypted)
+                Log.d("AuthViewModel", "Decryption - Decrypted Data: $decryptedString")
+                decryptedString
+            } catch (e: Exception) {
+                Log.e("AuthViewModel", "Decryption Error: ${e.message}", e)
+                throw e
+            }
         }
     }
 

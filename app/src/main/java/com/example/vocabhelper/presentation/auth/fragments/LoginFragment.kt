@@ -110,11 +110,18 @@ class LoginFragment : Fragment() {
                         val intent = Intent(context, MainActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                         viewLifecycleOwner.lifecycleScope.launch {
-                            val encryptedEmail = authViewModel.encrypt(email)
-                            val encryptedPassword = authViewModel.encrypt(password)
-                            intent.putExtra("encryptedEmail", encryptedEmail)
-                            intent.putExtra("encryptedPassword", encryptedPassword)
-                            context?.startActivity(intent)
+                            if(email.isNotEmpty() && password.isNotEmpty()) {
+                                val encryptedEmail = authViewModel.encrypt(email)
+                                val encryptedPassword = authViewModel.encrypt(password)
+                                intent.putExtra("encryptedEmail", encryptedEmail)
+                                intent.putExtra("encryptedPassword", encryptedPassword)
+                                context?.startActivity(intent)
+                            }
+                            else {
+                                Toast.makeText(context, "Please enter email and password", Toast.LENGTH_SHORT).show()
+                            }
+                        }.invokeOnCompletion {
+                            setRememberPassword()
                         }
                     },
                     onFailure = {
