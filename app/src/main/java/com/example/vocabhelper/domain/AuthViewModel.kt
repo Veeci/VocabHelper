@@ -3,6 +3,7 @@ package com.example.vocabhelper.domain
 import android.net.Uri
 import android.util.Base64
 import android.util.Log
+import androidx.biometric.BiometricManager
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,7 +18,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
@@ -43,8 +43,9 @@ class AuthViewModel : ViewModel() {
 
     private val keyGenerator = KeyGenerator.getInstance("AES").apply { init(256) }
     private val secretKey: SecretKey = keyGenerator.generateKey()
-    private val ivParameterSpec = IvParameterSpec(ByteArray(16))
 
+    private val _biometricAuthResult = MutableLiveData<Boolean>()
+    val biometricAuthResult: LiveData<Boolean> get() = _biometricAuthResult
 
     fun uploadProfileImage(
         imageUri: Uri,
@@ -177,6 +178,30 @@ class AuthViewModel : ViewModel() {
         }
     }
 
+    fun evaluateBiometricAvailability(biometricManager: BiometricManager): String {
+        return when (biometricManager.canAuthenticate()) {
+            BiometricManager.BIOMETRIC_SUCCESS -> {
+                "App can authenticate using biometrics"
+            }
+            BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE -> {
+                "No biometric features available on this device"
+            }
+            BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE -> {
+                "Biometric features are currently unavailable"
+            }
+            BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED -> {
+                "The user hasn't associated any biometric credentials with their account"
+            }
+            else -> {
+                "Biometric authentication is not available"
+            }
+        }
+    }
+
+    fun onBiometricAuthenticationResult(success: Boolean) {
+        _biometricAuthResult.value = success
+    }
+
     fun firebaseAuthWithGoogle(
         account: GoogleSignInAccount,
         onSuccess: () -> Unit,
@@ -273,7 +298,6 @@ class AuthViewModel : ViewModel() {
             try {
                 Log.d("AuthViewModel", "Decryption - Input (Base64): $input")
 
-                // Decode Base64
                 val ivAndEncrypted = Base64.decode(input, Base64.NO_WRAP)
                 val iv = ivAndEncrypted.copyOfRange(0, 16)
                 val encrypted = ivAndEncrypted.copyOfRange(16, ivAndEncrypted.size)
@@ -281,15 +305,16 @@ class AuthViewModel : ViewModel() {
                 Log.d("AuthViewModel", "Decryption - IV: ${iv.contentToString()}")
                 Log.d("AuthViewModel", "Decryption - Encrypted Data (raw): ${encrypted.contentToString()}")
 
-                // Initialize cipher for decryption
                 val cipher = Cipher.getInstance("AES/CBC/PKCS7Padding")
                 val ivParameterSpec = IvParameterSpec(iv)
                 cipher.init(Cipher.DECRYPT_MODE, secretKey, ivParameterSpec)
 
-                // Decrypt data
                 val decrypted = cipher.doFinal(encrypted)
+                Log.d("AuthViewModel", "Decryption - Raw Decrypted Bytes: ${decrypted.contentToString()}")
+
                 val decryptedString = String(decrypted)
-                Log.d("AuthViewModel", "Decryption - Decrypted Data: $decryptedString")
+                Log.d("AuthViewModel", "Decryption - Decrypted String: $decryptedString")
+
                 decryptedString
             } catch (e: Exception) {
                 Log.e("AuthViewModel", "Decryption Error: ${e.message}", e)
