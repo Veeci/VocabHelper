@@ -18,6 +18,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.security.crypto.EncryptedSharedPreferences
+import androidx.security.crypto.MasterKeys
 import com.example.vocabhelper.R
 import com.example.vocabhelper.databinding.FragmentLoginBinding
 import com.example.vocabhelper.domain.AuthViewModel
@@ -39,6 +41,12 @@ class LoginFragment : Fragment() {
 
     private val authViewModel: AuthViewModel by activityViewModels()
     private lateinit var prefs: SharedPreferences
+    private lateinit var accountSharedPreferences: SharedPreferences
+
+    private val masterKeyAlias by lazy {
+        MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
+    }
+
 
     private val executor by lazy{
         this.context?.let { ContextCompat.getMainExecutor(it) }
@@ -83,6 +91,14 @@ class LoginFragment : Fragment() {
     ): View {
         _binding = FragmentLoginBinding.inflate(layoutInflater, container, false)
 
+        accountSharedPreferences = EncryptedSharedPreferences.create(
+            "account_preference_file",
+            masterKeyAlias,
+            requireContext(),
+            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+        )
+
         return binding.root
     }
 
@@ -95,8 +111,7 @@ class LoginFragment : Fragment() {
             .build()
 
         googleSignInClient = GoogleSignIn.getClient(requireContext(), gso)
-        prefs =
-            requireContext().getSharedPreferences(SettingFragment.PREFS_NAME, Context.MODE_PRIVATE)
+        prefs = requireContext().getSharedPreferences(SettingFragment.PREFS_NAME, Context.MODE_PRIVATE)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -119,10 +134,10 @@ class LoginFragment : Fragment() {
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                         viewLifecycleOwner.lifecycleScope.launch {
                             if(email.isNotEmpty() && password.isNotEmpty()) {
-                                val encryptedEmail = authViewModel.encrypt(email)
-                                val encryptedPassword = authViewModel.encrypt(password)
-                                intent.putExtra("encryptedEmail", encryptedEmail)
-                                intent.putExtra("encryptedPassword", encryptedPassword)
+                                accountSharedPreferences.edit()
+                                    .putString("encryptedEmail", email)
+                                    .putString("encryptedPassword", password)
+                                    .apply()
                                 context?.startActivity(intent)
                             }
                             else {
@@ -173,10 +188,10 @@ class LoginFragment : Fragment() {
             if (savedEmail != null && savedPassword != null) {
                 viewLifecycleOwner.lifecycleScope.launch {
                     try {
-                        val decryptedEmail = authViewModel.decrypt(savedEmail)
-                        val decryptedPassword = authViewModel.decrypt(savedPassword)
+                        val decryptedEmail = accountSharedPreferences.getString("encryptedEmail", "")
+                        val decryptedPassword = accountSharedPreferences.getString("encryptedPassword", "")
 
-                        if (decryptedEmail.isNotEmpty() && decryptedPassword.isNotEmpty()) {
+                        if (decryptedEmail.toString().isNotEmpty() && decryptedPassword.toString().isNotEmpty()) {
                             binding.emailET.text =
                                 Editable.Factory.getInstance().newEditable(decryptedEmail)
                             binding.passwordET.text =
@@ -192,6 +207,13 @@ class LoginFragment : Fragment() {
             } else {
                 Log.e("LoginFragment", "Saved email or password in SharedPreferences is null.")
             }
+        }
+        else
+        {
+            accountSharedPreferences.edit()
+                .remove("encryptedEmail")
+                .remove("encryptedPassword")
+                .apply()
         }
     }
 
@@ -252,4 +274,3 @@ class LoginFragment : Fragment() {
         _binding = null
     }
 }
-

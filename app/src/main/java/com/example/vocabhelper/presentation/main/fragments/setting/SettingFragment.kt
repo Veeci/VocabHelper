@@ -4,7 +4,6 @@ import android.app.Dialog
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +14,6 @@ import androidx.fragment.app.activityViewModels
 import com.example.base.BaseActivity
 import com.example.vocabhelper.R
 import com.example.vocabhelper.databinding.FragmentSettingBinding
-import com.example.vocabhelper.domain.AuthViewModel
 import com.example.vocabhelper.domain.SettingViewModel
 
 class SettingFragment : Fragment() {
@@ -33,8 +31,6 @@ class SettingFragment : Fragment() {
     }
 
     private lateinit var prefs: SharedPreferences
-    private lateinit var email: String
-    private lateinit var password: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,9 +54,6 @@ class SettingFragment : Fragment() {
         settingViewModel.toggleSwitch.observe(viewLifecycleOwner) { isChecked ->
             binding.rememberPasswordSwitch.isChecked = isChecked
         }
-
-        email = activity?.intent?.getStringExtra("encryptedEmail") ?: ""
-        password = activity?.intent?.getStringExtra("encryptedPassword") ?: ""
     }
 
     private fun setupFunction() {
@@ -95,19 +88,6 @@ class SettingFragment : Fragment() {
         binding.rememberPasswordSwitch.setOnCheckedChangeListener { _, isChecked ->
             settingViewModel.setToggleSwitch(isChecked)
             prefs.edit().putBoolean(PREF_TOGGLE_SWITCH, isChecked).apply()
-
-            if (isChecked) {
-                prefs.edit().putString(PREF_REMEMBER_EMAIL, email).apply()
-                prefs.edit().putString(PREF_REMEMBER_PASSWORD, password).apply()
-                Log.d("SharedPreference", "Saving email: ${prefs.getString(PREF_REMEMBER_EMAIL, "")} " +
-                        "and password: ${prefs.getString(PREF_REMEMBER_PASSWORD, "")}")
-            } else {
-                prefs.edit().remove(PREF_REMEMBER_EMAIL).apply()
-                prefs.edit().remove(PREF_REMEMBER_PASSWORD).apply()
-                Log.d("SharedPreference", "Removing email and password.")
-            }
-            //Log.d("ToggleSwitchState", "is check: $isChecked")
-            //Log.d("SharedPreferences", "toggle switch: ${prefs.getBoolean(PREF_TOGGLE_SWITCH, false)}")
         }
     }
 
