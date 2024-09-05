@@ -47,7 +47,6 @@ class LoginFragment : Fragment() {
         MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
     }
 
-
     private val executor by lazy{
         this.context?.let { ContextCompat.getMainExecutor(it) }
     }

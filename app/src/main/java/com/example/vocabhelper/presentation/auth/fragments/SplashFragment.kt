@@ -29,19 +29,17 @@ class SplashFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val prefs = requireActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-        val splashScreenShown = prefs.getBoolean(PREF_SPLASH_SHOWN, false)
+        val splashScreenShown = prefs.getBoolean(PREF_SPLASH_SHOWN, true)
 
-        if (splashScreenShown) {
-            // Skip the splash screen and navigate directly to the next screen
+        if (splashScreenShown == false) {
             findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
         } else {
-            // Show the splash screen and set the preference
             Handler(Looper.getMainLooper()).postDelayed({
                 if (isAdded) {
                     findNavController().navigate(R.id.action_splashFragment_to_onboardingViewpagerFragment)
-                    prefs.edit().putBoolean(PREF_SPLASH_SHOWN, true).apply()
+                    prefs.edit().putBoolean(PREF_SPLASH_SHOWN, false).apply()
                 }
-            }, 2000)
+            }, 3000)
         }
     }
 }
