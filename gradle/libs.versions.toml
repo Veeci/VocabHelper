@@ -32,7 +32,7 @@ firebaseFirestore = "25.0.0"
 firebaseStorage = "21.0.0"
 jetbrainsKotlinJvm = "1.9.24"
 firebaseCrashlyticsBuildtools = "3.0.2"
-securityCrypto = "1.0.0-alpha01"
+securityCrypto = "1.1.0-alpha06"
 
 [libraries]
 androidx-biometric = { module = "androidx.biometric:biometric", version.ref = "biometric" }

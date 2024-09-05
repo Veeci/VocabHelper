@@ -37,16 +37,12 @@ class LoginFragment : Fragment() {
 
     private val authViewModel: AuthViewModel by activityViewModels()
     private lateinit var prefs: SharedPreferences
+    private lateinit var accountSharedPreferences: SharedPreferences
 
-    private val materKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
+    private val masterKeyAlias by lazy {
+        MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
+    }
 
-    private val accountSharedPreferences = EncryptedSharedPreferences.create(
-        "my_preference_file_name",
-        materKeyAlias,
-        requireContext(),
-        EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-        EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
-    )
 
     private val googleSignInLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -87,6 +83,14 @@ class LoginFragment : Fragment() {
     ): View {
         _binding = FragmentLoginBinding.inflate(layoutInflater, container, false)
 
+        accountSharedPreferences = EncryptedSharedPreferences.create(
+            "account_preference_file",
+            masterKeyAlias,
+            requireContext(),
+            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+        )
+
         return binding.root
     }
 
@@ -99,8 +103,7 @@ class LoginFragment : Fragment() {
             .build()
 
         googleSignInClient = GoogleSignIn.getClient(requireContext(), gso)
-        prefs =
-            requireContext().getSharedPreferences(SettingFragment.PREFS_NAME, Context.MODE_PRIVATE)
+        prefs = requireContext().getSharedPreferences(SettingFragment.PREFS_NAME, Context.MODE_PRIVATE)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

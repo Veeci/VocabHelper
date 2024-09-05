@@ -95,10 +95,6 @@ dependencies {
     //Searchbar
     implementation("com.github.mancj:MaterialSearchBar:0.8.5")
 
-    //Retrofit
-    implementation(libs.retrofit)
-    implementation(libs.converter.gson)
-
     //Room
     implementation( libs.androidx.room.runtime)
     kapt(libs.androidx.room.compiler)
@@ -118,4 +114,8 @@ dependencies {
 
     //Cryptography
     implementation(libs.androidx.security.crypto)
+
+//    implementation (libs.androidx.security.crypto) {
+//        exclude(group = "com.google.protobuf", module = "protobuf-lite")
+//    }
 }
