@@ -115,4 +115,7 @@ dependencies {
 
     //Biometric
     implementation(libs.androidx.biometric)
+
+    //Cryptography
+    implementation(libs.androidx.security.crypto)
 }

@@ -1,8 +1,6 @@
 package com.example.vocabhelper.domain
 
 import android.net.Uri
-import android.util.Base64
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,15 +15,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
-import java.security.SecureRandom
-import javax.crypto.Cipher
-import javax.crypto.KeyGenerator
-import javax.crypto.SecretKey
-import javax.crypto.spec.IvParameterSpec
 
 class AuthViewModel : ViewModel() {
     private val auth = FirebaseAuth.getInstance()
@@ -40,11 +32,6 @@ class AuthViewModel : ViewModel() {
     fun setProfilePicUrl(url: String) {
         _profilePicUrl.value = url
     }
-
-    private val keyGenerator = KeyGenerator.getInstance("AES").apply { init(256) }
-    private val secretKey: SecretKey = keyGenerator.generateKey()
-    private val ivParameterSpec = IvParameterSpec(ByteArray(16))
-
 
     fun uploadProfileImage(
         imageUri: Uri,
@@ -244,58 +231,6 @@ class AuthViewModel : ViewModel() {
                     }
                 }
             }
-    }
-
-    suspend fun encrypt(input: String): String {
-        return withContext(Dispatchers.Default) {
-            val cipher = Cipher.getInstance("AES/CBC/PKCS7Padding")
-            val iv = ByteArray(16)
-            SecureRandom().nextBytes(iv)
-            val ivParameterSpec = IvParameterSpec(iv)
-            cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivParameterSpec)
-            val encrypted = cipher.doFinal(input.toByteArray())
-
-            Log.d("AuthViewModel", "Secret Key: ${secretKey.encoded.contentToString()}")
-            Log.d("AuthViewModel", "IV (Encryption): ${iv.contentToString()}")
-            Log.d("AuthViewModel", "Encrypted data (raw): ${encrypted.contentToString()}")
-
-            val ivAndEncrypted = iv + encrypted
-            val encoded = Base64.encodeToString(ivAndEncrypted, Base64.NO_WRAP)
-
-            Log.d("AuthViewModel", "Encrypted data (Base64): $encoded")
-
-            encoded
-        }
-    }
-
-    suspend fun decrypt(input: String): String {
-        return withContext(Dispatchers.Default) {
-            try {
-                Log.d("AuthViewModel", "Decryption - Input (Base64): $input")
-
-                // Decode Base64
-                val ivAndEncrypted = Base64.decode(input, Base64.NO_WRAP)
-                val iv = ivAndEncrypted.copyOfRange(0, 16)
-                val encrypted = ivAndEncrypted.copyOfRange(16, ivAndEncrypted.size)
-
-                Log.d("AuthViewModel", "Decryption - IV: ${iv.contentToString()}")
-                Log.d("AuthViewModel", "Decryption - Encrypted Data (raw): ${encrypted.contentToString()}")
-
-                // Initialize cipher for decryption
-                val cipher = Cipher.getInstance("AES/CBC/PKCS7Padding")
-                val ivParameterSpec = IvParameterSpec(iv)
-                cipher.init(Cipher.DECRYPT_MODE, secretKey, ivParameterSpec)
-
-                // Decrypt data
-                val decrypted = cipher.doFinal(encrypted)
-                val decryptedString = String(decrypted)
-                Log.d("AuthViewModel", "Decryption - Decrypted Data: $decryptedString")
-                decryptedString
-            } catch (e: Exception) {
-                Log.e("AuthViewModel", "Decryption Error: ${e.message}", e)
-                throw e
-            }
-        }
     }
 
     fun logOut(
