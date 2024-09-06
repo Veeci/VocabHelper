@@ -74,4 +74,4 @@ Contributions are welcome! Please follow these steps:
 
 Happy learning with VocabHelper!
 
-##Coming soon on Google Play!
+## Coming soon on Google Play!
