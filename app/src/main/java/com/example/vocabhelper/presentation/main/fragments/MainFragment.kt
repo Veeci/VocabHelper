@@ -1,6 +1,5 @@
 package com.example.vocabhelper.presentation.main.fragments
 
-import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -18,7 +17,6 @@ import com.example.vocabhelper.R
 import com.example.vocabhelper.databinding.FragmentMainBinding
 import com.example.vocabhelper.domain.MainViewModel
 import com.example.vocabhelper.presentation.ViewPagerAdapter
-import com.example.vocabhelper.presentation.auth.AuthActivity
 import com.example.vocabhelper.presentation.main.fragments.focus.FocusFragment
 import com.example.vocabhelper.presentation.main.fragments.home.HomeFragment
 import com.example.vocabhelper.presentation.main.fragments.home.tabs.bottomsheet.BottomSheetFragment
@@ -29,18 +27,14 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainFragment : Fragment() {
 
-    private var _binding: FragmentMainBinding? = null
-    private val binding get() = _binding!!
+    private val binding by lazy { FragmentMainBinding.inflate(layoutInflater) }
 
-    //private val authViewModel: AuthViewModel by activityViewModels()
     private val mainViewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMainBinding.inflate(layoutInflater, container, false)
-
         context?.let { mainViewModel.fetchUserProfile(it) }
 
         return binding.root
@@ -95,25 +89,25 @@ class MainFragment : Fragment() {
                 R.id.menu_home -> {
                     binding.topBar.header.visibility = View.VISIBLE
                     viewPager.currentItem = 0
-                    view.findViewById<AppCompatTextView>(R.id.headerTitle).text = "Index"
+                    view.findViewById<AppCompatTextView>(R.id.headerTitle).text = getString(R.string.index)
                     true
                 }
                 R.id.menu_search -> {
                     binding.topBar.header.visibility = View.VISIBLE
                     viewPager.currentItem = 1
-                    view.findViewById<AppCompatTextView>(R.id.headerTitle).text = "Search"
+                    view.findViewById<AppCompatTextView>(R.id.headerTitle).text = getString(R.string.search)
                     true
                 }
                 R.id.menu_focus -> {
                     binding.topBar.header.visibility = View.VISIBLE
                     viewPager.currentItem = 2
-                    view.findViewById<AppCompatTextView>(R.id.headerTitle).text = "Pomodoro"
+                    view.findViewById<AppCompatTextView>(R.id.headerTitle).text = getString(R.string.pomodoro)
                     true
                 }
                 R.id.menu_profile -> {
                     binding.topBar.header.visibility = View.GONE
                     viewPager.currentItem = 3
-                    view.findViewById<AppCompatTextView>(R.id.headerTitle).text = "Profile"
+                    view.findViewById<AppCompatTextView>(R.id.headerTitle).text = getString(R.string.profile)
                     true
                 }
 
@@ -130,10 +124,5 @@ class MainFragment : Fragment() {
         binding.topBar.setting.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_settingFragment)
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

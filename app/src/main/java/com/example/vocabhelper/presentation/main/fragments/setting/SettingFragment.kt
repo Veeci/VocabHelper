@@ -18,8 +18,7 @@ import com.example.vocabhelper.domain.SettingViewModel
 
 class SettingFragment : Fragment() {
 
-    private var _binding: FragmentSettingBinding? = null
-    private val binding get() = _binding!!
+    private val binding by lazy { FragmentSettingBinding.inflate(layoutInflater) }
 
     private val settingViewModel: SettingViewModel by activityViewModels()
 
@@ -36,8 +35,6 @@ class SettingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSettingBinding.inflate(inflater, container, false)
-
         prefs = requireContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         val savedToggleSwitch = prefs.getBoolean(PREF_TOGGLE_SWITCH, false)
 
@@ -152,10 +149,5 @@ class SettingFragment : Fragment() {
         }
 
         dialog.show()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

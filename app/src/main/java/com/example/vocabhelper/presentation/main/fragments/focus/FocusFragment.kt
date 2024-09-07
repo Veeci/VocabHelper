@@ -16,8 +16,7 @@ import com.example.vocabhelper.domain.SettingViewModel
 
 class FocusFragment : Fragment() {
 
-    private var _binding: FragmentFocusBinding? = null
-    private val binding get() = _binding!!
+    private val binding by lazy{FragmentFocusBinding.inflate(layoutInflater)}
 
     private val settingViewModel: SettingViewModel by activityViewModels()
 
@@ -25,8 +24,6 @@ class FocusFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentFocusBinding.inflate(inflater, container, false)
-        
         setupObservers()
         setupListeners()
 
@@ -40,14 +37,19 @@ class FocusFragment : Fragment() {
         })
 
         settingViewModel.isTimerRunning.observe(viewLifecycleOwner, Observer { isRunning ->
-            binding.startCountDownButton.text = if (isRunning) "Pause" else "Start"
+            binding.startCountDownButton.text = if (isRunning) getString(R.string.pause) else getString(R.string.start)
         })
 
         settingViewModel.isFocusSession.observe(viewLifecycleOwner, Observer { isFocusSession ->
             binding.circularTimer.max = if (isFocusSession) {
                 settingViewModel.focusTime
             } else {
-                if (settingViewModel.sessionCount.value!! % 4 == 0) settingViewModel.longBreakTime else settingViewModel.shortBreakTime
+                if (settingViewModel.sessionCount.value?.rem(4)  == 0)
+                {
+                    settingViewModel.longBreakTime
+                } else {
+                    settingViewModel.shortBreakTime
+                }
             }
         })
     }
@@ -114,7 +116,6 @@ class FocusFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
         settingViewModel.resetTimer()
     }
 }

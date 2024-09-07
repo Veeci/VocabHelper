@@ -72,8 +72,8 @@
     <string name="addstep3_enter_example_sentence">Enter example sentence</string>
 
     <!--Home-->
-    <string name="home_what_do_you_want_to_do_today">What do you want to do today?</string>
-    <string name="home_tap_to_add_your_tasks">Tap + to add your tasks</string>
+    <string name="home_what_do_you_want_to_do_today">What word you want to learn today?</string>
+    <string name="home_tap_to_add_your_tasks">Tap + to add new words</string>
 
     <!--Focus-->
     <string name="focus_focus">Focus</string>
@@ -177,5 +177,13 @@
     <string name="category_business">Business</string>
     <string name="category_sports">Sports</string>
     <string name="category_other">Other</string>
+    <string name="pause">Pause</string>
+    <string name="start">Start</string>
+    <string name="word_not_found">Word not found</string>
+    <string name="this_category_has_no_words_yet_continue_your_learning">This category has no words yet. Continue your learning!</string>
+    <string name="index">Index</string>
+    <string name="search">Search</string>
+    <string name="pomodoro">Pomodoro</string>
+    <string name="profile">Profile</string>
 
 </resources>
