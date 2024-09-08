@@ -115,7 +115,5 @@ dependencies {
     //Cryptography
     implementation(libs.androidx.security.crypto)
 
-//    implementation (libs.androidx.security.crypto) {
-//        exclude(group = "com.google.protobuf", module = "protobuf-lite")
-//    }
+    implementation("pl.droidsonroids.gif:android-gif-drawable:1.2.22")
 }
