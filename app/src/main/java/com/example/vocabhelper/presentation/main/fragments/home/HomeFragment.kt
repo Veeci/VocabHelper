@@ -20,7 +20,8 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 class HomeFragment : Fragment() {
 
-    private val binding by lazy{FragmentHomeBinding.inflate(layoutInflater)}
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
 
     private val apiService by lazy { APIService.create() }
 
@@ -37,6 +38,7 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        _binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -62,5 +64,11 @@ class HomeFragment : Fragment() {
                 1 -> tab.text = getString(R.string.tab_categories)
             }
         }.attach()
+
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

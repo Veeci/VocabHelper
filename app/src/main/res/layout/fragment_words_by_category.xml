@@ -15,15 +15,4 @@
         android:gravity="center"
         android:layout_gravity="center"/>
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:text="@string/this_category_has_no_words_yet_continue_your_learning"
-        android:textColor="@color/text_main"
-        android:fontFamily="@font/lato"
-        android:textSize="20sp"
-        android:gravity="center"
-        android:layout_gravity="center"/>
-
 </LinearLayout>

@@ -59,14 +59,7 @@ class AllWordsFragment : Fragment() {
 
     private fun observeViewModel() {
         wordViewModel.wordStored.observe(viewLifecycleOwner){ wordData ->
-            if (wordData.isNotEmpty()) {
-                (binding.allWordsRecyclerView.adapter as WordAdapter).updateData(wordData)
-            }
-            else
-            {
-                binding.allWordsRecyclerView.visibility = View.GONE
-                binding.emptyPlaceholder.visibility = View.VISIBLE
-            }
+            (binding.allWordsRecyclerView.adapter as WordAdapter).updateData(wordData)
         }
     }
 

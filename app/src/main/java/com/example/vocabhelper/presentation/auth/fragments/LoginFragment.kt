@@ -34,7 +34,8 @@ import kotlinx.coroutines.launch
 
 class LoginFragment : Fragment() {
 
-    private val binding by lazy{ FragmentLoginBinding.inflate(layoutInflater)}
+    private var _binding: FragmentLoginBinding? = null
+    private val binding get() = _binding!!
 
     private lateinit var googleSignInClient: GoogleSignInClient
 
@@ -87,6 +88,8 @@ class LoginFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        _binding = FragmentLoginBinding.inflate(layoutInflater, container, false)
+
         accountSharedPreferences = EncryptedSharedPreferences.create(
             "account_preference_file",
             masterKeyAlias,
@@ -263,5 +266,10 @@ class LoginFragment : Fragment() {
         } else {
             Toast.makeText(context, availabilityMessage, Toast.LENGTH_LONG).show()
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

@@ -1,10 +1,12 @@
 package com.example.vocabhelper.presentation.main.fragments.home.tabs.bottomsheet
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.activityViewModels
 import com.example.vocabhelper.data.api.APIService
 import com.example.vocabhelper.data.implementation.WordRepoImplementation
@@ -15,7 +17,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class BottomSheetFragment : BottomSheetDialogFragment() {
 
-    private val binding by lazy{FragmentBottomSheetBinding.inflate(layoutInflater)}
+    private var _binding: FragmentBottomSheetBinding? = null
+    private val binding get() = _binding!!
 
     private val apiService by lazy { APIService.create() }
 
@@ -29,6 +32,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        _binding = FragmentBottomSheetBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -83,6 +87,10 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
 
     private fun setupFinishButton() {
 
+
         dismiss()
     }
+
+
+
 }

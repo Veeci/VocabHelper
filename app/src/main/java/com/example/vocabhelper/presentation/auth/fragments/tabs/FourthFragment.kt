@@ -11,11 +11,15 @@ import com.example.vocabhelper.databinding.FragmentFourthBinding
 
 class FourthFragment : Fragment() {
 
-    private val binding by lazy{ FragmentFourthBinding.inflate(layoutInflater) }
+    private var _binding: FragmentFourthBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        _binding = FragmentFourthBinding.inflate(layoutInflater, container, false)
+
         setupFunction()
 
         return binding.root
@@ -34,4 +38,5 @@ class FourthFragment : Fragment() {
             findNavController().navigate(R.id.action_fourthFragment_to_signupFragment)
         }
     }
+
 }

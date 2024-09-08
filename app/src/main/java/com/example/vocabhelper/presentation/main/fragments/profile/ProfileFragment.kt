@@ -29,7 +29,9 @@ import com.google.firebase.ktx.Firebase
 
 class ProfileFragment : Fragment() {
 
-    private val binding by lazy { FragmentProfileBinding.inflate(layoutInflater) }
+    private var _binding: FragmentProfileBinding? = null
+    private val binding get() = _binding!!
+
     private val authViewModel: AuthViewModel by activityViewModels()
     private val mainViewModel: MainViewModel by activityViewModels()
 
@@ -52,6 +54,8 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        _binding = FragmentProfileBinding.inflate(inflater, container, false)
+
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
@@ -175,5 +179,10 @@ class ProfileFragment : Fragment() {
 
             dialog.show()
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

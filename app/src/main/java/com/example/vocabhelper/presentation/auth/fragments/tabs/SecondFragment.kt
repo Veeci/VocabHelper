@@ -13,12 +13,15 @@ import com.example.vocabhelper.databinding.FragmentSecondBinding
 
 class SecondFragment : Fragment() {
 
-    private val binding by lazy{FragmentSecondBinding.inflate(layoutInflater)}
+    private var _binding: FragmentSecondBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        _binding = FragmentSecondBinding.inflate(layoutInflater, container, false)
+
         val viewPager = activity?.findViewById<ViewPager2>(R.id.onboardingViewpager)
 
         binding.nextButton.setOnClickListener {
@@ -35,4 +38,5 @@ class SecondFragment : Fragment() {
 
         return binding.root
     }
+
 }

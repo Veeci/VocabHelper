@@ -55,20 +55,13 @@ class WordListFragment : Fragment() {
         }
 
         binding.back.setOnClickListener {
-            findNavController().navigateUp()
+            requireActivity().onBackPressed()
         }
     }
 
     private fun observeViewModel() {
         wordViewModel.wordsByCategory.observe(viewLifecycleOwner) { words ->
-            if(words.isNotEmpty()){
-                wordAdapter.updateData(words)
-            }
-            else
-            {
-                binding.emptyCategoryLayout.visibility = View.VISIBLE
-                binding.wordListRecyclerView.visibility = View.GONE
-            }
+            wordAdapter.updateData(words)
         }
     }
 }
