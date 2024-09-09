@@ -60,13 +60,11 @@ class SearchFragment : Fragment() {
         binding.searchBar.setOnSearchActionListener(object :
             MaterialSearchBar.OnSearchActionListener {
             override fun onSearchStateChanged(enabled: Boolean) {
-                // Handle search state changes if needed
             }
 
             override fun onSearchConfirmed(text: CharSequence?) {
                 text?.let { query ->
                     wordViewModel.getWordDefinition(query.toString())
-                    // Hide the keyboard
                     val inputMethodManager =
                         context?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
                     inputMethodManager?.hideSoftInputFromWindow(view.windowToken, 0)
@@ -74,18 +72,19 @@ class SearchFragment : Fragment() {
             }
 
             override fun onButtonClicked(buttonCode: Int) {
-                // Handle button clicks if needed
             }
         })
     }
 
     private fun observeViewModel() {
-        // Observe changes in word LiveData
         wordViewModel.word.observe(viewLifecycleOwner, Observer { word ->
             if (word != null) {
+                binding.searchResult.visibility = View.VISIBLE
+                binding.emptySearchresult.visibility = View.GONE
                 displayWord(word)
             } else {
-                binding.word.text = "Word not found"
+                binding.searchResult.visibility = View.GONE
+                binding.emptySearchresult.visibility = View.VISIBLE
             }
         })
     }

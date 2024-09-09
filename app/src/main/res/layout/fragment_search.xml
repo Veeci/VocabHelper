@@ -28,7 +28,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintEnd_toStartOf="@+id/word"
-            app:layout_constraintStart_toStartOf="@+id/word">
+            app:layout_constraintStart_toStartOf="@+id/word"
+            android:id="@+id/searchResult"
+            android:visibility="gone">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/word"
@@ -88,6 +90,16 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/empty_searchresult">
+
+            <include
+                layout="@layout/empty_searchresult"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
