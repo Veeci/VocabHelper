@@ -63,10 +63,11 @@ class AllWordsFragment : Fragment() {
             {
                 binding.allWordsRecyclerView.visibility = View.GONE
                 binding.placeholder.visibility = View.VISIBLE
-                return@observe
             }
             else {
                 (binding.allWordsRecyclerView.adapter as WordAdapter).updateData(wordData)
+                binding.allWordsRecyclerView.visibility = View.VISIBLE
+                binding.placeholder.visibility = View.GONE
             }
         }
     }

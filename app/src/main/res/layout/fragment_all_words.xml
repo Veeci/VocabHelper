@@ -11,15 +11,13 @@
         android:id="@+id/allWordsRecyclerView"
         android:padding="10dp"/>
 
-
     <LinearLayout
         android:id="@+id/placeholder"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <include
-            layout="@layout/empty_placeholder"
-            android:visibility="gone"/>
+            layout="@layout/empty_placeholder"/>
     </LinearLayout>
 
 </FrameLayout>

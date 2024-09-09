@@ -68,6 +68,8 @@ class WordListFragment : Fragment() {
                 return@observe
             }
             else {
+                binding.wordListRecyclerView.visibility = View.VISIBLE
+                binding.empty.visibility = View.GONE
                 wordAdapter.updateData(words)
             }
         }
