@@ -65,11 +65,6 @@ class MainFragment : Fragment() {
             binding.topBar.profilePicture.load(url)
         }
 
-        binding.topBar.profilePicture.setOnClickListener{
-            val intent = Intent(context, AuthActivity::class.java)
-            startActivity(intent)
-        }
-
         setupFunction(view)
     }
 

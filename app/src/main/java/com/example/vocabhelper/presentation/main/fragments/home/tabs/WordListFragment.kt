@@ -61,7 +61,15 @@ class WordListFragment : Fragment() {
 
     private fun observeViewModel() {
         wordViewModel.wordsByCategory.observe(viewLifecycleOwner) { words ->
-            wordAdapter.updateData(words)
+            if(words.isEmpty())
+            {
+                binding.wordListRecyclerView.visibility = View.GONE
+                binding.empty.visibility = View.VISIBLE
+                return@observe
+            }
+            else {
+                wordAdapter.updateData(words)
+            }
         }
     }
 }
