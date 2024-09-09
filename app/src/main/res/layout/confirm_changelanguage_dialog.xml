@@ -1,45 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/theme_tertiary"
-    android:orientation="vertical">
+    android:background="@color/theme_tertiary">
 
     <TextView
         android:id="@+id/textview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="112dp"
         android:padding="10dp"
-        android:text="@string/dialog_giveup_and_you_just_give_up_like_that"
+        android:text="This requires a restart to apply changes. Are you sure you want to log out?"
         android:textAlignment="center"
         android:textSize="20sp"
         android:fontFamily="@font/lato"
         android:textColor="@color/text_main"/>
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="match_parent"
-        android:layout_height="360dp"
-        android:src="@drawable/img_giveup"
-        android:id="@+id/giveupimg"
-        android:layout_marginTop="-50dp"/>
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:weightSum="2"
-        android:layout_marginTop="-43dp">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textview"
+        android:layout_centerHorizontal="true"
+        android:weightSum="2">
 
         <TextView
             android:id="@+id/okay_text"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
             android:fontFamily="@font/lato"
-            android:text="@string/dialog_giveup_yeah_im_quit"
+            android:text="@string/dialog_logout_yes"
             android:textColor="@color/text_main"
             android:textSize="20sp"
             android:padding="10dp"/>
@@ -47,17 +40,16 @@
         <TextView
             android:id="@+id/cancel_text"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/theme_secondary"
             android:gravity="center"
-            android:text="@string/dialog_giveup_oh_hell_nahh"
+            android:text="@string/dialog_logout_no"
             android:textColor="@color/text_main"
             android:textSize="20sp"
             android:fontFamily="@font/lato"
-            android:padding="10dp"
-            android:textStyle="bold"/>
+            android:padding="10dp"/>
 
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

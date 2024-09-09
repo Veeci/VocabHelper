@@ -98,23 +98,31 @@ class SettingFragment : Fragment() {
         val french = dialog.findViewById<LinearLayout>(R.id.language_french)
 
         english.setOnClickListener {
-            (activity as? BaseActivity)?.changeLanguage("en")
-            dialog.dismiss()
+            setConfirmDialog {
+                (activity as? BaseActivity)?.changeLanguage("en")
+                dialog.dismiss()
+            }
         }
 
         vietnamese.setOnClickListener {
-            (activity as? BaseActivity)?.changeLanguage("vi")
-            dialog.dismiss()
+            setConfirmDialog {
+                (activity as? BaseActivity)?.changeLanguage("vi")
+                dialog.dismiss()
+            }
         }
 
         japanese.setOnClickListener {
-            (activity as? BaseActivity)?.changeLanguage("ja")
-            dialog.dismiss()
+            setConfirmDialog {
+                (activity as? BaseActivity)?.changeLanguage("ja")
+                dialog.dismiss()
+            }
         }
 
         french.setOnClickListener {
-            (activity as? BaseActivity)?.changeLanguage("fr")
-            dialog.dismiss()
+            setConfirmDialog {
+                (activity as? BaseActivity)?.changeLanguage("fr")
+                dialog.dismiss()
+            }
         }
 
         dialog.show()
@@ -148,6 +156,25 @@ class SettingFragment : Fragment() {
         }
 
         dialog.findViewById<View>(R.id.cancelButton).setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
+    private fun setConfirmDialog(onConfirm: () -> Unit)
+    {
+        val dialog = Dialog(requireContext())
+        dialog.setContentView(R.layout.confirm_changelanguage_dialog)
+        dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        dialog.setCancelable(true)
+
+        dialog.findViewById<View>(R.id.okay_text).setOnClickListener {
+            onConfirm()
+            dialog.dismiss()
+        }
+
+        dialog.findViewById<View>(R.id.cancel_text).setOnClickListener {
             dialog.dismiss()
         }
 
