@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -88,6 +89,7 @@ class SettingFragment : Fragment() {
         binding.rememberPasswordSwitch.setOnCheckedChangeListener { _, isChecked ->
             settingViewModel.setToggleSwitch(isChecked)
             prefs.edit().putBoolean(PREF_TOGGLE_SWITCH, isChecked).apply()
+            Log.d("SettingFragment", "Toggle switch state changed to ${prefs.getBoolean(PREF_TOGGLE_SWITCH, false)}")
         }
     }
 

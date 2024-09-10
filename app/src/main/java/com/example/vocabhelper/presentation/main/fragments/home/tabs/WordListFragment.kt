@@ -17,7 +17,8 @@ import com.example.vocabhelper.presentation.main.fragments.home.tabs.adapter.Wor
 
 class WordListFragment : Fragment() {
 
-    private val binding by lazy { FragmentWordListBinding.inflate(layoutInflater) }
+    private var _binding: FragmentWordListBinding? = null
+    private val binding get() = _binding!!
 
     private val apiService by lazy { APIService.create() }
 
@@ -33,6 +34,8 @@ class WordListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        _binding = FragmentWordListBinding.inflate(inflater, container, false)
+
         return binding.root
     }
 
@@ -73,5 +76,10 @@ class WordListFragment : Fragment() {
                 wordAdapter.updateData(words)
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

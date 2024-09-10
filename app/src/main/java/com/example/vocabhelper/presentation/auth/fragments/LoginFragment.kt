@@ -137,6 +137,8 @@ class LoginFragment : Fragment() {
                                     .putString("encryptedEmail", email)
                                     .putString("encryptedPassword", password)
                                     .apply()
+                                Log.d("LoginFragment", "Encrypted email: ${accountSharedPreferences.getString("encryptedEmail", "")}")
+                                Log.d("LoginFragment", "Encrypted password: ${accountSharedPreferences.getString("encryptedPassword", "")}")
                                 context?.startActivity(intent)
                             }
                             else {
@@ -183,6 +185,9 @@ class LoginFragment : Fragment() {
         if (isRememberEnabled) {
             val savedEmail = prefs.getString(SettingFragment.PREF_REMEMBER_EMAIL, null)
             val savedPassword = prefs.getString(SettingFragment.PREF_REMEMBER_PASSWORD, null)
+
+            Log.d("LoginFragment", "Saved email: $savedEmail")
+            Log.d("LoginFragment", "Saved password: $savedPassword")
 
             if (savedEmail != null && savedPassword != null) {
                 viewLifecycleOwner.lifecycleScope.launch {

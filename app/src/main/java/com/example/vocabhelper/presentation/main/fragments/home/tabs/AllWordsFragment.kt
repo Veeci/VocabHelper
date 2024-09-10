@@ -17,7 +17,8 @@ import com.example.vocabhelper.presentation.main.fragments.home.tabs.adapter.Wor
 
 class AllWordsFragment : Fragment() {
 
-    private val binding by lazy { FragmentAllWordsBinding.inflate(layoutInflater) }
+    private var _binding: FragmentAllWordsBinding? = null
+    private val binding get() = _binding!!
 
     private val apiService by lazy { APIService.create() }
 
@@ -34,6 +35,7 @@ class AllWordsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
+        _binding = FragmentAllWordsBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -78,5 +80,6 @@ class AllWordsFragment : Fragment() {
         if (::adapter.isInitialized) {
             adapter.releaseMediaPlayer()
         }
+        _binding = null
     }
 }
