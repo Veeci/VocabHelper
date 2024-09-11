@@ -6,7 +6,6 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +14,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -47,7 +47,7 @@ class LoginFragment : Fragment() {
         MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
     }
 
-    private val executor by lazy{
+    private val executor by lazy {
         this.context?.let { ContextCompat.getMainExecutor(it) }
     }
 
@@ -101,7 +101,8 @@ class LoginFragment : Fragment() {
         return binding.root
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -113,14 +114,16 @@ class LoginFragment : Fragment() {
         prefs = requireContext().getSharedPreferences(SettingFragment.PREFS_NAME, Context.MODE_PRIVATE)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
+    {
         super.onViewCreated(view, savedInstanceState)
 
         setUpFunction()
         setRememberPassword()
     }
 
-    private fun setUpFunction() {
+    private fun setUpFunction()
+    {
         binding.loginButton.setOnClickListener {
             try {
                 val email = binding.emailET.text.toString()
@@ -132,17 +135,24 @@ class LoginFragment : Fragment() {
                         val intent = Intent(context, MainActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                         viewLifecycleOwner.lifecycleScope.launch {
-                            if(email.isNotEmpty() && password.isNotEmpty()) {
+                            if (email.isNotEmpty() && password.isNotEmpty()) {
                                 accountSharedPreferences.edit()
                                     .putString("encryptedEmail", email)
                                     .putString("encryptedPassword", password)
                                     .apply()
-                                Log.d("LoginFragment", "Encrypted email: ${accountSharedPreferences.getString("encryptedEmail", "")}")
-                                Log.d("LoginFragment", "Encrypted password: ${accountSharedPreferences.getString("encryptedPassword", "")}")
+                                Log.d(
+                                    "LoginFragment", "Encrypted email: ${accountSharedPreferences.getString("encryptedEmail", "")}"
+                                )
+                                Log.d(
+                                    "LoginFragment", "Encrypted password: ${accountSharedPreferences.getString("encryptedPassword", "")}"
+                                )
                                 context?.startActivity(intent)
-                            }
-                            else {
-                                Toast.makeText(context, "Please enter email and password", Toast.LENGTH_SHORT).show()
+                            } else {
+                                Toast.makeText(
+                                    context,
+                                    "Please enter email and password",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                         }.invokeOnCompletion {
                             setRememberPassword()
@@ -179,45 +189,29 @@ class LoginFragment : Fragment() {
         }
     }
 
-    private fun setRememberPassword() {
+    private fun setRememberPassword()
+    {
         val isRememberEnabled = prefs.getBoolean(SettingFragment.PREF_TOGGLE_SWITCH, false)
 
         if (isRememberEnabled) {
-            val savedEmail = prefs.getString(SettingFragment.PREF_REMEMBER_EMAIL, null)
-            val savedPassword = prefs.getString(SettingFragment.PREF_REMEMBER_PASSWORD, null)
+            viewLifecycleOwner.lifecycleScope.launch {
+                try {
+                    val decryptedEmail = accountSharedPreferences.getString("encryptedEmail", "").toString().trim()
+                    val decryptedPassword = accountSharedPreferences.getString("encryptedPassword", "")
 
-            Log.d("LoginFragment", "Saved email: $savedEmail")
-            Log.d("LoginFragment", "Saved password: $savedPassword")
-
-            if (savedEmail != null && savedPassword != null) {
-                viewLifecycleOwner.lifecycleScope.launch {
-                    try {
-                        val decryptedEmail = accountSharedPreferences.getString("encryptedEmail", "")
-                        val decryptedPassword = accountSharedPreferences.getString("encryptedPassword", "")
-
-                        if (decryptedEmail.toString().isNotEmpty() && decryptedPassword.toString().isNotEmpty()) {
-                            binding.emailET.text =
-                                Editable.Factory.getInstance().newEditable(decryptedEmail)
-                            binding.passwordET.text =
-                                Editable.Factory.getInstance().newEditable(decryptedPassword)
-                        } else {
-                            Log.e("LoginFragment", "Decrypted email or password is empty.")
-                        }
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                        Log.e("LoginFragment", "Error decrypting saved credentials")
+                    if (decryptedEmail.isNotEmpty() && decryptedPassword.toString().isNotEmpty()) {
+                        binding.emailET.text = Editable.Factory.getInstance().newEditable(decryptedEmail)
+                        binding.passwordET.text = Editable.Factory.getInstance().newEditable(decryptedPassword)
+                    } else {
+                        Log.e("LoginFragment", "Decrypted email or password is empty.")
                     }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    Log.e("LoginFragment", "Error decrypting saved credentials")
                 }
-            } else {
-                Log.e("LoginFragment", "Saved email or password in SharedPreferences is null.")
             }
-        }
-        else
-        {
-            accountSharedPreferences.edit()
-                .remove("encryptedEmail")
-                .remove("encryptedPassword")
-                .apply()
+        } else {
+            Log.e("LoginFragment", "Saved email or password in SharedPreferences is null.")
         }
     }
 
@@ -227,32 +221,41 @@ class LoginFragment : Fragment() {
 
         val biometricPrompt = executor?.let {
             BiometricPrompt(this, it,
-                object : BiometricPrompt.AuthenticationCallback(){
+                object : BiometricPrompt.AuthenticationCallback() {
                     override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
                         super.onAuthenticationError(errorCode, errString)
                         authViewModel.onBiometricAuthenticationResult(false)
-                        Toast.makeText(context, "Biometric authentication error: $errString", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            context,
+                            "Biometric authentication error: $errString",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
 
                     override fun onAuthenticationFailed() {
                         super.onAuthenticationFailed()
                         authViewModel.onBiometricAuthenticationResult(false)
-                        Toast.makeText(context, "Biometric authentication failed", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            context,
+                            "Biometric authentication failed",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
 
                     override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
                         super.onAuthenticationSucceeded(result)
                         val user = FirebaseAuth.getInstance().currentUser
-                        if(user != null)
-                        {
+                        if (user != null) {
                             authViewModel.onBiometricAuthenticationResult(true)
-                            Toast.makeText(context, "Biometric authentication succeeded", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                context,
+                                "Biometric authentication succeeded",
+                                Toast.LENGTH_SHORT
+                            ).show()
                             val intent = Intent(context, MainActivity::class.java)
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                             context?.startActivity(intent)
-                        }
-                        else
-                        {
+                        } else {
                             Toast.makeText(context, "User not logged in", Toast.LENGTH_SHORT).show()
                         }
                     }
@@ -273,7 +276,8 @@ class LoginFragment : Fragment() {
         }
     }
 
-    override fun onDestroyView() {
+    override fun onDestroyView()
+    {
         super.onDestroyView()
         _binding = null
     }
