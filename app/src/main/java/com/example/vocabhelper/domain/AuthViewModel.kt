@@ -1,8 +1,6 @@
 package com.example.vocabhelper.domain
 
 import android.net.Uri
-import android.util.Base64
-import android.util.Log
 import androidx.biometric.BiometricManager
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -21,11 +19,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
-import java.security.SecureRandom
-import javax.crypto.Cipher
 import javax.crypto.KeyGenerator
 import javax.crypto.SecretKey
-import javax.crypto.spec.IvParameterSpec
 
 class AuthViewModel : ViewModel() {
     private val auth = FirebaseAuth.getInstance()
@@ -40,9 +35,6 @@ class AuthViewModel : ViewModel() {
     fun setProfilePicUrl(url: String) {
         _profilePicUrl.value = url
     }
-
-    private val keyGenerator = KeyGenerator.getInstance("AES").apply { init(256) }
-    private val secretKey: SecretKey = keyGenerator.generateKey()
 
     private val _biometricAuthResult = MutableLiveData<Boolean>()
     val biometricAuthResult: LiveData<Boolean> get() = _biometricAuthResult
@@ -136,7 +128,7 @@ class AuthViewModel : ViewModel() {
         onSuccess: (FirebaseUser) -> Unit,
         onFailure: (Exception) -> Unit
     ) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             try {
                 val trimmedEmail = email.trim()
                 val result = auth.createUserWithEmailAndPassword(trimmedEmail, password).await()
@@ -228,7 +220,7 @@ class AuthViewModel : ViewModel() {
     }
 
     fun signIn(email: String, password: String, onSuccess: () -> Unit, onFailure: () -> Unit) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             try {
                 val trimmedEmail = email.trim()
                 val result = auth.signInWithEmailAndPassword(trimmedEmail, password).await()
@@ -271,64 +263,12 @@ class AuthViewModel : ViewModel() {
             }
     }
 
-    suspend fun encrypt(input: String): String {
-        return withContext(Dispatchers.Default) {
-            val cipher = Cipher.getInstance("AES/CBC/PKCS7Padding")
-            val iv = ByteArray(16)
-            SecureRandom().nextBytes(iv)
-            val ivParameterSpec = IvParameterSpec(iv)
-            cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivParameterSpec)
-            val encrypted = cipher.doFinal(input.toByteArray())
-
-            Log.d("AuthViewModel", "Secret Key: ${secretKey.encoded.contentToString()}")
-            Log.d("AuthViewModel", "IV (Encryption): ${iv.contentToString()}")
-            Log.d("AuthViewModel", "Encrypted data (raw): ${encrypted.contentToString()}")
-
-            val ivAndEncrypted = iv + encrypted
-            val encoded = Base64.encodeToString(ivAndEncrypted, Base64.NO_WRAP)
-
-            Log.d("AuthViewModel", "Encrypted data (Base64): $encoded")
-
-            encoded
-        }
-    }
-
-    suspend fun decrypt(input: String): String {
-        return withContext(Dispatchers.Default) {
-            try {
-                Log.d("AuthViewModel", "Decryption - Input (Base64): $input")
-
-                val ivAndEncrypted = Base64.decode(input, Base64.NO_WRAP)
-                val iv = ivAndEncrypted.copyOfRange(0, 16)
-                val encrypted = ivAndEncrypted.copyOfRange(16, ivAndEncrypted.size)
-
-                Log.d("AuthViewModel", "Decryption - IV: ${iv.contentToString()}")
-                Log.d("AuthViewModel", "Decryption - Encrypted Data (raw): ${encrypted.contentToString()}")
-
-                val cipher = Cipher.getInstance("AES/CBC/PKCS7Padding")
-                val ivParameterSpec = IvParameterSpec(iv)
-                cipher.init(Cipher.DECRYPT_MODE, secretKey, ivParameterSpec)
-
-                val decrypted = cipher.doFinal(encrypted)
-                Log.d("AuthViewModel", "Decryption - Raw Decrypted Bytes: ${decrypted.contentToString()}")
-
-                val decryptedString = String(decrypted)
-                Log.d("AuthViewModel", "Decryption - Decrypted String: $decryptedString")
-
-                decryptedString
-            } catch (e: Exception) {
-                Log.e("AuthViewModel", "Decryption Error: ${e.message}", e)
-                throw e
-            }
-        }
-    }
-
     fun logOut(
         googleSignInClient: GoogleSignInClient,
         onSuccess: () -> Unit,
         onFailure: (Exception) -> Unit
     ) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             try {
                 auth.signOut()
                 googleSignInClient.signOut().await()

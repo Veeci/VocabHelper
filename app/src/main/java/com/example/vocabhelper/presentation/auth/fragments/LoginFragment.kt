@@ -30,6 +30,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import kotlinx.coroutines.launch
 
 class LoginFragment : Fragment() {
@@ -129,6 +130,8 @@ class LoginFragment : Fragment() {
                 val email = binding.emailET.text.toString()
                 val password = binding.passwordET.text.toString()
 
+                FirebaseCrashlytics.getInstance().log("Login button clicked = {$email}")
+
                 authViewModel.signIn(email, password,
                     onSuccess = {
                         Toast.makeText(context, "Sign in successful", Toast.LENGTH_SHORT).show()
@@ -140,33 +143,26 @@ class LoginFragment : Fragment() {
                                     .putString("encryptedEmail", email)
                                     .putString("encryptedPassword", password)
                                     .apply()
-                                Log.d(
-                                    "LoginFragment", "Encrypted email: ${accountSharedPreferences.getString("encryptedEmail", "")}"
-                                )
-                                Log.d(
-                                    "LoginFragment", "Encrypted password: ${accountSharedPreferences.getString("encryptedPassword", "")}"
-                                )
+                                Log.d("LoginFragment", "Encrypted email: ${accountSharedPreferences.getString("encryptedEmail", "")}")
+                                Log.d("LoginFragment", "Encrypted password: ${accountSharedPreferences.getString("encryptedPassword", "")}")
+
+                                FirebaseCrashlytics.getInstance().log("Encrypted email: ${accountSharedPreferences.getString("encryptedEmail", "")}")
+
                                 context?.startActivity(intent)
                             } else {
-                                Toast.makeText(
-                                    context,
-                                    "Please enter email and password",
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                                Toast.makeText(context, "Please enter email and password", Toast.LENGTH_SHORT).show()
                             }
                         }.invokeOnCompletion {
                             setRememberPassword()
                         }
                     },
                     onFailure = {
-                        Toast.makeText(
-                            context,
-                            "Invalid Email or Password!",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    })
+                        Toast.makeText(context, "Invalid Email or Password!", Toast.LENGTH_SHORT).show()
+                    }
+                )
             } catch (e: Exception) {
                 e.printStackTrace()
+                FirebaseCrashlytics.getInstance().recordException(e)
                 Toast.makeText(context, "Error encrypting password", Toast.LENGTH_SHORT).show()
             }
         }
@@ -186,6 +182,10 @@ class LoginFragment : Fragment() {
 
         binding.biometricLogin.setOnClickListener {
             setupBiometricAuth()
+        }
+
+        binding.testCrash.setOnClickListener {
+            throw RuntimeException("Test Crash")
         }
     }
 
@@ -225,21 +225,13 @@ class LoginFragment : Fragment() {
                     override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
                         super.onAuthenticationError(errorCode, errString)
                         authViewModel.onBiometricAuthenticationResult(false)
-                        Toast.makeText(
-                            context,
-                            "Biometric authentication error: $errString",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        Toast.makeText(context, "Biometric authentication error: $errString", Toast.LENGTH_SHORT).show()
                     }
 
                     override fun onAuthenticationFailed() {
                         super.onAuthenticationFailed()
                         authViewModel.onBiometricAuthenticationResult(false)
-                        Toast.makeText(
-                            context,
-                            "Biometric authentication failed",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        Toast.makeText(context, "Biometric authentication failed", Toast.LENGTH_SHORT).show()
                     }
 
                     override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
@@ -247,11 +239,7 @@ class LoginFragment : Fragment() {
                         val user = FirebaseAuth.getInstance().currentUser
                         if (user != null) {
                             authViewModel.onBiometricAuthenticationResult(true)
-                            Toast.makeText(
-                                context,
-                                "Biometric authentication succeeded",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            Toast.makeText(context, "Biometric authentication succeeded", Toast.LENGTH_SHORT).show()
                             val intent = Intent(context, MainActivity::class.java)
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                             context?.startActivity(intent)

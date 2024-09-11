@@ -126,13 +126,14 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="0dp"
-            android:layout_weight="0.2"
             android:layout_height="wrap_content"
-            android:text="@string/login_or"
+            android:layout_weight="0.2"
             android:fontFamily="@font/lato"
+            android:text="@string/login_or"
+            android:textAlignment="center"
             android:textColor="@color/text_secondary"
             android:textSize="16sp"
-            android:textAlignment="center"/>
+            android:id="@+id/testCrash"/>
 
         <View
             android:layout_width="0dp"
