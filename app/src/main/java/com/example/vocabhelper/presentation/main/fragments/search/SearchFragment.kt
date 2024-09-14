@@ -79,9 +79,9 @@ class SearchFragment : Fragment() {
     private fun observeViewModel() {
         wordViewModel.word.observe(viewLifecycleOwner, Observer { word ->
             if (word != null) {
+                displayWord(word)
                 binding.searchResult.visibility = View.VISIBLE
                 binding.emptySearchresult.visibility = View.GONE
-                displayWord(word)
             } else {
                 binding.searchResult.visibility = View.GONE
                 binding.emptySearchresult.visibility = View.VISIBLE
@@ -98,6 +98,8 @@ class SearchFragment : Fragment() {
                 binding.meaningsRecyclerView.visibility = View.GONE
             } else {
                 wordSearchAdapter.updateMeanings(meanings.filterNotNull())
+                binding.meaningsTV.visibility = View.VISIBLE
+                binding.meaningsRecyclerView.visibility = View.VISIBLE
             }
 
         }

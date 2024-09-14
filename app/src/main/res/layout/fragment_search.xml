@@ -50,7 +50,7 @@
                 android:layout_marginStart="20dp"
                 android:src="@drawable/icon_pronunciation_search"
                 app:layout_constraintStart_toEndOf="@+id/word"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/phonetic"
@@ -86,7 +86,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/meaningsTV"
-                android:nestedScrollingEnabled="false"/>
+                android:nestedScrollingEnabled="false" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -96,13 +96,11 @@
             android:layout_height="wrap_content"
             android:id="@+id/empty_searchresult">
 
-            <include
-                layout="@layout/empty_searchresult"/>
+            <include layout="@layout/empty_searchresult" />
 
         </LinearLayout>
 
     </LinearLayout>
-
 
 
 </ScrollView>

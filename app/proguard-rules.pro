@@ -1,33 +1,10 @@
-# Add project specific ProGuard rules here.
-# You can control the set of applied configuration files using the
-# proguardFiles setting in build.gradle.
-#
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
-
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
-
-# Uncomment this to preserve the line number information for
-# debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
-
-# If you keep the line number information, uncomment this to
-# hide the original source file name.
-#-renamesourcefileattribute SourceFile
-
+# Android-specific Rules
 -keep class androidx.security.crypto.** { *; }
 -keepclassmembers class androidx.security.crypto.** { *; }
 
-# Keep all data models for Firebase Firestore
--keepclassmembers class com.example.vocabhelper.data.models.** {
-    *;
-}
-
+# Keep models and API service for Retrofit and Firestore
+-keepclassmembers class com.example.vocabhelper.data.models.** { *; }
+-keep class com.example.vocabhelper.data.api.APIService { *; }
 -keep class com.google.android.gms.** { *; }
 -keep class com.google.firebase.** { *; }
 
@@ -35,10 +12,48 @@
 -keep @interface androidx.annotation.Keep
 -keep @androidx.annotation.Keep class * { *; }
 
--dontwarn afu.org.checkerframework.dataflow.qual.Pure
--dontwarn afu.org.checkerframework.dataflow.qual.SideEffectFree
--dontwarn afu.org.checkerframework.framework.qual.EnsuresQualifierIf
--dontwarn afu.org.checkerframework.framework.qual.EnsuresQualifiersIf
+# Retrofit and OkHttp
+-keep class retrofit2.** { *; }
+-keep class okhttp3.** { *; }
+
+# Gson
+-keep class com.google.gson.** { *; }
+-keep class com.google.gson.stream.** { *; }
+-dontwarn com.google.gson.stream.**
+
+# Parcelable classes
+-keep class * implements android.os.Parcelable {
+    public static final android.os.Parcelable$Creator *;
+}
+
+# Keep generic type information (Signature and Annotations)
+-keepattributes Signature
+-keepattributes *Annotation*
+
+# Keep Retrofit Call and Response classes with generic signatures
+-keep,allowobfuscation,allowshrinking interface retrofit2.Call
+-keep,allowobfuscation,allowshrinking class retrofit2.Response
+-keep,allowobfuscation,allowshrinking class kotlin.coroutines.Continuation
+
+# OkHttp ProGuard rules
+-dontwarn okio.**
+-dontwarn javax.annotation.Nullable
+-dontwarn javax.annotation.ParametersAreNonnullByDefault
+
+# Avoid warnings from libraries
+-dontwarn sun.misc.**
+-dontwarn afu.org.checkerframework.**
+-dontwarn javax.servlet.**
+-dontwarn org.ietf.jgss.**
+
+# Keep GSON TypeAdapter, Serializer, Deserializer, and Expose annotation
+-keep class * implements com.google.gson.TypeAdapterFactory
+-keep class * implements com.google.gson.JsonSerializer
+-keep class * implements com.google.gson.JsonDeserializer
+-keepattributes Annotation
+
+# Please add these rules to your existing keep rules in order to suppress warnings.
+# This is generated automatically by the Android Gradle plugin.
 -dontwarn com.google.firebase.crashlytics.buildtools.reloc.afu.org.checkerframework.checker.formatter.qual.ConversionCategory
 -dontwarn com.google.firebase.crashlytics.buildtools.reloc.afu.org.checkerframework.checker.formatter.qual.ReturnsFormat
 -dontwarn com.google.firebase.crashlytics.buildtools.reloc.afu.org.checkerframework.checker.nullness.qual.EnsuresNonNull
@@ -46,11 +61,3 @@
 -dontwarn com.google.firebase.crashlytics.buildtools.reloc.org.checkerframework.checker.formatter.qual.ConversionCategory
 -dontwarn com.google.firebase.crashlytics.buildtools.reloc.org.checkerframework.checker.formatter.qual.ReturnsFormat
 -dontwarn com.google.firebase.crashlytics.buildtools.reloc.org.checkerframework.checker.nullness.qual.EnsuresNonNull
--dontwarn javax.servlet.ServletContextEvent
--dontwarn javax.servlet.ServletContextListener
--dontwarn org.ietf.jgss.GSSContext
--dontwarn org.ietf.jgss.GSSCredential
--dontwarn org.ietf.jgss.GSSException
--dontwarn org.ietf.jgss.GSSManager
--dontwarn org.ietf.jgss.GSSName
--dontwarn org.ietf.jgss.Oid

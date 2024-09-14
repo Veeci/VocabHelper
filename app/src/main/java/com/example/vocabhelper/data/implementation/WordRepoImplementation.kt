@@ -1,5 +1,6 @@
 package com.example.vocabhelper.data.implementation
 
+import androidx.annotation.Keep
 import com.example.vocabhelper.data.api.APIService
 import com.example.vocabhelper.data.models.Response
 import com.example.vocabhelper.data.models.WordData

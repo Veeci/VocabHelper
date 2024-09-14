@@ -203,7 +203,7 @@ class AuthViewModel : ViewModel() {
             try {
                 val credential = GoogleAuthProvider.getCredential(account.idToken, null)
                 val result = auth.signInWithCredential(credential).await()
-                result.user?.let { user ->
+                result.user?.let {
                     withContext(Dispatchers.Main) {
                         onSuccess()
                     }
