@@ -1,7 +1,9 @@
 package com.example.vocabhelper.data.models
 
+import androidx.annotation.Keep
 import com.google.firebase.firestore.PropertyName
 
+@Keep
 data class WordData(
     @PropertyName("word") val word: String = "",
     @PropertyName("meaning") val meaning: String? = null,

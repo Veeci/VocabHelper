@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.Keep
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
@@ -194,21 +195,14 @@ class LoginFragment : Fragment() {
         val isRememberEnabled = prefs.getBoolean(SettingFragment.PREF_TOGGLE_SWITCH, false)
 
         if (isRememberEnabled) {
-            viewLifecycleOwner.lifecycleScope.launch {
-                try {
-                    val decryptedEmail = accountSharedPreferences.getString("encryptedEmail", "").toString().trim()
-                    val decryptedPassword = accountSharedPreferences.getString("encryptedPassword", "")
+            val decryptedEmail = accountSharedPreferences.getString("encryptedEmail", "").toString().trim()
+            val decryptedPassword = accountSharedPreferences.getString("encryptedPassword", "")
 
-                    if (decryptedEmail.isNotEmpty() && decryptedPassword.toString().isNotEmpty()) {
-                        binding.emailET.text = Editable.Factory.getInstance().newEditable(decryptedEmail)
-                        binding.passwordET.text = Editable.Factory.getInstance().newEditable(decryptedPassword)
-                    } else {
-                        Log.e("LoginFragment", "Decrypted email or password is empty.")
-                    }
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                    Log.e("LoginFragment", "Error decrypting saved credentials")
-                }
+            if (decryptedEmail.isNotEmpty() && decryptedPassword.toString().isNotEmpty()) {
+                binding.emailET.text = Editable.Factory.getInstance().newEditable(decryptedEmail)
+                binding.passwordET.text = Editable.Factory.getInstance().newEditable(decryptedPassword)
+            } else {
+                Log.e("LoginFragment", "Decrypted email or password is empty.")
             }
         } else {
             Log.e("LoginFragment", "Saved email or password in SharedPreferences is null.")

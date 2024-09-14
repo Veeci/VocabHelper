@@ -22,3 +22,12 @@
 
 -keep class androidx.security.crypto.** { *; }
 -keepclassmembers class androidx.security.crypto.** { *; }
+
+# Keep all data models for Firebase Firestore
+-keepclassmembers class com.example.vocabhelper.data.models.** {
+    *;
+}
+
+# Prevent obfuscation of classes with the @Keep annotation
+-keep @interface androidx.annotation.Keep
+-keep @androidx.annotation.Keep class * { *; }
