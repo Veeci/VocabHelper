@@ -28,6 +28,29 @@
     *;
 }
 
+-keep class com.google.android.gms.** { *; }
+-keep class com.google.firebase.** { *; }
+
 # Prevent obfuscation of classes with the @Keep annotation
 -keep @interface androidx.annotation.Keep
 -keep @androidx.annotation.Keep class * { *; }
+
+-dontwarn afu.org.checkerframework.dataflow.qual.Pure
+-dontwarn afu.org.checkerframework.dataflow.qual.SideEffectFree
+-dontwarn afu.org.checkerframework.framework.qual.EnsuresQualifierIf
+-dontwarn afu.org.checkerframework.framework.qual.EnsuresQualifiersIf
+-dontwarn com.google.firebase.crashlytics.buildtools.reloc.afu.org.checkerframework.checker.formatter.qual.ConversionCategory
+-dontwarn com.google.firebase.crashlytics.buildtools.reloc.afu.org.checkerframework.checker.formatter.qual.ReturnsFormat
+-dontwarn com.google.firebase.crashlytics.buildtools.reloc.afu.org.checkerframework.checker.nullness.qual.EnsuresNonNull
+-dontwarn com.google.firebase.crashlytics.buildtools.reloc.afu.org.checkerframework.checker.regex.qual.Regex
+-dontwarn com.google.firebase.crashlytics.buildtools.reloc.org.checkerframework.checker.formatter.qual.ConversionCategory
+-dontwarn com.google.firebase.crashlytics.buildtools.reloc.org.checkerframework.checker.formatter.qual.ReturnsFormat
+-dontwarn com.google.firebase.crashlytics.buildtools.reloc.org.checkerframework.checker.nullness.qual.EnsuresNonNull
+-dontwarn javax.servlet.ServletContextEvent
+-dontwarn javax.servlet.ServletContextListener
+-dontwarn org.ietf.jgss.GSSContext
+-dontwarn org.ietf.jgss.GSSCredential
+-dontwarn org.ietf.jgss.GSSException
+-dontwarn org.ietf.jgss.GSSManager
+-dontwarn org.ietf.jgss.GSSName
+-dontwarn org.ietf.jgss.Oid
