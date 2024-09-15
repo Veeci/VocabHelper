@@ -2,15 +2,25 @@
 -keep class androidx.security.crypto.** { *; }
 -keepclassmembers class androidx.security.crypto.** { *; }
 
-# Keep models and API service for Retrofit and Firestore
+# Models and API service for Retrofit and Firestore
 -keepclassmembers class com.example.vocabhelper.data.models.** { *; }
 -keep class com.example.vocabhelper.data.api.APIService { *; }
 -keep class com.google.android.gms.** { *; }
 -keep class com.google.firebase.** { *; }
 
+# Google Sign-In (Ensuring Google Play Services & Sign-In handling is preserved)
+-keep class com.google.android.gms.auth.api.signin.** { *; }
+-keep class com.google.android.gms.auth.api.signin.internal.** { *; }
+-keep class com.google.android.gms.common.api.internal.** { *; }
+-keep class com.google.android.gms.common.api.Status { *; }
+
 # Prevent obfuscation of classes with the @Keep annotation
 -keep @interface androidx.annotation.Keep
 -keep @androidx.annotation.Keep class * { *; }
+
+# Firebase Auth & Google Play Services
+-keep class com.google.firebase.auth.** { *; }
+-keep class com.google.android.gms.auth.api.signin.internal.** { *; }
 
 # Retrofit and OkHttp
 -keep class retrofit2.** { *; }
@@ -51,6 +61,14 @@
 -keep class * implements com.google.gson.JsonSerializer
 -keep class * implements com.google.gson.JsonDeserializer
 -keepattributes Annotation
+
+# Keep Firebase Auth classes and prevent obfuscation of FirebaseUser, FirebaseAuth, etc.
+-keep class com.google.firebase.auth.FirebaseUser { *; }
+-keep class com.google.firebase.auth.FirebaseAuth { *; }
+
+# Keep Google Play Services and Firebase Auth critical classes for authentication
+-keep class com.google.android.gms.common.api.internal.** { *; }
+-keep class com.google.android.gms.auth.api.signin.internal.** { *; }
 
 # Please add these rules to your existing keep rules in order to suppress warnings.
 # This is generated automatically by the Android Gradle plugin.
