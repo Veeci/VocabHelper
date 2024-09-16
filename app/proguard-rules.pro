@@ -8,7 +8,7 @@
 -keep class com.google.android.gms.** { *; }
 -keep class com.google.firebase.** { *; }
 
-# Google Sign-In (Ensuring Google Play Services & Sign-In handling is preserved)
+# Google Sign-In
 -keep class com.google.android.gms.auth.api.signin.** { *; }
 -keep class com.google.android.gms.auth.api.signin.internal.** { *; }
 -keep class com.google.android.gms.common.api.internal.** { *; }
@@ -36,11 +36,11 @@
     public static final android.os.Parcelable$Creator *;
 }
 
-# Keep generic type information (Signature and Annotations)
+# Generic type information (Signature and Annotations)
 -keepattributes Signature
 -keepattributes *Annotation*
 
-# Keep Retrofit Call and Response classes with generic signatures
+# Retrofit Call and Response classes with generic signatures
 -keep,allowobfuscation,allowshrinking interface retrofit2.Call
 -keep,allowobfuscation,allowshrinking class retrofit2.Response
 -keep,allowobfuscation,allowshrinking class kotlin.coroutines.Continuation
@@ -69,6 +69,11 @@
 # Keep Google Play Services and Firebase Auth critical classes for authentication
 -keep class com.google.android.gms.common.api.internal.** { *; }
 -keep class com.google.android.gms.auth.api.signin.internal.** { *; }
+-keep class com.google.android.gms.auth.** { *; }
+-keep class com.google.android.gms.common.** { *; }
+-dontwarn com.google.android.gms.**
+-dontwarn com.google.firebase.**
+-dontwarn com.google.android.gms.auth.api.signin.**
 
 # Please add these rules to your existing keep rules in order to suppress warnings.
 # This is generated automatically by the Android Gradle plugin.

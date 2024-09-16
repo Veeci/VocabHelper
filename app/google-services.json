@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "373369689147-9nresct3m42fgb7uscmq759orrr1vv81.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.vocabhelper",
+            "certificate_hash": "d4d0e6a56cb41550984f0c006f2756271d3894fa"
+          }
+        },
+        {
           "client_id": "373369689147-l7rem52hrss6898matfd1jputqv4e6be.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -27,6 +35,14 @@
           "android_info": {
             "package_name": "com.example.vocabhelper",
             "certificate_hash": "1955bf2cc9c05640968d3d6cd61ef1e4d236a698"
+          }
+        },
+        {
+          "client_id": "373369689147-rrad4aq70118ops8e55aumg8jmsb7u9j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.vocabhelper",
+            "certificate_hash": "bddd46b1d5c72acf2177b63626668cc2ab61afe3"
           }
         },
         {

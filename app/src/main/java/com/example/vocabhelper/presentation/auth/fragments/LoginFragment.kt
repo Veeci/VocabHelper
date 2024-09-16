@@ -80,6 +80,7 @@ class LoginFragment : Fragment() {
                 }
             } catch (e: ApiException) {
                 e.printStackTrace()
+                Log.e("GoogleSignIn", "SignIn failed, error code: ${e.statusCode}")
                 Toast.makeText(requireContext(), "Google Sign-In failed.", Toast.LENGTH_SHORT)
                     .show()
             }
