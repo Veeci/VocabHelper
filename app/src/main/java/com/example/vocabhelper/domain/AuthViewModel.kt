@@ -197,7 +197,7 @@ class AuthViewModel : ViewModel() {
     fun firebaseAuthWithGoogle(
         account: GoogleSignInAccount,
         onSuccess: () -> Unit,
-        onFailure: () -> Unit
+        onFailure: (String) -> Unit
     ) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
@@ -208,12 +208,12 @@ class AuthViewModel : ViewModel() {
                         onSuccess()
                     }
                 } ?: withContext(Dispatchers.Main) {
-                    onFailure()
+                    onFailure("No Google account found!")
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
                 withContext(Dispatchers.Main) {
-                    onFailure()
+                    onFailure(e.message ?: "Google Sign-In failed due to an unknown error")
                 }
             }
         }

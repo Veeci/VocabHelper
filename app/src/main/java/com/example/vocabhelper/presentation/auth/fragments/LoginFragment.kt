@@ -67,10 +67,10 @@ class LoginFragment : Fragment() {
                                 .show()
                             context?.startActivity(intent)
                         },
-                        onFailure = {
+                        onFailure = { errorMessage ->
                             Toast.makeText(
                                 requireContext(),
-                                "Google Sign-In failed.",
+                                "Google Sign-In failed: $errorMessage",
                                 Toast.LENGTH_SHORT
                             ).show()
                         })
@@ -141,10 +141,7 @@ class LoginFragment : Fragment() {
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                         viewLifecycleOwner.lifecycleScope.launch {
                             if (email.isNotEmpty() && password.isNotEmpty()) {
-                                accountSharedPreferences.edit()
-                                    .putString("encryptedEmail", email)
-                                    .putString("encryptedPassword", password)
-                                    .apply()
+                                clearAndSetSharedPref(email, password)
                                 Log.d("LoginFragment", "Encrypted email: ${accountSharedPreferences.getString("encryptedEmail", "")}")
                                 Log.d("LoginFragment", "Encrypted password: ${accountSharedPreferences.getString("encryptedPassword", "")}")
 
@@ -257,6 +254,14 @@ class LoginFragment : Fragment() {
         } else {
             Toast.makeText(context, availabilityMessage, Toast.LENGTH_LONG).show()
         }
+    }
+
+    private fun clearAndSetSharedPref(email: String, password: String) {
+        val editor = accountSharedPreferences.edit()
+        editor.clear()  // Clear all existing values
+        editor.putString("encryptedEmail", email)
+        editor.putString("encryptedPassword", password)
+        editor.apply()  // Save the changes
     }
 
     override fun onDestroyView()
