@@ -7,39 +7,19 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:373369689147:android:214269166f84c4e99db81e",
+        "mobilesdk_app_id": "1:373369689147:android:06cc9c18c84bb1019db81e",
         "android_client_info": {
           "package_name": "com.example.vocabhelper"
         }
       },
       "oauth_client": [
         {
-          "client_id": "373369689147-e15ghqgvc8fgsttsa7lg45ut0bdgkaie.apps.googleusercontent.com",
+          "client_id": "373369689147-fqbrldslf354scqa66ie36mpmab3k90m.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.vocabhelper",
             "certificate_hash": "44115c3e1bf7932bd826e8be261347bbcfff554e"
           }
-        },
-        {
-          "client_id": "373369689147-l7rem52hrss6898matfd1jputqv4e6be.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.vocabhelper",
-            "certificate_hash": "c1df576759557eb84f403873c36ff912e304c744"
-          }
-        },
-        {
-          "client_id": "373369689147-piqv48m84638kjv0rggaej4ntg7crtek.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.vocabhelper",
-            "certificate_hash": "1955bf2cc9c05640968d3d6cd61ef1e4d236a698"
-          }
-        },
-        {
-          "client_id": "373369689147-q3garm6qvgcaehen5r0kmenc076udqh2.apps.googleusercontent.com",
-          "client_type": 3
         }
       ],
       "api_key": [
@@ -49,12 +29,7 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "373369689147-q3garm6qvgcaehen5r0kmenc076udqh2.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

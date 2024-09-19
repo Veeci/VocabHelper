@@ -175,8 +175,9 @@ class LoginFragment : Fragment() {
         }
 
         binding.loginWithGoogle.setOnClickListener {
-            val signInIntent = googleSignInClient.signInIntent
-            googleSignInLauncher.launch(signInIntent)
+//            val signInIntent = googleSignInClient.signInIntent
+//            googleSignInLauncher.launch(signInIntent)
+            Toast.makeText(context, "This feature is under maintenance!", Toast.LENGTH_LONG).show()
         }
 
         binding.biometricLogin.setOnClickListener {
