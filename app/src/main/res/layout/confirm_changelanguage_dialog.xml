@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/theme_tertiary">
@@ -12,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="112dp"
         android:padding="10dp"
-        android:text="This requires a restart to apply changes. Are you sure you want to log out?"
+        android:text="@string/this_requires_a_restart_to_apply_changes_are_you_sure_you_want_to_log_out"
         android:textAlignment="center"
         android:textSize="20sp"
         android:fontFamily="@font/lato"

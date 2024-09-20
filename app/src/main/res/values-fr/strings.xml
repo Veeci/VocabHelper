@@ -176,4 +176,15 @@
     <string name="category_business">Affaires</string>
     <string name="category_sports">Sports</string>
     <string name="category_other">Autre</string>
+    <string name="this_feature_is_under_maintenance">Cette fonctionnalité est en maintenance !</string>
+    <string name="pause">Pause</string>
+    <string name="start">Démarrer</string>
+    <string name="no_audio_available">Aucun audio disponible !</string>
+    <string name="look_up_a_word">Chercher un mot !</string>
+    <string name="set_focus_time">Définir le temps de concentration :</string>
+    <string name="min">min</string>
+    <string name="set_long_break">Définir une longue pause :</string>
+    <string name="set_short_break">Définir une courte pause :</string>
+    <string name="cancel">Annuler</string>
+    <string name="this_requires_a_restart_to_apply_changes_are_you_sure_you_want_to_log_out">Cela nécessite un redémarrage pour appliquer les modifications. Êtes-vous sûr de vouloir vous déconnecter ?</string>
 </resources>

@@ -18,7 +18,7 @@
             android:layout_weight="3"
             android:fontFamily="@font/lato"
             android:gravity="center_vertical"
-            android:text="Set focus time: "
+            android:text="@string/set_focus_time"
             android:textColor="@color/text_main"
             android:textSize="20sp" />
 
@@ -37,7 +37,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/lato"
             android:gravity="center_horizontal|center_vertical"
-            android:text="min"
+            android:text="@string/min"
             android:textColor="@color/text_main"
             android:textSize="20sp"/>
 
@@ -55,7 +55,7 @@
             android:layout_weight="3"
             android:fontFamily="@font/lato"
             android:gravity="center_vertical"
-            android:text="Set long break: "
+            android:text="@string/set_long_break"
             android:textColor="@color/text_main"
             android:textSize="20sp" />
 
@@ -75,7 +75,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/lato"
             android:gravity="center_horizontal|center_vertical"
-            android:text="min"
+            android:text="@string/min"
             android:textColor="@color/text_main"
             android:textSize="20sp"/>
 
@@ -93,7 +93,7 @@
             android:layout_weight="3"
             android:fontFamily="@font/lato"
             android:gravity="center_vertical"
-            android:text="Set short break: "
+            android:text="@string/set_short_break"
             android:textColor="@color/text_main"
             android:textSize="20sp" />
 
@@ -113,7 +113,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/lato"
             android:gravity="center_horizontal|center_vertical"
-            android:text="min"
+            android:text="@string/min"
             android:textColor="@color/text_main"
             android:textSize="20sp"/>
 
@@ -144,7 +144,7 @@
             android:background="@color/theme_tertiary"
             android:fontFamily="@font/lato"
             android:padding="10dp"
-            android:text="Cancel"
+            android:text="@string/cancel"
             android:textColor="@color/text_main"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"

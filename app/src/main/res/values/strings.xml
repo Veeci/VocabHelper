@@ -33,6 +33,7 @@
     <string name="login_login_with_google">Login with Google</string>
     <string name="login_don_t_have_an_account">Don\'t have an account?</string>
     <string name="login_register">Register</string>
+    <string name="this_feature_is_under_maintenance">This feature is under maintenance!</string>
 
     <!--Signup-->
     <string name="register_full_name">Full name</string>
@@ -80,6 +81,8 @@
     <string name="focus_focus_and_learn_new_words">Focus and learn new words.</string>
     <string name="focus_start_pomodoro">Start Pomodoro</string>
     <string name="focus_give_up">Give up</string>
+    <string name="pause">Pause</string>
+    <string name="start">Start</string>
 
     <!--Profile-->
     <string name="profile_account">Account</string>
@@ -92,6 +95,7 @@
     <string name="antonyms">Antonyms:</string>
     <string name="example">Example:</string>
     <string name="definition">Definition:</string>
+    <string name="look_up_a_word">Look up a word!</string>
 
     <!--Setting-->
     <string name="setting_settings">Settings</string>
@@ -99,6 +103,12 @@
     <string name="setting_change_app_language">Change app language</string>
     <string name="setting_set_focus_time">Set focus time</string>
     <string name="setting_remember_password">Remember password</string>
+    <string name="set_focus_time">Set focus time:</string>
+    <string name="min">min</string>
+    <string name="set_long_break">Set long break:</string>
+    <string name="set_short_break">Set short break:</string>
+    <string name="cancel">Cancel</string>
+    <string name="this_requires_a_restart_to_apply_changes_are_you_sure_you_want_to_log_out">This requires a restart to apply changes. Are you sure you want to log out?</string>
 
     <!--Top bar-->
     <string name="topbar_index">Index</string>
@@ -118,6 +128,7 @@
     <string name="worddetail_example">Example:</string>
     <string name="worddetail_save">Save</string>
     <string name="worddetail_delete">Delete</string>
+    <string name="no_audio_available">No audio available!</string>
 
     <!--Dialog_feedback_reset_email-->
     <string name="dialog_feedback_your_email">Your email</string>
@@ -125,7 +136,7 @@
     <string name="dialog_feedback_cancel">Cancel</string>
 
     <!--Dialog_not started-->
-    <string name="dialog_notstarted_oh_come_on_you_cannot_give_up_even_before_you_start">Oh come on...you cannot give up even before you start -,-</string>
+    <string name="dialog_notstarted_oh_come_on_you_cannot_give_up_even_before_you_start">Oh come on…you cannot give up even before you start -,-</string>
     <string name="dialog_notstarted_stop_rambling_and_get_back_to_work">Stop rambling and get back to work!!!</string>
 
     <!--Dialog_logout-->

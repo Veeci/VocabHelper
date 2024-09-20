@@ -176,4 +176,15 @@
     <string name="category_business">ビジネス</string>
     <string name="category_sports">スポーツ</string>
     <string name="category_other">その他</string>
+    <string name="this_feature_is_under_maintenance">この機能はメンテナンス中です！</string>
+    <string name="pause">一時停止</string>
+    <string name="start">スタート</string>
+    <string name="no_audio_available">オーディオが利用できません！</string>
+    <string name="look_up_a_word">単語を調べる！</string>
+    <string name="set_focus_time">集中時間を設定：</string>
+    <string name="min">分</string>
+    <string name="set_long_break">長い休憩を設定：</string>
+    <string name="set_short_break">短い休憩を設定：</string>
+    <string name="cancel">キャンセル</string>
+    <string name="this_requires_a_restart_to_apply_changes_are_you_sure_you_want_to_log_out">変更を適用するには再起動が必要です。ログアウトしてもよろしいですか？</string>
 </resources>

@@ -11,7 +11,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.Keep
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
@@ -177,7 +176,10 @@ class LoginFragment : Fragment() {
         binding.loginWithGoogle.setOnClickListener {
 //            val signInIntent = googleSignInClient.signInIntent
 //            googleSignInLauncher.launch(signInIntent)
-            Toast.makeText(context, "This feature is under maintenance!", Toast.LENGTH_LONG).show()
+            Toast.makeText(
+                context,
+                getString(R.string.this_feature_is_under_maintenance), Toast.LENGTH_LONG
+            ).show()
         }
 
         binding.biometricLogin.setOnClickListener {
@@ -259,10 +261,10 @@ class LoginFragment : Fragment() {
 
     private fun clearAndSetSharedPref(email: String, password: String) {
         val editor = accountSharedPreferences.edit()
-        editor.clear()  // Clear all existing values
+        editor.clear()
         editor.putString("encryptedEmail", email)
         editor.putString("encryptedPassword", password)
-        editor.apply()  // Save the changes
+        editor.apply()
     }
 
     override fun onDestroyView()

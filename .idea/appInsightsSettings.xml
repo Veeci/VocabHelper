@@ -10,7 +10,7 @@
               <option name="connection">
                 <ConnectionSetting>
                   <option name="appId" value="com.example.vocabhelper" />
-                  <option name="mobileSdkAppId" value="1:373369689147:android:214269166f84c4e99db81e" />
+                  <option name="mobileSdkAppId" value="1:373369689147:android:06cc9c18c84bb1019db81e" />
                   <option name="projectId" value="vocabhelper-65136" />
                   <option name="projectNumber" value="373369689147" />
                 </ConnectionSetting>

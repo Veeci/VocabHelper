@@ -32,6 +32,7 @@
     <string name="login_login_with_google">Đăng nhập bằng Google</string>
     <string name="login_don_t_have_an_account">Bạn chưa có tài khoản?</string>
     <string name="login_register">Đăng ký</string>
+    <string name="this_feature_is_under_maintenance">Chức năng này hiện vẫn đang được bảo trì!</string>
 
     <!--Signup-->
     <string name="register_full_name">Họ và tên</string>
@@ -79,6 +80,8 @@
     <string name="focus_focus_and_learn_new_words">Tập trung và học từ mới.</string>
     <string name="focus_start_pomodoro">Bắt đầu Pomodoro</string>
     <string name="focus_give_up">Bỏ cuộc</string>
+    <string name="pause">Tạm dừng</string>
+    <string name="start">Bắt đầu</string>
 
     <!--Profile-->
     <string name="profile_account">Tài khoản</string>
@@ -91,6 +94,7 @@
     <string name="antonyms">Từ trái nghĩa:</string>
     <string name="example">Ví dụ:</string>
     <string name="definition">Định nghĩa:</string>
+    <string name="look_up_a_word">Tìm kiếm từ vựng bạn muốn học</string>
 
     <!--Setting-->
     <string name="setting_settings">Cài đặt</string>
@@ -98,6 +102,12 @@
     <string name="setting_change_app_language">Thay đổi ngôn ngữ</string>
     <string name="setting_set_focus_time">Đặt thời gian tập trung</string>
     <string name="setting_remember_password">Nhớ mật khẩu</string>
+    <string name="set_focus_time">Đặt thời gian:</string>
+    <string name="min">phút</string>
+    <string name="set_long_break">Quãng nghỉ dài:</string>
+    <string name="set_short_break">Quãng nghỉngắn:</string>
+    <string name="cancel">Hủy hóa đơn</string>
+    <string name="this_requires_a_restart_to_apply_changes_are_you_sure_you_want_to_log_out">Cần khởi động lại để áp dụng thay đổi. Bạn có chắc muốn đăng xuât không?</string>
 
     <!--Top bar-->
     <string name="topbar_index">Trang chính</string>
@@ -117,6 +127,7 @@
     <string name="worddetail_example">Ví dụ:</string>
     <string name="worddetail_save">Lưu</string>
     <string name="worddetail_delete">Xóa</string>
+    <string name="no_audio_available">Không tìm thấy bản ghi âm!</string>
 
     <!--Dialog_feedback_reset_email-->
     <string name="dialog_feedback_your_email">Email của bạn</string>

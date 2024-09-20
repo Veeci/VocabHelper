@@ -9,7 +9,7 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Look up a word!"
+        android:text="@string/look_up_a_word"
         android:textSize="20sp"
         android:textAlignment="center"
         android:textColor="@color/text_main"

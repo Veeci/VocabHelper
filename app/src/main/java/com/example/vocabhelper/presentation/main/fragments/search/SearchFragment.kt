@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.vocabhelper.R
 import com.example.vocabhelper.data.api.APIService
 import com.example.vocabhelper.data.implementation.WordRepoImplementation
 import com.example.vocabhelper.data.models.Response
@@ -117,7 +118,8 @@ class SearchFragment : Fragment() {
             }
             else
             {
-                Toast.makeText(context, "No audio available!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.no_audio_available), Toast.LENGTH_SHORT)
+                    .show()
             }
         }
     }

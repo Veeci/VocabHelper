@@ -19,15 +19,14 @@ class WordAdapter(private val onItemClick: (WordData) -> Unit): RecyclerView.Ada
     class WordViewHolder(val binding: ItemAddedwordBinding) : RecyclerView.ViewHolder(binding.root) {
         val word = binding.wordAdded
         val meaning = binding.meaning
-        val pronunciation = binding.pronunciation
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordAdapter.WordViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordViewHolder {
         val binding = ItemAddedwordBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return WordViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: WordAdapter.WordViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: WordViewHolder, position: Int) {
         val wordItem = words[position]
         holder.binding.apply {
             wordAdded.text = wordItem.word
@@ -62,7 +61,7 @@ class WordAdapter(private val onItemClick: (WordData) -> Unit): RecyclerView.Ada
                 setOnCompletionListener {
                     it.release()
                 }
-                setOnErrorListener { mp, what, extra ->
+                setOnErrorListener { mp, _, _ ->
                     mp.release()
                     true
                 }

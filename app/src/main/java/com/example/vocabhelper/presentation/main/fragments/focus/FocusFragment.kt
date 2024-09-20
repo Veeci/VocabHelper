@@ -3,11 +3,11 @@ package com.example.vocabhelper.presentation.main.fragments.focus
 import android.app.Dialog
 import android.os.Bundle
 import android.text.format.DateUtils
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.example.vocabhelper.R
@@ -40,7 +40,8 @@ class FocusFragment : Fragment() {
         })
 
         settingViewModel.isTimerRunning.observe(viewLifecycleOwner, Observer { isRunning ->
-            binding.startCountDownButton.text = if (isRunning) "Pause" else "Start"
+            binding.startCountDownButton.text =
+                if (isRunning) getString(R.string.pause) else getString(R.string.start)
         })
 
         settingViewModel.isFocusSession.observe(viewLifecycleOwner, Observer { isFocusSession ->

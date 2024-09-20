@@ -30,44 +30,6 @@
         android:id="@+id/settingTV"/>
 
     <LinearLayout
-        android:id="@+id/changeDisplayMode"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:orientation="horizontal"
-        android:weightSum="6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/settingTV"
-        android:padding="5dp">
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.6"
-            android:src="@drawable/icon_changetheme_setting"
-            tools:ignore="ContentDescription" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="5"
-            android:fontFamily="@font/lato"
-            android:gravity="center_vertical"
-            android:text="@string/setting_change_display_mode"
-            android:textColor="@color/text_main"
-            android:textSize="16sp" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.4"
-            android:src="@drawable/icon_goto"
-            tools:ignore="ContentDescription" />
-
-    </LinearLayout>
-
-    <LinearLayout
         android:id="@+id/changeAppLanguage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -76,7 +38,7 @@
         android:weightSum="6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/changeDisplayMode"
+        app:layout_constraintTop_toBottomOf="@id/settingTV"
         android:padding="5dp">
 
         <ImageView
