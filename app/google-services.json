@@ -28,6 +28,10 @@
             "package_name": "com.veeci.vocabhelper",
             "certificate_hash": "44115c3e1bf7932bd826e8be261347bbcfff554e"
           }
+        },
+        {
+          "client_id": "373369689147-fiboqb79736l50c2cmfksc790go2ggou.apps.googleusercontent.com",
+          "client_type": 3
         }
       ],
       "api_key": [
@@ -37,7 +41,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "373369689147-fiboqb79736l50c2cmfksc790go2ggou.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
