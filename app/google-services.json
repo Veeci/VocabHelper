@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "373369689147-71n5a44al9eop9ipur6nrl1o142uc26i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.veeci.vocabhelper",
+            "certificate_hash": "c1df576759557eb84f403873c36ff912e304c744"
+          }
+        },
+        {
           "client_id": "373369689147-hcsg5i35n130ll25agi9jojakinq2139.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
