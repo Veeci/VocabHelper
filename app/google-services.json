@@ -14,15 +14,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "373369689147-71n5a44al9eop9ipur6nrl1o142uc26i.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.veeci.vocabhelper",
-            "certificate_hash": "c1df576759557eb84f403873c36ff912e304c744"
-          }
-        },
-        {
-          "client_id": "373369689147-hcsg5i35n130ll25agi9jojakinq2139.apps.googleusercontent.com",
+          "client_id": "373369689147-2t4g1nmauj3vqvsmr6jrse9q4aj9e05f.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.veeci.vocabhelper",
@@ -30,7 +22,7 @@
           }
         },
         {
-          "client_id": "373369689147-r00uqldtjka15r7f1jg25vi7pfed68e6.apps.googleusercontent.com",
+          "client_id": "373369689147-8fft43ub96ao52ukveoslbomp5r0989r.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.veeci.vocabhelper",
@@ -38,7 +30,7 @@
           }
         },
         {
-          "client_id": "373369689147-fiboqb79736l50c2cmfksc790go2ggou.apps.googleusercontent.com",
+          "client_id": "373369689147-2pk9pg16um6ifv6aeod0bb27qp3lr39v.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -51,7 +43,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "373369689147-fiboqb79736l50c2cmfksc790go2ggou.apps.googleusercontent.com",
+              "client_id": "373369689147-2pk9pg16um6ifv6aeod0bb27qp3lr39v.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
