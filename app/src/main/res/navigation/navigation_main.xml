@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.vocabhelper.presentation.main.fragments.MainFragment"
+        android:name="com.veeci.vocabhelper.presentation.main.fragments.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
@@ -26,7 +26,7 @@
     </fragment>
     <fragment
         android:id="@+id/settingFragment"
-        android:name="com.example.vocabhelper.presentation.main.fragments.setting.SettingFragment"
+        android:name="com.veeci.vocabhelper.presentation.main.fragments.setting.SettingFragment"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting" >
         <action
@@ -37,7 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/wordDetailFragment"
-        android:name="com.example.vocabhelper.presentation.main.fragments.home.tabs.WordDetailFragment"
+        android:name="com.veeci.vocabhelper.presentation.main.fragments.home.tabs.WordDetailFragment"
         android:label="fragment_word_detail"
         tools:layout="@layout/fragment_word_detail" >
         <action
@@ -49,7 +49,7 @@
     </fragment>
     <fragment
         android:id="@+id/wordListFragment"
-        android:name="com.example.vocabhelper.presentation.main.fragments.home.tabs.WordListFragment"
+        android:name="com.veeci.vocabhelper.presentation.main.fragments.home.tabs.WordListFragment"
         android:label="fragment_word_list"
         tools:layout="@layout/fragment_word_list" >
         <action

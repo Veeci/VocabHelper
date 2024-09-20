@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.vocabhelper.presentation.auth.fragments.SplashFragment"
+        android:name="com.veeci.vocabhelper.presentation.auth.fragments.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/onboardingViewpagerFragment"
-        android:name="com.example.vocabhelper.presentation.auth.fragments.tabs.OnboardingViewpagerFragment"
+        android:name="com.veeci.vocabhelper.presentation.auth.fragments.tabs.OnboardingViewpagerFragment"
         android:label="fragment_onboarding_viewpager"
         tools:layout="@layout/fragment_onboarding_viewpager" >
         <action
@@ -29,7 +29,7 @@
     </fragment>
     <fragment
         android:id="@+id/fourthFragment"
-        android:name="com.example.vocabhelper.presentation.auth.fragments.tabs.FourthFragment"
+        android:name="com.veeci.vocabhelper.presentation.auth.fragments.tabs.FourthFragment"
         android:label="FourthFragment" >
         <action
             android:id="@+id/action_fourthFragment_to_onboardingViewpagerFragment"
@@ -47,7 +47,7 @@
     </fragment>
     <fragment
         android:id="@+id/signupFragment"
-        android:name="com.example.vocabhelper.presentation.auth.fragments.SignupFragment"
+        android:name="com.veeci.vocabhelper.presentation.auth.fragments.SignupFragment"
         android:label="SignupFragment" >
         <action
             android:id="@+id/action_signupFragment_to_loginFragment"
@@ -57,7 +57,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.vocabhelper.presentation.auth.fragments.LoginFragment"
+        android:name="com.veeci.vocabhelper.presentation.auth.fragments.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action

@@ -3,8 +3,8 @@
 -keepclassmembers class androidx.security.crypto.** { *; }
 
 # Models and API service for Retrofit and Firestore
--keepclassmembers class com.example.vocabhelper.data.models.** { *; }
--keep class com.example.vocabhelper.data.api.APIService { *; }
+-keepclassmembers class com.veeci.vocabhelper.data.models.** { *; }
+-keep class com.veeci.vocabhelper.data.api.APIService { *; }
 -keep class com.google.android.gms.** { *; }
 -keep class com.google.firebase.** { *; }
 

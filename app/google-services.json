@@ -7,26 +7,26 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:373369689147:android:06cc9c18c84bb1019db81e",
+        "mobilesdk_app_id": "1:373369689147:android:7fa04d05f7e913fd9db81e",
         "android_client_info": {
-          "package_name": "com.example.vocabhelper"
+          "package_name": "com.veeci.vocabhelper"
         }
       },
       "oauth_client": [
         {
-          "client_id": "373369689147-fqbrldslf354scqa66ie36mpmab3k90m.apps.googleusercontent.com",
+          "client_id": "373369689147-hcsg5i35n130ll25agi9jojakinq2139.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.vocabhelper",
-            "certificate_hash": "44115c3e1bf7932bd826e8be261347bbcfff554e"
+            "package_name": "com.veeci.vocabhelper",
+            "certificate_hash": "09b34f02192d7923fd96d34a5eb933e5484d0718"
           }
         },
         {
-          "client_id": "373369689147-s6aeu6phs61cgekdjpd2n1pnrdrvftp7.apps.googleusercontent.com",
+          "client_id": "373369689147-r00uqldtjka15r7f1jg25vi7pfed68e6.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.vocabhelper",
-            "certificate_hash": "c1df576759557eb84f403873c36ff912e304c744"
+            "package_name": "com.veeci.vocabhelper",
+            "certificate_hash": "44115c3e1bf7932bd826e8be261347bbcfff554e"
           }
         }
       ],

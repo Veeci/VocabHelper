@@ -1,6 +1,6 @@
 import org.jetbrains.kotlin.gradle.plugin.mpp.pm20.util.archivesName
-import java.util.Properties
 import java.io.FileInputStream
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.android.application)
@@ -14,11 +14,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.vocabhelper"
+    namespace = "com.veeci.vocabhelper"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.vocabhelper"
+        applicationId = "com.veeci.vocabhelper"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -85,9 +85,6 @@ dependencies {
     implementation(libs.androidx.core)
     implementation(libs.firebase.crashlytics.buildtools)
     implementation(libs.firebase.crashlytics)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
     implementation(libs.material.v190)
 
     //Retrofit & Gson
