@@ -28,7 +28,7 @@
         android:fontFamily="@font/lato"
         android:textStyle="bold"
         android:textAlignment="center"
-        android:text="To learn a new word"
+        android:text="@string/splash_to_learn_a_new_word"
         android:layout_marginTop="80dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -61,7 +61,7 @@
                 android:textColor="@color/text_main"
                 android:textSize="20sp"
                 android:fontFamily="@font/lato"
-                android:text="Write down the definition"
+                android:text="@string/splash_write_down_the_definition"
                 android:gravity="start|center_vertical"/>
 
         </LinearLayout>
@@ -85,7 +85,7 @@
                 android:textColor="@color/text_main"
                 android:textSize="20sp"
                 android:fontFamily="@font/lato"
-                android:text="Record your own pronunciation"
+                android:text="@string/splash_record_your_own_pronunciation"
                 android:gravity="start|center_vertical"/>
 
         </LinearLayout>
@@ -109,7 +109,7 @@
                 android:textColor="@color/text_main"
                 android:textSize="20sp"
                 android:fontFamily="@font/lato"
-                android:text="Organize words into categories"
+                android:text="@string/splash_organize_words_into_categories"
                 android:gravity="start|center_vertical"/>
 
         </LinearLayout>

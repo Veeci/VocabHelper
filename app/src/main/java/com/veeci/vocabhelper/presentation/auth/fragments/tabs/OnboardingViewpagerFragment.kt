@@ -23,8 +23,7 @@ class OnboardingViewpagerFragment : Fragment() {
             SecondFragment(),
             ThirdFragment(),
             FourthFragment(),
-            FifthFragment(),
-            SixthFragment()
+            FifthFragment()
         )
 
         val adapter = ViewPagerAdapter(

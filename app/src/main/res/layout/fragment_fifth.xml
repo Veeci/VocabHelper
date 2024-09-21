@@ -26,7 +26,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
         android:fontFamily="@font/lato"
-        android:text="Also helps you to focus with pomodoro method"
+        android:text="@string/splash_also_helps_you_to_focus_with_pomodoro_method"
         android:textAlignment="center"
         android:textColor="@color/text_main"
         android:textSize="28sp"

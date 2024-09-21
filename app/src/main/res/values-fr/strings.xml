@@ -1,5 +1,5 @@
 <resources>
-    <string name="default_web_client_id">373369689147-p789046cd029v00bm7q9m4fsnoltc51j.apps.googleusercontent.com</string>
+    <string name="default_web_client_id">373369689147-2pk9pg16um6ifv6aeod0bb27qp3lr39v.apps.googleusercontent.com</string>
     <string name="app_name">VocabHelper</string>
     <string name="hello_blank_fragment">Bonjour, c\'est un fragment vide</string>
 
@@ -21,6 +21,18 @@
     <string name="splash_please_login_to_your_account_or_create_new_account_to_continue">Veuillez vous connecter à votre compte ou créer un nouveau compte pour continuer</string>
     <string name="splash_login">Connexion</string>
     <string name="splash_create_account">Créer un compte</string>
+    <string name="splash_a_tool_help_you_in_learning_english_vocabulary">Un outil pour vous aider à apprendre le vocabulaire anglais</string>
+    <string name="splash_using_author_s_learning_method">Utilise la méthode d\'apprentissage de l\'auteur</string>
+    <string name="splash_to_learn_a_new_word">Pour apprendre un nouveau mot: </string>
+    <string name="splash_write_down_the_definition">Notez la définition</string>
+    <string name="splash_record_your_own_pronunciation">Enregistrez votre propre prononciation</string>
+    <string name="splash_organize_words_into_categories">Classez les mots par catégories</string>
+    <string name="splash_lookup_for_synonyms_and_antonyms">Recherchez des synonymes et des antonymes</string>
+    <string name="splash_explore_collocations">Explorez les collocations</string>
+    <string name="splash_and_finally_make_sentence">Et enfin, faites une phrase</string>
+    <string name="splash_also_helps_you_to_focus_with_pomodoro_method">Vous aide également à vous concentrer avec la méthode Pomodoro</string>
+    <string name="splash_so_what_are_you_waiting_for">Alors qu\'attendez-vous ?</string>
+
 
     <!--Login-->
     <string name="login_login">Connexion</string>

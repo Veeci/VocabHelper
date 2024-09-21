@@ -32,7 +32,7 @@ class FirstFragment : Fragment() {
         }
 
         binding.skip.setOnClickListener {
-            findNavController().navigate(R.id.action_onboardingViewpagerFragment_to_fourthFragment)
+            findNavController().navigate(R.id.action_onboardingViewpagerFragment_to_sixthFragment)
         }
 
         return binding.root

@@ -25,15 +25,15 @@ class FourthFragment : Fragment() {
         val viewPager = activity?.findViewById<ViewPager2>(R.id.onboardingViewpager)
 
         binding.nextButton.setOnClickListener {
-            findNavController().navigate(R.id.action_onboardingViewpagerFragment_to_fourthFragment)
+            viewPager?.currentItem = 4
         }
 
         binding.backButton.setOnClickListener {
-            viewPager?.currentItem = 0
+            viewPager?.currentItem = 2
         }
 
         binding.skip.setOnClickListener {
-            findNavController().navigate(R.id.action_onboardingViewpagerFragment_to_fourthFragment)
+            findNavController().navigate(R.id.action_onboardingViewpagerFragment_to_sixthFragment)
         }
 
         return binding.root

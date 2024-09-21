@@ -23,27 +23,8 @@
         android:label="fragment_onboarding_viewpager"
         tools:layout="@layout/fragment_onboarding_viewpager" >
         <action
-            android:id="@+id/action_onboardingViewpagerFragment_to_fourthFragment"
-            app:destination="@id/fourthFragment"
-            app:popUpTo="@id/onboardingViewpagerFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/fourthFragment"
-        android:name="com.veeci.vocabhelper.presentation.auth.fragments.tabs.SixthFragment"
-        android:label="FourthFragment" >
-        <action
-            android:id="@+id/action_fourthFragment_to_onboardingViewpagerFragment"
-            app:destination="@id/onboardingViewpagerFragment" />
-        <action
-            android:id="@+id/action_fourthFragment_to_signupFragment"
-            app:destination="@id/signupFragment"
-            app:popUpTo="@id/fourthFragment"
-            app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_fourthFragment_to_loginFragment"
-            app:destination="@id/loginFragment"
-            app:popUpTo="@id/fourthFragment"
-            app:popUpToInclusive="true" />
+            android:id="@+id/action_onboardingViewpagerFragment_to_sixthFragment"
+            app:destination="@id/sixthFragment" />
     </fragment>
     <fragment
         android:id="@+id/signupFragment"
@@ -66,7 +47,28 @@
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right" />
         <action
-            android:id="@+id/action_loginFragment_to_fourthFragment"
-            app:destination="@id/fourthFragment" />
+            android:id="@+id/action_loginFragment_to_sixthFragment"
+            app:destination="@id/sixthFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sixthFragment"
+        android:name="com.veeci.vocabhelper.presentation.auth.fragments.tabs.SixthFragment"
+        android:label="fragment_sixth"
+        tools:layout="@layout/fragment_sixth" >
+        <action
+            android:id="@+id/action_sixthFragment_to_onboardingViewpagerFragment"
+            app:destination="@id/onboardingViewpagerFragment"
+            app:popUpTo="@id/sixthFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_sixthFragment_to_signupFragment"
+            app:destination="@id/signupFragment"
+            app:popUpTo="@id/sixthFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_sixthFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/sixthFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

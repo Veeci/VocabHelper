@@ -1,5 +1,5 @@
 <resources>
-    <string name="default_web_client_id">373369689147-p789046cd029v00bm7q9m4fsnoltc51j.apps.googleusercontent.com</string>
+    <string name="default_web_client_id">373369689147-2pk9pg16um6ifv6aeod0bb27qp3lr39v.apps.googleusercontent.com</string>
     <string name="app_name">VocabHelper</string>
     <string name="hello_blank_fragment">Chào bạn, đây là một fragment trống</string>
 
@@ -21,6 +21,18 @@
     <string name="splash_please_login_to_your_account_or_create_new_account_to_continue">Vui lòng đăng nhập vào tài khoản của bạn hoặc tạo tài khoản mới để tiếp tục</string>
     <string name="splash_login">ĐĂNG NHẬP</string>
     <string name="splash_create_account">TẠO TÀI KHOẢN</string>
+    <string name="splash_a_tool_help_you_in_learning_english_vocabulary">Một công cụ giúp bạn học từ vựng tiếng Anh</string>
+    <string name="splash_using_author_s_learning_method">Sử dụng phương pháp học của chính tác giả</string>
+    <string name="splash_to_learn_a_new_word">Để học một từ mới:</string>
+    <string name="splash_write_down_the_definition">Viết ra định nghĩa</string>
+    <string name="splash_record_your_own_pronunciation">Ghi âm phát âm của chính bạn</string>
+    <string name="splash_organize_words_into_categories">Phân loại từ thành các danh mục</string>
+    <string name="splash_lookup_for_synonyms_and_antonyms">Tra cứu từ đồng nghĩa và trái nghĩa</string>
+    <string name="splash_explore_collocations">Khám phá thêm các thành ngữ, tục ngữ </string>
+    <string name="splash_and_finally_make_sentence">Và cuối cùng, đặt câu giúp hiểu cũng như ghi nhớ từ vựng hơn</string>
+    <string name="splash_also_helps_you_to_focus_with_pomodoro_method">Bên cạnh đó, phương pháp Pomodoro được áp dụng giúp cải thiện khả năng tập trung</string>
+    <string name="splash_so_what_are_you_waiting_for">Vậy còn chờ gì nữa?</string>
+
 
     <!--Login-->
     <string name="login_login">Đăng nhập</string>

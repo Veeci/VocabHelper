@@ -28,11 +28,11 @@ class SecondFragment : Fragment() {
         }
 
         binding.backButton.setOnClickListener {
-            viewPager?.currentItem = 1
+            viewPager?.currentItem = 0
         }
 
         binding.skip.setOnClickListener {
-            findNavController().navigate(R.id.action_onboardingViewpagerFragment_to_fourthFragment)
+            findNavController().navigate(R.id.action_onboardingViewpagerFragment_to_sixthFragment)
         }
 
         return binding.root

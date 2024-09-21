@@ -1,5 +1,5 @@
 <resources>
-    <string name="default_web_client_id">373369689147-p789046cd029v00bm7q9m4fsnoltc51j.apps.googleusercontent.com</string>
+    <string name="default_web_client_id">373369689147-2pk9pg16um6ifv6aeod0bb27qp3lr39v.apps.googleusercontent.com</string>
     <string name="app_name">VocabHelper</string>
     <string name="hello_blank_fragment">こんにちは、これは空のフラグメントです</string>
 
@@ -21,6 +21,18 @@
     <string name="splash_please_login_to_your_account_or_create_new_account_to_continue">アカウントにログインするか、新しいアカウントを作成して続行してください</string>
     <string name="splash_login">ログイン</string>
     <string name="splash_create_account">アカウント作成</string>
+    <string name="splash_a_tool_help_you_in_learning_english_vocabulary">英単語を学ぶためのツール</string>
+    <string name="splash_using_author_s_learning_method">著者の学習法を使用</string>
+    <string name="splash_to_learn_a_new_word">新しい単語を学ぶために</string>
+    <string name="splash_write_down_the_definition">意味を書き留める</string>
+    <string name="splash_record_your_own_pronunciation">自分の発音を録音する</string>
+    <string name="splash_organize_words_into_categories">単語をカテゴリーに分ける</string>
+    <string name="splash_lookup_for_synonyms_and_antonyms">類義語と反義語を調べる</string>
+    <string name="splash_explore_collocations">コロケーションを探る</string>
+    <string name="splash_and_finally_make_sentence">最後に文を作成する</string>
+    <string name="splash_also_helps_you_to_focus_with_pomodoro_method">ポモドーロ法で集中力を高めることもできます</string>
+    <string name="splash_so_what_are_you_waiting_for">さあ、何を待っているのですか？</string>
+
 
     <!--Login-->
     <string name="login_login">ログイン</string>

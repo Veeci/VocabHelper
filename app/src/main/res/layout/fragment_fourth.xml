@@ -41,7 +41,7 @@
             android:layout_weight="8"
             android:fontFamily="@font/lato"
             android:gravity="start|center_vertical"
-            android:text="Lookup for synonyms and antonyms"
+            android:text="@string/splash_lookup_for_synonyms_and_antonyms"
             android:textColor="@color/text_main"
             android:textSize="18sp" />
 
@@ -79,7 +79,7 @@
             android:layout_weight="8"
             android:fontFamily="@font/lato"
             android:gravity="start|center_vertical"
-            android:text="Explore collocations"
+            android:text="@string/splash_explore_collocations"
             android:textColor="@color/text_main"
             android:textSize="18sp" />
 
@@ -107,7 +107,7 @@
             android:layout_weight="8"
             android:fontFamily="@font/lato"
             android:gravity="start|center_vertical"
-            android:text="And finally make sentence"
+            android:text="@string/splash_and_finally_make_sentence"
             android:textColor="@color/text_main"
             android:textSize="18sp" />
 
