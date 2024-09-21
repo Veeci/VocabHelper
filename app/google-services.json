@@ -30,6 +30,14 @@
           }
         },
         {
+          "client_id": "373369689147-ho8cffl6ge3isn8p4m4b90fitv7jqdm2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.veeci.vocabhelper",
+            "certificate_hash": "bddd46b1d5c72acf2177b63626668cc2ab61afe3"
+          }
+        },
+        {
           "client_id": "373369689147-2pk9pg16um6ifv6aeod0bb27qp3lr39v.apps.googleusercontent.com",
           "client_type": 3
         }

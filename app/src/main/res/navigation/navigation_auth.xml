@@ -29,7 +29,7 @@
     </fragment>
     <fragment
         android:id="@+id/fourthFragment"
-        android:name="com.veeci.vocabhelper.presentation.auth.fragments.tabs.FourthFragment"
+        android:name="com.veeci.vocabhelper.presentation.auth.fragments.tabs.SixthFragment"
         android:label="FourthFragment" >
         <action
             android:id="@+id/action_fourthFragment_to_onboardingViewpagerFragment"

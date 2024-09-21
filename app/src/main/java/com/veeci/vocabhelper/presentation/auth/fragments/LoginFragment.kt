@@ -185,10 +185,6 @@ class LoginFragment : Fragment() {
         binding.biometricLogin.setOnClickListener {
             setupBiometricAuth()
         }
-
-        binding.testCrash.setOnClickListener {
-            throw RuntimeException("Test Crash")
-        }
     }
 
     private fun setRememberPassword()
