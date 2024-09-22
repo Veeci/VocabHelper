@@ -1,5 +1,6 @@
 # Android-specific Rules
 -keep class androidx.security.crypto.** { *; }
+-keepclassmembers class androidx.security.crypto.** { *; }
 
 # Models and API service for Retrofit and Firestore
 -keep class com.veeci.vocabhelper.data.models.** { *; }

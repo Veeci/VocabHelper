@@ -11,9 +11,9 @@
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 4,
-      "versionName": "1.0.3",
-      "outputFile": "vocabhelper-v1.0.3(4)-release.apk"
+      "versionCode": 7,
+      "versionName": "1.0.6",
+      "outputFile": "vocabhelper-v1.0.6(7)-release.apk"
     }
   ],
   "elementType": "File",
@@ -22,14 +22,14 @@
       "minApi": 28,
       "maxApi": 30,
       "baselineProfiles": [
-        "baselineProfiles/1/vocabhelper-v1.0.3(4)-release.dm"
+        "baselineProfiles/1/vocabhelper-v1.0.6(7)-release.dm"
       ]
     },
     {
       "minApi": 31,
       "maxApi": 2147483647,
       "baselineProfiles": [
-        "baselineProfiles/0/vocabhelper-v1.0.3(4)-release.dm"
+        "baselineProfiles/0/vocabhelper-v1.0.6(7)-release.dm"
       ]
     }
   ],
