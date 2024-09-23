@@ -36,6 +36,7 @@ class OnboardingViewpagerFragment : Fragment() {
         val dotsIndicator = view.findViewById<DotsIndicator>(R.id.dots_indicator)
 
         view_pager2.adapter = adapter
+        view_pager2.offscreenPageLimit = 5
         dotsIndicator.attachTo(view_pager2)
 
         return view

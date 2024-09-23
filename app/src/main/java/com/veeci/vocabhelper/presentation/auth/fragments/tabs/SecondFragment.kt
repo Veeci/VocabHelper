@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
+import coil.load
 import com.veeci.vocabhelper.R
 import com.veeci.vocabhelper.databinding.FragmentSecondBinding
 
@@ -35,7 +36,14 @@ class SecondFragment : Fragment() {
             findNavController().navigate(R.id.action_onboardingViewpagerFragment_to_sixthFragment)
         }
 
+        binding.image1.load(R.drawable.banner_banner2_onboarding)
+        binding.image2.load(R.drawable.banner_banner3_onboarding)
+
         return binding.root
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
+import coil.load
 import com.veeci.vocabhelper.R
 import com.veeci.vocabhelper.databinding.FragmentFourthBinding
-import com.veeci.vocabhelper.databinding.FragmentThirdBinding
 
 class FourthFragment : Fragment() {
 
@@ -36,7 +36,13 @@ class FourthFragment : Fragment() {
             findNavController().navigate(R.id.action_onboardingViewpagerFragment_to_sixthFragment)
         }
 
+        binding.banner.load(R.drawable.banner_banner4_onboarding)
+
         return binding.root
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

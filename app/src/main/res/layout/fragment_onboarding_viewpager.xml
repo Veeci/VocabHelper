@@ -20,7 +20,7 @@
         android:id="@+id/dots_indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="150dp"
+        android:layout_marginBottom="120dp"
         app:dotsColor="@color/theme_tertiary"
         app:dotsCornerRadius="8dp"
         app:dotsSize="10dp"

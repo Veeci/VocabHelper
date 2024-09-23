@@ -38,5 +38,8 @@ class SixthFragment : Fragment() {
             findNavController().navigate(R.id.action_sixthFragment_to_signupFragment)
         }
     }
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
