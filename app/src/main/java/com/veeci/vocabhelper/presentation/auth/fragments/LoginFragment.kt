@@ -1,8 +1,6 @@
 package com.veeci.vocabhelper.presentation.auth.fragments
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.util.Log
@@ -18,19 +16,17 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.security.crypto.EncryptedSharedPreferences
-import androidx.security.crypto.MasterKeys
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.crashlytics.FirebaseCrashlytics
+import com.veeci.base.utils.SharedPreferencesUtil
 import com.veeci.vocabhelper.R
 import com.veeci.vocabhelper.databinding.FragmentLoginBinding
 import com.veeci.vocabhelper.domain.AuthViewModel
 import com.veeci.vocabhelper.presentation.main.MainActivity
-import com.veeci.vocabhelper.presentation.main.fragments.setting.SettingFragment
 import kotlinx.coroutines.launch
 
 class LoginFragment : Fragment() {
@@ -41,12 +37,6 @@ class LoginFragment : Fragment() {
     private lateinit var googleSignInClient: GoogleSignInClient
 
     private val authViewModel: AuthViewModel by activityViewModels()
-    private lateinit var prefs: SharedPreferences
-    private lateinit var accountSharedPreferences: SharedPreferences
-
-    private val masterKeyAlias by lazy {
-        MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
-    }
 
     private val executor by lazy {
         this.context?.let { ContextCompat.getMainExecutor(it) }
@@ -92,14 +82,6 @@ class LoginFragment : Fragment() {
     ): View {
         _binding = FragmentLoginBinding.inflate(layoutInflater, container, false)
 
-        accountSharedPreferences = EncryptedSharedPreferences.create(
-            "account_preference_file",
-            masterKeyAlias,
-            requireContext(),
-            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
-        )
-
         return binding.root
     }
 
@@ -113,7 +95,6 @@ class LoginFragment : Fragment() {
             .build()
 
         googleSignInClient = GoogleSignIn.getClient(requireContext(), gso)
-        prefs = requireContext().getSharedPreferences(SettingFragment.PREFS_NAME, Context.MODE_PRIVATE)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
@@ -140,11 +121,26 @@ class LoginFragment : Fragment() {
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                         viewLifecycleOwner.lifecycleScope.launch {
                             if (email.isNotEmpty() && password.isNotEmpty()) {
-                                clearAndSetSharedPref(email, password)
-                                Log.d("LoginFragment", "Encrypted email: ${accountSharedPreferences.getString("encryptedEmail", "")}")
-                                Log.d("LoginFragment", "Encrypted password: ${accountSharedPreferences.getString("encryptedPassword", "")}")
+                                SharedPreferencesUtil.putString(
+                                    requireContext(),
+                                    "encryptedEmail",
+                                    email
+                                )
+                                SharedPreferencesUtil.putString(
+                                    requireContext(),
+                                    "encryptedPassword",
+                                    password
+                                )
 
-                                FirebaseCrashlytics.getInstance().log("Encrypted email: ${accountSharedPreferences.getString("encryptedEmail", "")}")
+                                FirebaseCrashlytics.getInstance().log(
+                                    "Encrypted email: ${
+                                        SharedPreferencesUtil.getString(
+                                            requireContext(),
+                                            "encryptedEmail",
+                                            ""
+                                        )
+                                    }"
+                                )
 
                                 context?.startActivity(intent)
                             } else {
@@ -176,10 +172,6 @@ class LoginFragment : Fragment() {
         binding.loginWithGoogle.setOnClickListener {
             val signInIntent = googleSignInClient.signInIntent
             googleSignInLauncher.launch(signInIntent)
-//            Toast.makeText(
-//                context,
-//                getString(R.string.this_feature_is_under_maintenance), Toast.LENGTH_LONG
-//            ).show()
         }
 
         binding.biometricLogin.setOnClickListener {
@@ -189,11 +181,15 @@ class LoginFragment : Fragment() {
 
     private fun setRememberPassword()
     {
-        val isRememberEnabled = prefs.getBoolean(SettingFragment.PREF_TOGGLE_SWITCH, false)
+        val isRememberEnabled =
+            SharedPreferencesUtil.getBoolean(requireContext(), "toggleSwitch", false)
 
         if (isRememberEnabled) {
-            val decryptedEmail = accountSharedPreferences.getString("encryptedEmail", "").toString().trim()
-            val decryptedPassword = accountSharedPreferences.getString("encryptedPassword", "")
+            val decryptedEmail =
+                SharedPreferencesUtil.getString(requireContext(), "encryptedEmail", "").toString()
+                    .trim()
+            val decryptedPassword =
+                SharedPreferencesUtil.getString(requireContext(), "encryptedPassword", "")
 
             if (decryptedEmail.isNotEmpty() && decryptedPassword.toString().isNotEmpty()) {
                 binding.emailET.text = Editable.Factory.getInstance().newEditable(decryptedEmail)
@@ -202,6 +198,8 @@ class LoginFragment : Fragment() {
                 Log.e("LoginFragment", "Decrypted email or password is empty.")
             }
         } else {
+            SharedPreferencesUtil.clear(requireContext(), "encryptedEmail")
+            SharedPreferencesUtil.clear(requireContext(), "encryptedPassword")
             Log.e("LoginFragment", "Saved email or password in SharedPreferences is null.")
         }
     }
@@ -253,14 +251,6 @@ class LoginFragment : Fragment() {
         } else {
             Toast.makeText(context, availabilityMessage, Toast.LENGTH_LONG).show()
         }
-    }
-
-    private fun clearAndSetSharedPref(email: String, password: String) {
-        val editor = accountSharedPreferences.edit()
-        editor.clear()
-        editor.putString("encryptedEmail", email)
-        editor.putString("encryptedPassword", password)
-        editor.apply()
     }
 
     override fun onDestroyView()

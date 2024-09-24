@@ -5,7 +5,7 @@ import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.veeci.base.BaseActivity
+import com.veeci.base.ui.BaseActivity
 import com.veeci.vocabhelper.R
 
 class AuthActivity : BaseActivity() {

@@ -1,6 +1,5 @@
 package com.veeci.vocabhelper.presentation.auth.fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -9,14 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.veeci.base.utils.SharedPreferencesUtil
 import com.veeci.vocabhelper.R
 
 class SplashFragment : Fragment() {
-
-    companion object {
-        const val PREFS_NAME = "SkipSplashScreen"
-        const val PREF_SPLASH_SHOWN = "SplashScreenShown"
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,8 +23,8 @@ class SplashFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val prefs = requireActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-        val splashScreenShown = prefs.getBoolean(PREF_SPLASH_SHOWN, true)
+        val splashScreenShown =
+            SharedPreferencesUtil.getBoolean(requireContext(), "splashScreenShown", false)
 
         if (splashScreenShown == false) {
             findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
@@ -37,7 +32,7 @@ class SplashFragment : Fragment() {
             Handler(Looper.getMainLooper()).postDelayed({
                 if (isAdded) {
                     findNavController().navigate(R.id.action_splashFragment_to_onboardingViewpagerFragment)
-                    prefs.edit().putBoolean(PREF_SPLASH_SHOWN, false).apply()
+                    SharedPreferencesUtil.putBoolean(requireContext(), "splashScreenShown", true)
                 }
             }, 3000)
         }

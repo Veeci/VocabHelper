@@ -1,10 +1,7 @@
 package com.veeci.vocabhelper.presentation.main.fragments.setting
 
 import android.app.Dialog
-import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +9,8 @@ import android.widget.LinearLayout
 import android.widget.NumberPicker
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.veeci.base.BaseActivity
+import com.veeci.base.ui.BaseActivity
+import com.veeci.base.utils.SharedPreferencesUtil
 import com.veeci.vocabhelper.R
 import com.veeci.vocabhelper.databinding.FragmentSettingBinding
 import com.veeci.vocabhelper.domain.SettingViewModel
@@ -24,23 +22,14 @@ class SettingFragment : Fragment() {
 
     private val settingViewModel: SettingViewModel by activityViewModels()
 
-    companion object {
-        const val PREFS_NAME = "VocabHelperPrefs"
-        const val PREF_REMEMBER_EMAIL = "RememberEmail"
-        const val PREF_REMEMBER_PASSWORD = "RememberPassword"
-        const val PREF_TOGGLE_SWITCH = "ToggleSwitch"
-    }
-
-    private lateinit var prefs: SharedPreferences
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSettingBinding.inflate(inflater, container, false)
 
-        prefs = requireContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-        val savedToggleSwitch = prefs.getBoolean(PREF_TOGGLE_SWITCH, false)
+        val savedToggleSwitch =
+            SharedPreferencesUtil.getBoolean(requireContext(), "toggleSwitch", false)
 
         settingViewModel.setToggleSwitch(savedToggleSwitch)
 
@@ -88,8 +77,7 @@ class SettingFragment : Fragment() {
 
         binding.rememberPasswordSwitch.setOnCheckedChangeListener { _, isChecked ->
             settingViewModel.setToggleSwitch(isChecked)
-            prefs.edit().putBoolean(PREF_TOGGLE_SWITCH, isChecked).apply()
-            Log.d("SettingFragment", "Toggle switch state changed to ${prefs.getBoolean(PREF_TOGGLE_SWITCH, false)}")
+            SharedPreferencesUtil.putBoolean(requireContext(), "toggleSwitch", isChecked)
         }
     }
 

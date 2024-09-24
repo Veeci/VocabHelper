@@ -1,10 +1,11 @@
-package com.veeci.base
+package com.veeci.base.ui
 
 import android.content.Context
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.veeci.base.utils.SharedPreferencesUtil
 import java.util.Locale
 
 open class BaseActivity : AppCompatActivity() {
@@ -32,11 +33,7 @@ open class BaseActivity : AppCompatActivity() {
 
 
     fun changeLanguage(languageCode: String) {
-        val sharedPreferences = getSharedPreferences("AppSettings", Context.MODE_PRIVATE)
-        with(sharedPreferences.edit()) {
-            putString("AppLanguage", languageCode)
-            commit()
-        }
+        SharedPreferencesUtil.putString(this, "language", languageCode)
         recreate()
     }
 }

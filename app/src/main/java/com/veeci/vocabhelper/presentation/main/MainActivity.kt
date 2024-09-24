@@ -9,7 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.veeci.base.BaseActivity
+import com.veeci.base.ui.BaseActivity
 import com.veeci.vocabhelper.R
 import com.veeci.vocabhelper.domain.AuthViewModel
 
