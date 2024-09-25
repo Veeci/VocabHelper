@@ -21,8 +21,8 @@ android {
         applicationId = "com.veeci.vocabhelper"
         minSdk = 24
         targetSdk = 34
-        versionCode = 9
-        versionName = "1.0.8"
+        versionCode = 11
+        versionName = "1.0.10"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         archivesName = "vocabhelper-v${versionName}(${versionCode})"
     }

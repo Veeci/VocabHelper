@@ -26,7 +26,7 @@ class SplashFragment : Fragment() {
         val splashScreenShown =
             SharedPreferencesUtil.getBoolean(requireContext(), "splashScreenShown", false)
 
-        if (splashScreenShown == false) {
+        if (splashScreenShown) {
             findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
         } else {
             Handler(Looper.getMainLooper()).postDelayed({

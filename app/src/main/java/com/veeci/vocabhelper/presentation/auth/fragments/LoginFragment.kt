@@ -85,8 +85,7 @@ class LoginFragment : Fragment() {
         return binding.root
     }
 
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -97,16 +96,14 @@ class LoginFragment : Fragment() {
         googleSignInClient = GoogleSignIn.getClient(requireContext(), gso)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
-    {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         setUpFunction()
         setRememberPassword()
     }
 
-    private fun setUpFunction()
-    {
+    private fun setUpFunction() {
         binding.loginButton.setOnClickListener {
             try {
                 val email = binding.emailET.text.toString()
@@ -144,14 +141,19 @@ class LoginFragment : Fragment() {
 
                                 context?.startActivity(intent)
                             } else {
-                                Toast.makeText(context, "Please enter email and password", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    context,
+                                    "Please enter email and password",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                         }.invokeOnCompletion {
                             setRememberPassword()
                         }
                     },
                     onFailure = {
-                        Toast.makeText(context, "Invalid Email or Password!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Invalid Email or Password!", Toast.LENGTH_SHORT)
+                            .show()
                     }
                 )
             } catch (e: Exception) {
@@ -179,17 +181,12 @@ class LoginFragment : Fragment() {
         }
     }
 
-    private fun setRememberPassword()
-    {
-        val isRememberEnabled =
-            SharedPreferencesUtil.getBoolean(requireContext(), "toggleSwitch", false)
+    private fun setRememberPassword() {
+        val isRememberEnabled = SharedPreferencesUtil.getBoolean(requireContext(), "toggleSwitch", false)
 
         if (isRememberEnabled) {
-            val decryptedEmail =
-                SharedPreferencesUtil.getString(requireContext(), "encryptedEmail", "").toString()
-                    .trim()
-            val decryptedPassword =
-                SharedPreferencesUtil.getString(requireContext(), "encryptedPassword", "")
+            val decryptedEmail = SharedPreferencesUtil.getString(requireContext(), "encryptedEmail", "").toString().trim()
+            val decryptedPassword = SharedPreferencesUtil.getString(requireContext(), "encryptedPassword", "")
 
             if (decryptedEmail.isNotEmpty() && decryptedPassword.toString().isNotEmpty()) {
                 binding.emailET.text = Editable.Factory.getInstance().newEditable(decryptedEmail)
@@ -200,12 +197,10 @@ class LoginFragment : Fragment() {
         } else {
             SharedPreferencesUtil.clear(requireContext(), "encryptedEmail")
             SharedPreferencesUtil.clear(requireContext(), "encryptedPassword")
-            Log.e("LoginFragment", "Saved email or password in SharedPreferences is null.")
         }
     }
 
-    private fun setupBiometricAuth()
-    {
+    private fun setupBiometricAuth() {
         val biometricManager = BiometricManager.from(requireContext())
 
         val biometricPrompt = executor?.let {
@@ -214,13 +209,21 @@ class LoginFragment : Fragment() {
                     override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
                         super.onAuthenticationError(errorCode, errString)
                         authViewModel.onBiometricAuthenticationResult(false)
-                        Toast.makeText(context, "Biometric authentication error: $errString", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            context,
+                            "Biometric authentication error: $errString",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
 
                     override fun onAuthenticationFailed() {
                         super.onAuthenticationFailed()
                         authViewModel.onBiometricAuthenticationResult(false)
-                        Toast.makeText(context, "Biometric authentication failed", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            context,
+                            "Biometric authentication failed",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
 
                     override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
@@ -228,7 +231,11 @@ class LoginFragment : Fragment() {
                         val user = FirebaseAuth.getInstance().currentUser
                         if (user != null) {
                             authViewModel.onBiometricAuthenticationResult(true)
-                            Toast.makeText(context, "Biometric authentication succeeded", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                context,
+                                "Biometric authentication succeeded",
+                                Toast.LENGTH_SHORT
+                            ).show()
                             val intent = Intent(context, MainActivity::class.java)
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                             context?.startActivity(intent)
@@ -253,8 +260,7 @@ class LoginFragment : Fragment() {
         }
     }
 
-    override fun onDestroyView()
-    {
+    override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
