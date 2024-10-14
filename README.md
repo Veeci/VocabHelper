@@ -74,4 +74,5 @@ Contributions are welcome! Please follow these steps:
 
 Happy learning with VocabHelper!
 
-## Coming soon on Google Play!
+## Give a try on Google Play:
+https://play.google.com/store/apps/details?id=com.veeci.vocabhelper
