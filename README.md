@@ -1,7 +1,7 @@
 # VocabHelper
 
 As an English learner, I see the difficulties in new words learning, which is one of the reason why I, with my passion for Android developing, created this application. VocabHelper is a small mobile tool designed to help users improve their English vocabulary through an interactive learning process. The app encourages users to not only learn new words but also gain a deeper understanding by exploring their meanings, synonyms, antonyms, collocations, and even recording their own pronunciation of each word. Additionally, the app features a Pomodoro timer to help users focus during their learning sessions.
-And the importnt thing is, although this software product support many languages, but I strongly recommend users to use English thoroughly, to describe meaning of the word added in English, to lookup and see the word in English, ...
+And the important thing is, although this software product support many languages, but I strongly recommend users to use English thoroughly, to describe meaning of the word added in English, to lookup and see the word in English, ...
 
 ## Features
 
